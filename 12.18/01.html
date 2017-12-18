@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>canvas 绘制点线</title>
+  </head>
+  <body>
+    <!-- 1. 新建画布区域 -->
+    <canvas id="canvas" width="1000" height="1000"></canvas>
+    
+    <script type="text/javascript">
+    var canvas = document.getElementById('canvas'); 
+    // 2. 获得画布 上下文对象 ‘2d’ 表示当前画布支持 2D绘图
+    var ctx = canvas.getContext('2d');
+    
+    // 设置绘制开始 每次重新绘制一个路径的开始
+    ctx.beginPath();
+    // 移动绘制的起始位置
+    ctx.moveTo(170,170);
+    // 绘制点的位置
+    ctx.lineTo(300,300);
+    // 描边
+    ctx.stroke();
+    // 设置绘制结束
+    ctx.closePath(); 
+    
+    ctx.beginPath();
+    ctx.moveTo(50,50);
+    ctx.lineTo(150,50);
+    ctx.lineTo(150,150);
+    ctx.lineTo(50,150);
+    ctx.lineTo(50,50);
+    
+    // 内部填充
+    ctx.fill();
+    ctx.closePath();
+    </script>
+  </body>
+</html>

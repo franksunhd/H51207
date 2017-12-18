@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>canvas 绘制文本</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById('canvas');
+      // 获得画布
+      var ctx = canvas.getContext('2d');
+      
+      ctx.font = "50px '宋体'";
+      ctx.textAlign = "center";
+      // fillText(text,x,y,maxwidth) maxwidth 可设置最大宽度
+      // 绘制实体文本
+      ctx.fillText("fillText",100,100);
+      // 绘制边框文本
+      ctx.strokeText("strokeText",100,200);
+    </script>
+  </body>
+</html>
