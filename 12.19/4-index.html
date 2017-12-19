@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>画布渲染画布</title>
+    <style media="screen">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #draw{
+        width: 600px;
+        padding: 20px;
+        margin: 10px auto;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 25px;
+        background: lightgreen;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="draw">将画布1上的部分区域显示到画布2上</div>
+    <canvas id="canvas-1" width="234" height="300"></canvas>
+    <canvas id="canvas-2" width="468" height="600"></canvas>
+
+    <script type="text/javascript">
+      var draw = document.getElementById("draw");
+      var canvas1 = document.getElementById("canvas-1");
+      var canvas2 = document.getElementById("canvas-2");
+
+      canvas1.style.border = "1px solid red";
+      canvas2.style.border = "1px solid red";
+
+      var ctx1 = canvas1.getContext("2d");
+      var ctx2 = canvas2.getContext("2d");
+
+      // 绘制图片
+      var img = new Image();
+      img.onload = function() {
+        // 图片加载完毕之后，绘制到ctx1上
+        ctx1.drawImage(img,0,0,234,300);
+      }
+      img.src = "./mi.jpg";
+
+      // 将画布1上的部分区域显示到画布2上
+      draw.onclick = function() {
+        ctx2.drawImage(canvas1, 67, 71, 110, 50, 0, 0, 110*2, 50*2);
+      }
+    </script>
+  </body>
+</html>
