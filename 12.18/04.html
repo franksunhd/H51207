@@ -2,15 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>canvas 绘制图片</title>
+    <title>canvas 绘制弧形</title>
   </head>
   <body>
-    <canvas id="canvas" width="300" height="300"></canvas>
+    <canvas id="canvas" width="300" height="300">你的浏览器不支持canvas</canvas>
     <script type="text/javascript">
       var canvas = document.getElementById("canvas");
+      canvas.style.border = "1px solid red";
       // 获得画布
       var ctx = canvas.getContext('2d');
-      
+
+      ctx.fillStyle = "blue";
+      ctx.arc(100, 50, 100, 0, Math.PI, false);
+      ctx.fill();
     </script>
   </body>
 </html>

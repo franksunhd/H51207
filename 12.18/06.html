@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>canvas 绘制阴影</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300">您的浏览器不支持canvas</canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas");
+      // 获得画布
+      var ctx = canvas.getContext("2d");
+
+      //  阴影颜色
+      ctx.shadowColor = 'green';
+
+      // 阴影模糊级别
+      ctx.shadowBlur = 10;
+
+      // 水平移动距离
+      ctx.shadowOffsetX = 10;
+
+      // 垂直移动距离
+      ctx.shadowOffsetY = 10;
+
+      // 填充颜色
+      ctx.fillStyle = 'red';
+
+      // 绘制填充矩形
+      ctx.fillRect(100,100,100,100);
+    </script>
+  </body>
+</html>

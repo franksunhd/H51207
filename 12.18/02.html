@@ -7,14 +7,14 @@
   <body>
     <canvas id="canvas" width="300" height="300"></canvas>
     <script type="text/javascript">
-    var canvas = document.getElementById('canvas'); 
+    var canvas = document.getElementById('canvas');
     // 2. 获得画布 上下文对象 ‘2d’ 表示当前画布支持 2D绘图
     var ctx = canvas.getContext('2d');
-    
+
     ctx.beginPath();
     // 绘制矩形 起点位置 10 10 width 50px height 50px
     ctx.rect(10,10,50,50);
-    
+
     // 填充矩形  （指定位置）
     ctx.fillStyle = "red";
     ctx.fillRect(20,20,20,20);
@@ -23,15 +23,16 @@
     ctx.strokeStyle = "#300";
     // 绘制矩形 起点位置 10 10 width 50px height 50px
     ctx.strokeRect(10,10,50,50);
-    ctx.arc(100,100,50,90*(Math.PI)/180, 180*(Math.PI)/180,false);
+
     ctx.closePath();
-    // ctx.beginPath();
+    ctx.beginPath();
     // 擦除矩形
     // ctx.clearRect(x,y,width,height);
-    
+
     // 绘制圆弧
-    // ctx.arc(x,y,r,sAngle,eAngle,counterclockwise);
-    // ctx.closePath();
+    ctx.fillStyle = "blue";
+    ctx.arc(250, 250, 100, 0, Math.PI * 0.5, false);
+    ctx.fill();
     </script>
   </body>
 </html>
