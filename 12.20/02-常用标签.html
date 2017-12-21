@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>常用标签</title>
+  </head>
+  <body>
+    <!-- 标题标签的特点: 块级元素 独占一行 -->
+    <h1>网页的一级标题</h1>
+    <h2>网页的二级标题</h2>
+    <h3>网页的三级标题</h3>
+    <h4>网页的四级标题</h4>
+    <h5>网页的五级标题</h5>
+    <h6>网页的六级标题</h6>
+    <!-- 自定义的标签 没有样式 -->
+    <h7>网页的六级标题</h7>
+
+    <!-- hr 分割线 -->
+    <hr>
+
+    <!-- div 标签 -->
+    <div>
+      div 没有任何的样式: 只做嵌套布局
+      特点: 独占一行
+    </div>
+
+    <span>
+      span 没有任何样式, 特点:一行显示多个
+    </span>
+    <span>
+      第二个span
+    </span>
+
+    <!-- p标签 块级元素 独占一行-->
+    <p> p 段落标签 特点:块级元素 独占一行</p>
+
+    <!-- br 换行标签 -->
+    <br>
+    <!-- hr 分割线 -->
+    <hr>
+
+    <!--
+      列表标签
+
+      注意: ul ol 只能嵌套li 元素
+
+      使用场景: 具有并列关系的
+     -->
+    <!-- 无序列表 -->
+    <ul id="ps" style="border:1px solid gray">
+      <!-- <p>请问</p> -->
+      <li>列表一</li>
+      <li style="border:1px solid gray">列表二</li>
+      <li>列表三</li>
+    </ul>
+
+    <ul>
+      <li>
+        <img width="100" src="./mi.jpg" alt="无法显示图片">
+        <h3>标题</h3>
+        <p>描述</p>
+      </li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <!-- 有序列表 -->
+    <ol style="border:1px solid gray">
+      <li>第一项</li>
+      <li>第二项</li>
+      <li>第三项</li>
+    </ol>
+
+    <!-- 定义列表 -->
+    <dl style="border:1px solid gray">
+      <dt>第一点</dt>
+      <dd>1) html</dd>
+      <dd>2) css</dd>
+      <dd>3) js </dd>
+      <dt>第二点</dt>
+      <dd>1) vue.js</dd>
+      <dd>2) angular.js</dd>
+      <dd>3) React</dd>
+    </dl>
+    <hr>
+    <!--
+      strong:突出关键字 便于搜素引擎的搜索
+      span: 只是在样式上显著  
+      b: 没有语义化 样式加粗
+
+      em:突出关键字 倾斜
+      i: 只有在样式上的倾斜
+    -->
+    <strong>加重语气:seo权重高 特点:和 span 类似</strong>
+    <span>没有语义的span</span>
+
+    <p style="color:red">
+      <strong>蓝鸥HTML5</strong>阶段课程介绍: 阶段1...
+      阶段2....
+      <br>
+      <b>阶段3...</b>
+      <br>
+      <em>阶段4....</em>
+      <br>
+      <i>阶段5...</i>
+    </p>
+    <!-- 绝对路径 -->
+    <a href="http://www.jd.com" target="_blank">京东商场</a>
+
+    <!-- 内部锚点 -->
+    <a href="#ps">内部锚点链接</a>
+    <!-- 外部锚点 -->
+    <!-- 相对路径 -->
+    <a href="./03-table.html#pd">外部锚点链接</a>
+    <br>
+    <!-- code 里面写计算机语法代码 -->
+    <code>
+      var a = 10;
+      alert(a);
+    </code>
+    <!-- pre 直接把里边的内容原样输出 -->
+    <pre style="border:1px solid gray">
+      var b = 10;
+      console.log(b);
+      &lt;h1&gt;蓝鸥科技&lt;/h1&gt;
+      &lt;p&gt;让教育回归本质&lt;/p&gt;
+      x <sub>2</sub> + y <sup>1</sup>
+    </pre>
+
+    <!--
+      图片标签:img
+      属性:
+      width:不用给单位，默认是px，给定宽度后高度会自适应
+      _height: 自定义属性
+
+      alt:图片加载失败显示
+      title:鼠标悬停显示文本
+    -->
+    <img width="200" _height="1000" title="mi" src="./mi.jpg" alt="无法显示图片">
+    <img width="200" title="猴子" src="http://img4.imgtn.bdimg.com/it/u=3806003929,24929691&fm=27&gp=0.jpg" alt="">
+    <img width="200" src="../baseImg/mi.jpg" alt="无法显示图片">
+    <!-- 链接 -->
+    <a href="./01-基础结构.html" target="_blank">01-基础结构</a>
+    <a href="http://www.lanou3g.com" target="_blank">蓝鸥 让教育回归本质</a>
+    <!-- 锚点 -->
+    <a href="#p1">内部锚点链接</a>
+    <a href="./01-基础结构.html#pd">外部锚点链接</a>
+
+    <!--
+      a span strong b em i 一行显示多个的不支持 宽高设置
+
+      h标签 div p 宽度默认和父元素一样 支持宽高设置
+
+      img 一行显示多个也可以设置宽高
+     -->
+    <a href="#" style="border:1px solid gray;width:500px;height:150px;">锚点跳转</a>
+    <h1 style="border:1px solid gray;width:500px;height:150px;">
+      <a href="#" >蓝鸥科技</a>
+      北京校区欢迎你！
+    </h1>
+
+    <dl>
+      <dt>国际新闻</dt>
+      <dd>1.国足出线了</dd>
+      <dd>2.世界各大机构调整策略</dd>
+      <dd>
+        <a href="#">
+          <img width="80" src="./tom.png" alt="">
+          <p>小米耳机涨价了</p>
+        </a>
+      </dd>
+    </dl>
+
+    <!--
+      div: 做嵌套布局 可以嵌套任何子元素 
+   -->
+  </body>
+</html>
