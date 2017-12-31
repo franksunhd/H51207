@@ -1,0 +1,84 @@
+<!-- 02-常用样式.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>常用样式</title>
+</head>
+<body>
+	<!--
+		css:层叠样式表
+
+		三种样式类型
+		1.行内样式 (style属性设置样式)
+		2.嵌套样式 (style标签设置样式)
+		3.外部样式 (link标签引入外部样式表)
+
+		语义化:
+		1.w3c的标准:HTML结构 CSS样式 JS行为
+		2.语义化的原则:先确定语义的HTML，再确定合适的CSS.
+		3.确定语义是否良好,在去掉CSS之后,网页依然具有良好的可读性.
+		4.语义化网页的好处:对搜索引擎友好,便于搜索引擎对网页的搜索和抓取.
+
+		语义化的原则:
+		1.重语义的地方,多用语义化的标签,比如 h 和 p ,少用纯样式标签,比如 div 和 span
+		2.如果一个地方既可以使用语义化的标签,又可以使用普通的标签,那么优先选择语义化的标签.
+		3.纯样式标签的一些固有的属性可以使用CSS样式进行设置.
+
+		CSS作用:
+		1.控制网页的样式
+		2.实现 结构 和 样式 的分离
+		3.代码更少,语义更好,搜索更容易.
+
+		颜色的写法:
+		1.英文:red,blue,green,orange,pink,purple..... 缺点:样式比较少
+		2.RGB: RGB(255,255,255);
+		3.RGBA: RGBA(255,255,255,0.2);
+		4.十六进制: #ffffff;
+		5.HSL: 用的少
+
+		文本样式:
+		1. text-align 设置文本对其方式
+			属性值:left center right
+		   vertical-align 设置垂直对齐方式 (适合行内元素)
+		2. text-indent: 首行缩进大小 2em
+		3. color:设置文本显示颜色
+		4. line-height 行高
+		5. 字间距 letter-spacing
+		6. 单词间距 word-spacing
+		7. 文本装饰 text-decoration 属性值 overline underline line-through
+		8. text-transform   属性值   uppercase(转换为大写) lowercase(转换为小写)  capitalize(首字母大写)
+
+		字体样式:
+		1. font-size 设置字体大小 px
+		2. font-family 设置字体 "微软雅黑" "宋体"
+		3. font-style 设置字体风格 italic(倾斜)
+		4. font-weight 设置字体粗细 bold bolder 100-900的整数倍
+
+		背景属性 background
+		1. background-image: url();  设置背景图片
+		2. background-repeat:no-repeat; 设置是否重复;
+
+
+		visibility:hidden 和 display:none的区别:
+		1.visibility 是占位置的隐藏
+		2.display 不占位置隐藏
+
+		边框属性
+		1.border:1px solid red;
+	 -->
+
+	 <p style="background: red;">我的p标签</p>
+
+	 <p style="border: 2px solid gray; border-bottom: none;border-left:none;">边框拆分设置</p>
+
+	 <ul>
+		 <li style="list-style:none;background-image:url('./bullet.png');background-position:left center;text-indent:1em;background-repeat:no-repeat;">李四</li>
+		 <li style="list-style:none;background-image:url('./bullet.png');background-position:left center;text-indent:1em;background-repeat:no-repeat;">李四</li>
+		 <li style="list-style:none;background-image:url('./bullet.png');background-position:left center;text-indent:1em;background-repeat:no-repeat;">李四</li>
+	 </ul>
+
+	 <p style="font: 12px/1.5 '微软雅黑', '宋体', STHeiTi,Arial, Helvetica, sans-serif;">字体设置</p>
+
+</body>
+</html>
