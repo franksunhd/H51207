@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>网易登录</title>
+  <link rel="stylesheet" href="./css/master.css">
+</head>
+<body>
+  <div class="box">
+    <div class="tip">
+      <div class="tip-1">
+        <span>
+          <img src="./img/icon_code.png" alt="无法显示图片">
+          二维码登录
+        </span>
+      </div>
+      <div class="tip-2">邮箱账号登录</div>
+    </div>
+    <!-- 二维码登录 -->
+    <div class="left">
+      <div class="left-box">
+        <h3>
+          <strong>网易邮箱大师</strong>
+          手机版扫码登录
+        </h3>
+        <p>
+          官方APP更安全
+          <a href="#">立即下载</a>
+        </p>
+        <div class="appCodeBox">
+          <img src="./img/getUrlQrcode.jpg" alt="无法显示图片">
+          <img src="./img/applogin_example.png" alt="无法显示图片">
+        </div>
+        <div class="appLogin">
+          <img src="./img/applogin_dashi_pc.png" alt="无法显示图片">
+          <div class="appLogin-main">
+            <p><strong>网易邮箱大师电脑版</strong></p>
+            <p class="icon">登录更便捷，工作更高效</p>
+            <a href="#">立即下载 >></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- 邮箱账号登录 -->
+    <div class="right">
+      <div class="left-box">
+        <form action="#" method="post" autocomplete="off">
+          <!-- 用户名 -->
+          <div class="acontent inputbox">
+            <div class="u-logo"></div>
+            <input type="text" name="username" placeholder="邮箱账号或手机号">
+            <span></span>
+          </div>
+          <!-- 密码 -->
+          <div class="bcontent inputbox">
+            <div class="l-logo"></div>
+            <input type="password" name="password" placeholder="密码">
+          </div>
+          <!-- 免登陆 -->
+          <div class="ul-login">
+            <div class="ul-login-left">
+              <input type="checkbox" id="ul">
+              <label for="ul">十天内免登陆</label>
+            </div>
+            <div class="ul-login-right">忘记密码</div>
+          </div>
+          <!-- btn -->
+          <div class="btn">
+            <div class="btn-login">登陆</div>
+            <div class="btn-reset">去注册</div>
+          </div>
+
+          <!-- 版本 -->
+          <div class="ban">
+            <div class="ban-left">
+              <label for="ban1">版本:</label>
+              <select name="banben">
+                <optgroup>
+                  <option value="0">默认版本</option>
+                  <option value="1">网易邮箱6.0</option>
+                  <option value="2">网易邮箱6.0简约版</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="ban-right">
+              <input type="checkbox" id="quan">
+              <label for="quan">全程SSL</label>
+            </div>
+          </div>
+          <!-- mailapp -->
+          <div class="mailapp"></div>
+
+          <!-- bottom -->
+          <div class="bottom">
+            <p>. 跨年狂欢全场抄底价，低至50%OFF！</p>
+            <p>. 网易邮箱提醒您谨防邮件诈骗！</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/jquery.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+
+    $(".tip-1").hover(function() {
+      $(".right").css("display","none");
+      $(".left").css("display","block");
+    });
+
+    $(".tip-2").hover(function() {
+      $(".left").css("display","none");
+      $(".right").css("display","block");
+    });
+  </script>
+</body>
+</html>

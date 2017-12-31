@@ -1,0 +1,346 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #4ea9f6;
+}
+
+.box {
+  width: 305px;
+  height: 470px;
+  margin:  20px auto;
+  position: relative;
+}
+
+.box .tip {
+  width: 305px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+}
+
+.box .tip div {
+  float: left;
+  width: 152px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.box .tip .tip-1 span img {
+  vertical-align: middle;
+}
+
+.box .left{
+  width: 305px;
+  height: 470px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+  background: url("../img/login.png") no-repeat -9px -9px;
+}
+
+.box .right{
+  width: 305px;
+  height: 470px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: url("../img/login.png") no-repeat -332px -9px;
+}
+
+.left-box {
+  width: 295px;
+  height: 413px;
+  padding-top: 6px;
+  margin: 50px auto 0px;
+  font-size: 14px;
+  color: #626262;
+  text-align: center;
+  position: relative;
+}
+
+.left-box > h3 {
+  padding-top: 20px;
+  font-weight: normal;
+  line-height: 35px;
+}
+
+.left-box > p {
+  font-size: 14px;
+}
+
+.left-box > .appCodeBox {
+  margin-top: 40px;
+  position: relative;
+}
+
+.left-box > .appCodeBox img:first-child:hover{
+  transform: translateX(-55px);
+  transition: all 1s ease-in-out;
+}
+
+.left-box > .appCodeBox img:first-child:hover + img:last-child {
+  transition: all 1s ease-in-out;
+  opacity: 1;
+}
+
+.left-box > .appCodeBox img:first-child {
+  width: 130px;
+  padding: 2px;
+  background: #fff;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 5px rgba(0,0,0,.3);
+}
+
+.left-box > .appCodeBox img:last-child {
+  width: 130px;
+  position: absolute;
+  top: -20px;
+  right: 10px;
+  opacity: 0;
+}
+
+.left-box > .appLogin {
+  width: 231px;
+  margin: 40px auto;
+}
+
+.left-box > .appLogin img {
+  float: left;
+  vertical-align: middle;
+}
+
+.left-box > .appLogin > .appLogin-main {
+  overflow: hidden;
+  font-size: 14px;
+  text-align: left;
+  display: inline-block;
+  padding-left: 11px;
+}
+
+.left-box  .appLogin  .appLogin-main  p.icon {
+  font-size: 12px;
+  color: #949494;
+}
+
+.left-box  .appLogin  .appLogin-main > a {
+  font-size: 12px;
+  color: #4ea9f6;
+  cursor: pointer;
+}
+
+form {
+  width: 295px;
+  height: 408px;
+  position: relative;
+}
+
+.left-box .inputbox {
+
+  width: 245px;
+  height: 42px;
+  line-height: 42px;
+  margin-left: 25px;
+  background: url("../img/bg1.png") 0 -352px no-repeat;
+}
+
+.acontent {
+  position: absolute;
+  right: 25px;
+  top: 40px;
+}
+
+.bcontent {
+  position: absolute;
+  right: 25px;
+  top: 110px;
+}
+
+.left-box .inputbox .u-logo {
+  /* width: auto; */
+  width: 14px;
+  height: 16px;
+  float: left;
+  display: inline-block;
+  margin: 13px 10px;
+  background: url("../img/bg.png") no-repeat -154px -64px;
+}
+
+.left-box .inputbox .l-logo {
+  width: 14px;
+  height: 16px;
+  float: left;
+  display: inline-block;
+  margin: 13px 10px;
+  background: url("../img/bg.png") no-repeat -178px -64px;
+}
+
+.left-box .inputbox input[name=username],
+.left-box .inputbox input[name=password] {
+  height: 20px;
+  line-height: 20px;
+  margin: 12px 8px 0px;
+  float: left;
+  font-size: 14px;
+  font-weight: bolder;
+  outline: none;
+  border: none;
+}
+
+.left-box .inputbox input[name=username] {
+  width: 115px;
+}
+
+.left-box .inputbox input[name=password] {
+  width: 190px;
+}
+
+.left-box .inputbox input::-webkit-input-placeholder {
+  color: #ccc;
+}
+
+.left-box .inputbox > span {
+  width: 71px;
+  height: 12px;
+  overflow: hidden;
+  display: block;
+  position: absolute;
+  right: 7px;
+  top: 16px;
+  background: #fff;
+  background: url("../img/bg.png") no-repeat -8px -123px;
+}
+
+.left-box .ul-login {
+  width: 245px;
+  height: 42px;
+  line-height: 42px;
+  margin-left: 25px;
+  font-size: 12px;
+  position: absolute;
+  top: 165px;
+  left: 0px;
+}
+
+.left-box .ul-login .ul-login-left {
+  float: left;
+  margin-left: 10px;
+}
+
+.left-box .ul-login .ul-login-right {
+  float: right;
+  margin-right: 10px;
+}
+
+.btn {
+  width: 245px;
+  height: 42px;
+  line-height: 42px;
+  margin-left: 25px;
+  position: absolute;
+  top: 210px;
+  left: 0px;
+  font-size: 16px;
+}
+
+.btn .btn-login {
+  float: left;
+  display: inline-block;
+  width: 110px;
+  height: 38px;
+  color: #fff;
+  line-height: 38px;
+  background: url("../img/bg.png") no-repeat 0px -208px;
+}
+
+.btn .btn-login:hover {
+  background: url("../img/bg.png") no-repeat 0px -256px;
+}
+
+.btn .btn-reset {
+  float: right;
+  display: inline-block;
+  width: 110px;
+  height: 38px;
+  color: #333;
+  line-height: 38px;
+  background: url("../img/bg.png") no-repeat -117px -208px;
+}
+
+.btn .btn-reset:hover {
+  background: url("../img/bg.png") no-repeat -117px -304px;
+}
+
+.ban {
+  width: 245px;
+  height: 30px;
+  line-height: 30px;
+  margin-left: 25px;
+  font-size: 12px;
+  position: absolute;
+  top: 260px;
+  left: 0px;
+}
+
+.ban .ban-left {
+  float: left;
+}
+
+.ban .ban-left select[name=banben] {
+  width: 100px;
+}
+
+.ban .ban-right {
+  float: right;
+}
+
+.mailapp {
+  width: 250px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 25px;
+  position: absolute;
+  top: 296px;
+  /* background: red; */
+  left: -5px;
+  background: url("../img/mailvip_logo_3.png");
+}
+
+.bottom {
+  width: 250px;
+  height: 63px;
+  line-height: 63px;
+  margin-left: 25px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.bottom p {
+  font-size: 12px;
+  margin-top: 8px;
+  line-height: 20px;
+}
+
+.bottom p:first-child {
+  color: #9BB3D0;
+}
+
+.bottom p:last-child {
+  color: #E60D40;
+}

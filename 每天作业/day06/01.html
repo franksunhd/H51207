@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .box {
+        width: 300px;
+        margin: 50px auto;
+        box-shadow: 2px 2px 2px #e2e2e2;
+        position: relative;
+        /* border: 1px solid red; */
+        border-radius: 10px;
+        overflow: hidden;
+        z-index: 0;
+        position: relative;
+      }
+
+      .box .img img{
+        width: 300px;
+        height: 165px;
+      }
+
+      .box .item {
+        clear: both;
+        width: 100%;
+        height: 165px;
+        background: rgba(0,0,0,0.4);
+        color: #fff;
+        position: absolute;
+        left: 0;
+        top: 0;
+        visibility: hidden;
+      }
+
+      .box:hover > .item{
+        visibility: visible;
+      }
+
+      .box .item h1 {
+        font-size: 30px;
+        margin: 50px auto 10px;
+        text-align: center;
+      }
+
+      .box .item p {
+        text-align: center;
+      }
+
+      .box .icon {
+        clear: both;
+        text-align: center;
+        line-height: 35px;
+        font-family: HUM521L;
+        font-size: 0.98em;
+        color: #666666;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="img">
+        <img src="./img/1.jpg" alt="无法显示图片">
+      </div>
+      <div class="icon">2017年十大头条盘点H5</div>
+      <div class="item">
+        <h1>今日头条</h1>
+        <p>2017年十大头条盘点H5</p>
+      </div>
+    </div>
+  </body>
+</html>

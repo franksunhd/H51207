@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+}
+
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.main {
+  width: 500px;
+  margin: 50px auto;
+  font-size: 50px;
+  text-align: center;
+}
+
+.main .head-top {
+  width: 500px;
+  height: 100px;
+  background: green;
+}
+
+.main .head-top ul li {
+  width: 100px;
+  height: 100px;
+  float: left;
+  line-height: 100px;
+}
+
+.centerbox .centerbox-left {
+  width: 300px;
+  height: 350px;
+  float: left;
+}
+
+.centerbox .centerbox-left .centerbox-left-top {
+  width: 300px;
+  height: 100px;
+  background: yellow;
+}
+
+.centerbox .centerbox-left .centerbox-left-center {
+  width: 300px;
+  height: 150px;
+  line-height: 150px;
+}
+
+.centerbox .centerbox-left .centerbox-left-center .centerbox-left-center-left {
+  width: 150px;
+  height: 150px;
+  background: gray;
+  float: left;
+}
+
+.centerbox .centerbox-left .centerbox-left-center .centerbox-left-center-right {
+  width: 150px;
+  height: 150px;
+  background: #000;
+  float: left;
+  color: #fff;
+}
+
+.centerbox .centerbox-left .centerbox-left-bottom {
+  width: 300px;
+  height: 100px;
+  background: red;
+}
+
+.centerbox .centerbox-right {
+  width: 200px;
+  height: 350px;
+  float: left;
+}
+
+.centerbox .centerbox-right .centerbox-right-top {
+  width: 200px;
+  height: 200px;
+  background: lightblue;
+  line-height: 200px;
+}
+
+.centerbox .centerbox-right .centerbox-right-bottom {
+  width: 200px;
+  height: 150px;
+  background: #00f5ff;
+  line-height: 150px;
+}
+
+.footer-bottom {
+  width: 500px;
+  height: 100px;
+  background: blue;
+}
+
+/* ********* 02-flaot.html ************ */
+
+.box {
+  width: 500px;
+  font-size: 20px;
+  margin: 50px auto;
+}
+
+.box .title {
+  height: 50px;
+  line-height: 50px;
+  text-indent: 2em;
+  background: linear-gradient(to bottom , white, lightblue);
+}
+
+
+.box .items .item {
+  width: 500px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.box .items .item .img {
+  border: 1px solid #ccc;
+  padding: 5px;
+  float: left;
+}
+
+.box .items .item .img img {
+  width: 140px;
+  float: left;
+}
+
+.box .items .item .des {
+  overflow: hidden;
+  padding-left: 20px;
+}
+
+.box .items .item .des p:first-child {
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.box .items .item .des p:last-child {
+  font-size: 16px;
+  line-height: 25px;
+  margin: 10px auto;
+  color: gray;
+}
