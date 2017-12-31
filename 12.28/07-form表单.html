@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>form表单</title>
+  <style media="screen">
+    body {
+      font-size: 20px;
+    }
+    .box {
+      width: 500px;
+      margin: 50px auto;
+    }
+
+    input {
+      height: 30px;
+      font-size: 18px;
+      outline: none;
+    }
+
+    #subbtn {
+      /*
+         提交按钮直接设置高度无效
+         修改背静或者边框之后设置有效
+       */
+      width: 200px;
+      height: 100px;
+      border: 1px solid gray;
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    form 表单
+
+    表单内容 写在form 里边
+
+    GET请求: 参数直接跟在地址后面,不安全!
+    POST请求:参数在请求体中.不在地址中显示
+ -->
+  <div class="box">
+    <!-- autocomplete 打开表单的记忆功能 on打开 off关闭 -->
+    <form action="#" method="get" autocomplete="on">
+      <label for="username" >用户名:</label>
+      <!--
+      autofocus 自动获取焦点 一个页面中只能有一个input可以设置 不能设置多个 具有唯一性
+      -->
+      <input id="username"  type="text" name="username"  placeholder="请输入用户名" autofocus>
+      <br>
+      <label for="password">密码:</label>
+      <input id="password" type="password" name="password" placeholder="请输入用密码">
+      <br>
+      <label for="">性别:</label>
+      <label for="gender1">男</label>
+      <input id="gender1" type="radio" name="gender" value="男">
+      <label for="gender2">女</label>
+      <!-- checked 默认选中 -->
+      <input id="gender2" type="radio" name="gender" value="女" checked>
+      <br>
+      <label for="url">URL:</label>
+      <input type="text" name="url" required placeholder="请输入URL">
+      <br>
+      <!-- 多选框 -->
+      <fieldset>
+        <legend>多选框</legend>
+        <label for="">爱好:</label>
+        <label for="smoke">抽烟</label>
+        <input id="smoke" type="checkbox" name="smoke" value="抽烟">
+        <label for="drink">喝酒</label>
+        <input id="drink" type="checkbox" name="drink" value="喝酒">
+        <label for="head">烫头</label>
+        <input id="head" type="checkbox" name="head" value="烫头">
+      </fieldset>
+
+      <!-- 文本域 -->
+      <fieldset>
+        <legend>文本域</legend>
+        <!--
+        readonly 只读
+        maxlength 设置 最大输入长度
+        required 设置必填项
+       -->
+        <textarea name="description" rows="8" cols="70" readonly maxlength="100"></textarea>
+      </fieldset>
+
+      <!-- 下拉列表 -->
+      <fieldset>
+        <legend>下拉列表</legend>
+        <select name="city">
+          <optgroup label="山西">
+            <option>临汾</option>
+            <option>太原</option>
+            <option>运城</option>
+          </optgroup>
+          <optgroup label="北京" >
+
+            <option >海淀</option>
+            <option>昌平</option>
+            <option>朝阳</option>
+          </optgroup>
+        </select>
+        <select name="year">
+          <optgroup label="公元前">
+            <option>221年</option>
+            <option>546年</option>
+            <option>154年</option>
+            <option>323年</option>
+          </optgroup>
+          <optgroup label="公元">
+            <option>1994</option>
+            <option>1995</option>
+            <option>1996</option>
+            <option>1997</option>
+          </optgroup>
+        </select>
+      </fieldset>
+
+      <!-- 按钮区 -->
+      <fieldset>
+        <legend>按钮</legend>
+        <input type="button" name="" value="普通按钮">
+        <!-- 重置表单按钮 -->
+        <input type="reset" value="清空">
+        <!-- 提交按钮 -->
+        <input type="submit" name="" value="注册">
+        <!--
+          上传文件 multiple 多选 accept指定选择格式
+         -->
+        <input type="file" multiple accept="image/png">
+      </fieldset>
+      <!-- disabled 禁用 -->
+      <input id="subbtn" type="submit" -disabled>
+    </form>
+  </div>
+</body>
+</html>
