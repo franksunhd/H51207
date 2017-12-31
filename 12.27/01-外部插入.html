@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>外部插入</title>
+  <link rel="stylesheet" href="./css/base.css">
+</head>
+<body>
+  <div class="one">
+    参考---------one
+  </div>
+  <div class="two">
+    参考---------two
+  </div>
+  <div class="three">
+    参考---------three
+  </div>
+  <div class="four">
+    参考---------four
+  </div>
+
+  <script src="./js/jquery.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    // 外部插入 前边
+    $(".one").before("<h2>我是第一个h2</h2>");
+
+    // 外部插入 前部
+    $("<h2>我是第二个h2</h2>").insertBefore(".two");
+
+    // before , insertBefore , after , insertAfter 都是添加的兄弟元素
+
+    // h3的内容为空
+    $(".three").append("<h3></h3>");
+
+    // 修改标签内容
+    $(".three > h3").html("<p>我是要替换h3的p元素</p>");
+    $(".three > h3").html("xxxx");
+
+  </script>
+</body>
+</html>

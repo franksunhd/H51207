@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>替换元素</title>
+</head>
+<body>
+  <div class="one">this is one.</div>
+  <div class="two">this is two.</div>
+  <script src="./js/jquery.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    // replaceWith 书写习惯符合 人类正常思维
+    $(".one").replaceWith("<h2>我是第一个h2元素</h2>")
+    // replaceAll 目标与源正相反
+    $("<h2>我是第二个h2元素</h2>").replaceAll(".two");
+  </script>
+</body>
+</html>
