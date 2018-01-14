@@ -1,0 +1,28 @@
+
+// 条件判断
+
+// if
+
+$type:3;
+
+p {
+	@if $type == 1 {
+		color: yellow;
+		font-size: 12px;
+	} @else if $type == 2 {
+		color: red;
+		border: 1px solid red;
+	} @else if $type == 3 {
+		color: green;
+		font-size: 14px;
+	} @else {
+		color: blue;
+	}
+}
+
+// 三目判断
+// if($condition,$if_true,$if_false);
+
+.icon {
+	color: if(true,red,blue);
+}

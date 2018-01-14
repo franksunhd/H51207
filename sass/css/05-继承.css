@@ -1,0 +1,19 @@
+h1, .speak {
+  border: 1px solid red; }
+
+.speak {
+  height: 20px; }
+
+.one, .speak_one {
+  width: 20px; }
+
+.speak_one {
+  height: 20px; }
+
+#box, #meda {
+  color: red; }
+
+#meda {
+  font-size: 112px; }
+
+/*# sourceMappingURL=05-%E7%BB%A7%E6%89%BF.css.map */

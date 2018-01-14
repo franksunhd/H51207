@@ -1,0 +1,26 @@
+
+// 函数
+
+$baseFontsize: 10px !default;
+$gray: #ccc !default;
+
+// 函数定义
+
+@function pxToRem($px) {
+	@return $px / $baseFontsize * 1rem;
+}
+
+@function opacity($value) {
+	@return $value / 100;
+}
+
+body {
+	font-size: $baseFontsize;
+	color: lighten($gray, 10%);
+}
+
+.test {
+	font-size: pxToRem(16px);
+	opacity: opacity(80);
+	color: darken($gray, 10%);
+}

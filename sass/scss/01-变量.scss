@@ -1,0 +1,79 @@
+@import "style.css";
+
+// 定义变量
+// 变量都是以$开头,后面紧跟变量名,变量名与变量值之间用:分割
+$bigFont:10px;
+$R-color:red;
+$G-color:green;
+
+.box1 {
+  // 使用变量时 直接写 $加变量名.
+	font-size: $bigFont;
+	background: $R-color;
+}
+
+// &:hover
+.box2 {
+	background: $G-color;
+	&:hover {
+		font-size: $bigFont;
+	}
+}
+
+/*
+注释:单行注释不会被解析,
+只有多行注释会被解析
+ */
+
+// 这是单行注释
+
+h1 {
+	color: red;
+}
+
+// !default 是默认的设置
+// 默认变量: 在某些情况下,需要设置的效果没有定义,如果此时定义了默认的
+// 变量,那么就会在最后显示默认的设置.
+$FS20:20px !default;
+$border:1px solid green;
+$value:item;
+$item-top:top;
+
+// values,nth($var,$index)
+// 多值变量:
+// 一维数据
+$px:20px 30px 40px 50px;
+// 二维数据
+$px2:20px blue,30px yellow,40 red,50px green;
+
+//map 数据 key:value 键值对形式
+$sizes: (h1:20px,h2:18px,h3:16px);
+
+// 多值变量 demo
+.box3 {
+	font-size: nth($px, 2);
+  // 内层 nth 选择的是第几对,外层的 nth 选择的是 该对中的哪个值.
+	color: nth(nth($px2, 2), 2);
+}
+
+// map demo
+.box4 {
+	font-size: map-get($sizes, "h1");
+}
+
+// map
+$headings: (h1: 2em, h2: 1.5em, h3: 1.2em);
+@each $header, $size in $headings {
+  #{$header} {
+    font-size: $size;
+  }
+}
+
+// #{} 特殊变量
+.#{$value} {
+	background: red;
+}
+
+.box5 {
+	border-#{$item-top}:$border;
+}

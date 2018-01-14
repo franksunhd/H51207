@@ -1,0 +1,48 @@
+// 循环包括 for 循环 和 each 循环
+// 多个字段 list 数据循环
+// 多个字段 map 数据循环
+
+
+// for 循环  有两种
+// through 包括 end 值
+// to 不包括 end
+
+@for $i from 1 through 5 {
+	#item-#{$i} {
+		width: 2rem;
+	}
+}
+
+@for $i from 1 to 5 {
+	#class-#{$i} {
+		height: 3rem;
+	}
+}
+
+// each 循环
+
+$animal:(pama,2px),(lisi,3px),(wufa,4px);
+
+@each $name , $size in $animal {
+	.#{$name} {
+		width:$size;
+	}
+}
+
+// 多个字段 list 数据循环
+$list-data:(lisi,1px,solid,red),(zhansan,2px,dotted,green),(huahua,10px,double,blue);
+
+@each $name,$size,$type,$color in $list-data {
+	.#{$name} {
+		border: $size $type $color;
+	}
+}
+
+
+// map 数据循环
+$head:(h1:20px,h2:23px,h3:25px);
+@each $name,$size in $head {
+	#{$name} {
+		font-size: $size;
+	}
+}

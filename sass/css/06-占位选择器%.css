@@ -1,0 +1,17 @@
+#header h1, .ir {
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0; }
+
+.ir:before, .ir:after {
+  content: "";
+  display: table;
+  font: 0/0 a; }
+.ir:after {
+  clear: both; }
+
+#header h1 {
+  width: 300px; }
+
+/*# sourceMappingURL=06-%E5%8D%A0%E4%BD%8D%E9%80%89%E6%8B%A9%E5%99%A8%25.css.map */

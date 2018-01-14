@@ -1,0 +1,28 @@
+.demo {
+  margin-left: auto;
+  margin-right: auto; }
+
+.opacity1 {
+  opacity: 0.5;
+  filter: alpha(opacity=50); }
+
+.opacity2 {
+  opacity: 0.8;
+  filter: alpha(opacity=80); }
+
+.item {
+  border-top: 2px solid red;
+  padding-left: 10px;
+  height: 10px; }
+
+.item1 {
+  border-top: 1px solid #333;
+  padding-left: 10px;
+  height: 10px; }
+
+.icon {
+  border: 1px solid red;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3), 0 3px 3px rgba(0, 0, 0, 0.3), 0 4px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3), 0 3px 3px rgba(0, 0, 0, 0.3), 0 4px 4px rgba(0, 0, 0, 0.3); }
+
+/*# sourceMappingURL=03-mixin.css.map */

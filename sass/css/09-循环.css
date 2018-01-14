@@ -1,0 +1,55 @@
+#item-1 {
+  width: 2rem; }
+
+#item-2 {
+  width: 2rem; }
+
+#item-3 {
+  width: 2rem; }
+
+#item-4 {
+  width: 2rem; }
+
+#item-5 {
+  width: 2rem; }
+
+#class-1 {
+  height: 3rem; }
+
+#class-2 {
+  height: 3rem; }
+
+#class-3 {
+  height: 3rem; }
+
+#class-4 {
+  height: 3rem; }
+
+.pama {
+  width: 2px; }
+
+.lisi {
+  width: 3px; }
+
+.wufa {
+  width: 4px; }
+
+.lisi {
+  border: 1px solid red; }
+
+.zhansan {
+  border: 2px dotted green; }
+
+.huahua {
+  border: 10px double blue; }
+
+h1 {
+  font-size: 20px; }
+
+h2 {
+  font-size: 23px; }
+
+h3 {
+  font-size: 25px; }
+
+/*# sourceMappingURL=09-%E5%BE%AA%E7%8E%AF.css.map */

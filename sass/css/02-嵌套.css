@@ -1,0 +1,62 @@
+#top-name {
+  background: red; }
+  #top-name li {
+    float: left;
+    list-style: none; }
+    #top-name li span::before {
+      content: "123"; }
+    #top-name li::before {
+      content: "456"; }
+    #top-name li:hover {
+      color: green; }
+
+.two div {
+  color: red; }
+.two > div {
+  font-size: 12px; }
+
+.box6 {
+  border-style: solid;
+  border-left-width: 2px;
+  border-left-color: #444;
+  border-radius: 5%; }
+
+.zero {
+  height: 40px; }
+  .zero_1 {
+    height: 20px; }
+
+.one {
+  height: 100px;
+  line-height: 100px; }
+  .one .one_1 {
+    color: yellow; }
+    .two {
+      font-size: 100px; }
+      .two .two_1 {
+        height: 200px; }
+
+@media print {
+  .three {
+    height: 40px; }
+    .three .three_1 {
+      height: 20px; } }
+    .three .three_1 .three_2 {
+      width: 20px; }
+      .three .three_1 .three_2 .three_3 {
+        width: 30px; }
+
+@media print {
+  .four {
+    width: 20px; }
+    .four .four_1 {
+      width: 30px; } }
+    .four_2 {
+      height: 30px; }
+      .four_2 .four_3 {
+        height: 2px; }
+
+.parent .child {
+  color: yellow; }
+
+/*# sourceMappingURL=02-%E5%B5%8C%E5%A5%97.css.map */

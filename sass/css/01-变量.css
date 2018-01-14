@@ -1,0 +1,41 @@
+@charset "UTF-8";
+@import url(style.css);
+.box1 {
+  font-size: 10px;
+  background: red; }
+
+.box2 {
+  background: green; }
+  .box2:hover {
+    font-size: 10px; }
+
+/*
+注释:单行注释不会被解析,
+只有多行注释会被解析
+ */
+h1 {
+  color: red; }
+
+.box3 {
+  font-size: 30px;
+  color: yellow; }
+
+.box4 {
+  font-size: 20px; }
+
+h1 {
+  font-size: 2em; }
+
+h2 {
+  font-size: 1.5em; }
+
+h3 {
+  font-size: 1.2em; }
+
+.item {
+  background: red; }
+
+.box5 {
+  border-top: 1px solid green; }
+
+/*# sourceMappingURL=01-%E5%8F%98%E9%87%8F.css.map */

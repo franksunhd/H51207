@@ -1,0 +1,41 @@
+// 继承
+// 传递参数的继承用 @mixin 非传递参数的用占位符 %
+
+// 选择器继承 需要使用 @extend
+// 他可以使一个选择器 继承 另一个选择器的全部样式
+// 并相同的样式 进行联合声明
+
+// 1. 标签选择器继承
+h1 {
+	border: 1px solid red;
+}
+
+.speak {
+	@extend h1;
+	height: 20px;
+}
+
+// 2. 类选择器继承
+
+.one {
+	width: 20px;
+}
+
+.speak_one {
+	@extend .one;
+	height: 20px;
+}
+
+// 3. id 选择器
+
+#box {
+	color:red;
+}
+
+#meda {
+	@extend #box;
+	font-size: 112px;
+}
+
+// 缺点:
+// 1. 不管 需要调用的样式是不是会用到 都会先把其解析出来

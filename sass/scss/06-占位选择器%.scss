@@ -1,0 +1,41 @@
+// 占位符选择器
+
+// 不调用不会被解析 避免代码臃肿
+//
+// 预定义
+%ir{
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+%clearfix{
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+    font: 0/0 a;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@media only screen and (min-width:290px) {
+  // 这里 @extend 不能 @media 以外的 %ir
+	// @extend %ir;
+}
+
+
+#header{
+  h1{
+    @extend %ir;
+    width:300px;
+  }
+}
+
+.ir{
+  @extend %ir;
+	@extend %clearfix;
+}

@@ -1,0 +1,56 @@
+
+// 无参数
+@mixin content-border {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.demo {
+	@include content-border;
+}
+
+// 有参数
+@mixin opacity($opacity:50) {
+	opacity: $opacity / 100;
+	filter: alpha(opacity = $opacity);
+}
+
+// 不传入参数
+.opacity1 {
+	@include opacity;
+}
+// 参数 80
+// 这是只有一个参数的
+.opacity2 {
+	@include opacity(80);
+}
+
+// 多个参数
+
+@mixin item($border:1px solid #333,$padding:10px) {
+	border-top: $border;
+	padding-left: $padding;
+	height: $padding;
+}
+
+.item {
+	@include item($border:2px solid red);
+}
+
+.item1 {
+	@include item($padding: 10px);
+}
+
+
+// 多组值参数
+
+@mixin icon($shadow...) {
+	-webkit-box-shadow:$shadow;
+	box-shadow: $shadow;
+}
+
+
+.icon {
+	border: 1px solid red;
+	@include icon(0 2px 2px rgba(0,0,0,.3),0 3px 3px rgba(0,0,0,.3),0 4px 4px rgba(0,0,0,.3));
+}

@@ -1,0 +1,134 @@
+
+// sass 的 嵌套分为两种 选择器嵌套 和 属性嵌套
+// 选择器嵌套
+#top-name {
+	background: red;
+
+	li {
+		float: left;
+		list-style: none;
+		span {
+			&::before {
+				content: "123";
+			}
+		}
+
+		&::before {
+			content: "456";
+		}
+		&:hover {
+			color: green;
+		}
+	}
+}
+
+.two {
+	div {
+		color: red;
+	}
+
+	> div {
+		font-size: 12px;
+	}
+}
+
+// 属性嵌套
+
+.box6 {
+	border: {
+		style: solid;
+		left: {
+			width: 2px;
+			color: #444;
+		}
+		radius: 5%;
+	}
+}
+
+// @at-root 跳出嵌套
+.zero {
+	height: 40px;
+
+  // 单个选择器跳出
+	@at-root {
+		.zero_1 {
+			height: 20px;
+		}
+	}
+}
+
+.one {
+  height: 100px;
+  line-height: 100px;
+
+  .one_1 {
+    color: yellow;
+
+    // 多个选择器跳出
+    @at-root {
+			.two {
+	      font-size: 100px;
+
+	      .two_1 {
+	        height: 200px;
+	      }
+	    }
+		}
+  }
+}
+
+// 跳出指定的选择器
+
+
+@media print {
+
+	.three {
+		height: 40px;
+
+		.three_1 {
+			height: 20px;
+
+      // 跳出指定的 media .three和.three_1有效
+      // 跳出 media  他们的父级有效
+			@at-root (without:media){
+				.three_2 {
+					width: 20px;
+
+					.three_3 {
+						width: 30px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media print {
+	.four {
+		width: 20px;
+
+		.four_1 {
+			width: 30px;
+
+      // 跳出所有的嵌套, four 和 four_1 无效
+			@at-root (without:all){
+				.four_2 {
+					height: 30px;
+
+					.four_3 {
+						height: 2px;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// @at-root 和 & 配合使用
+// 内外层调换
+.child {
+	@at-root .parent & {
+		color:yellow;
+	}
+}
