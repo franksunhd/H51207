@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style media="screen">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.middle:before {
+			content: "";
+			display: inline-block;
+			visibility: hidden;
+			width: 0;
+			height: 100%;
+			vertical-align: middle;
+		}
+
+		#box {
+			width: 50%;
+			height: 126px;
+			border: 1px solid red;
+		}
+
+		#box .icon {
+			/* float: left; */
+			display: inline-block;
+			/* width: 300px; */
+			vertical-align: middle;
+		}
+
+		#box .item {
+			/* float: left; */
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		#box .item p {
+			padding: 20px 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="box" class="middle">
+		<div class="icon">
+			<p>我的文件</p>
+			<p>我的文件</p>
+			<p>我的文件</p>
+		</div>
+		<div class="item">
+			<p>我的DEMO</p>
+			<p>我的DEMO</p>
+		</div>
+	</div>
+</body>
+</html>
