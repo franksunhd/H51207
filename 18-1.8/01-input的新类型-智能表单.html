@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML5 智能表单</title>
+</head>
+<body>
+	<form action="###" method="post">	
+		<!-- age 年龄-->
+		<label for="age">年龄:</label>
+		<!--
+			键值对: key:value 
+			step: 步长 每次变化的值
+		-->
+		<input type="number" name="age" id="age" min="0" max="100" step="1" value="18"/>
+		<br /><br />
+		
+		<!-- range -->
+		<label for="range">Range: </label>
+		<input type="range" name="range" id="range" value="3" min="0" max="10" />
+		<br /><br />
+		
+		<!-- search -->
+		<label for="search">Search: </label>
+		<input type="search" name="search" id="search" -autofocus="autofocus" placeholder="搜索框.."/>
+		<br /><br />
+	
+		<!-- color颜色-->
+		<label for="color">请选择一个颜色: </label>
+		<input id="color" type="color" name="color">
+		<br><br>
+		
+		<!--time 时间-->
+		<label for="time">Time: </label>
+		<input type="time" name="time" id="time" value="" />
+		<br /><br />
+		
+		<!-- date日期-->
+		<label for="date">Date: </label>
+		<input id="date" type="date" name="date">
+		<br><br>
+	
+		<!-- datetime 本地时间 UTC时间-->
+		<label for="datetime">DateTime: </label>
+		<input id="datetime" type="datetime" name="datetime">
+		<br><br>
+	
+		<!-- datetime-local 定义时间日期 无时区-->
+		<label for="datetime-local">datetime-local: </label>
+		<input type="datetime-local" name="datetime-local" id="datetime-local" />
+		<br /><br />
+		
+		<!--email 电子邮件-->
+		<label for="emails">请输入电子邮件地址: </label>
+		<input id="emails" type="email" name="email" list="emailss"/>
+		<datalist id="emailss">
+			<option>xxxx@qq.com</option>
+			<option>yyyy@qq.com</option>
+			<option>zzzz@qq.com</option>
+			<option>mmmm@qq.com</option>
+		</datalist>
+		<br /><br />
+		
+		<!-- 
+			URL 
+			只能匹配 http:// 开头的
+		-->
+		<label for="url">URL: </label>
+		<input id="url" type="url" name="url" id="url" value="输入 url..." list="urls"/>
+		<datalist id="urls">
+			<option>https://www.baidu.com</option>
+			<option>https://www.mi.com</option>
+		</datalist>
+		<br /><br />
+		
+		<!--tel 电话号码-->
+		<label for="tel">请输入电话号码: </label>
+		<input id="tel" type="tel" name="tel" id="tel" value="输入电话号码..." />
+		<br /><br />
+		<!--提交-->
+		<!--
+			disabled:不可编辑或交互,一般给提交按钮指定,满足规则才让提交
+			autofocus: 自动触发
+		-->
+		<input type="submit" value="确认提交" -disabled="disabled"/>
+		<input type="reset" value="重新设置" />
+	</form>
+</body>
+</html>

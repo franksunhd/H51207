@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表单选择器</title>
+		<style type="text/css">
+			input {
+				margin-bottom: 20px;
+			}
+			
+			input:focus {
+				background: red;
+			}
+			/*
+			 * 默认 enabled 可编辑
+			 */
+			
+			input:enabled {
+				background: gray;
+				font-size: 16px;
+			}
+			
+			/*
+			 * disabled:不可编辑
+			 */
+			input:disabled {
+				color: green;
+				font-size: 16px;
+			}
+			
+			.warning {
+				color: red;
+				display: none;
+			}
+			
+			#email:focus  + span.warning{
+				display: inline;
+			}
+			
+			
+			/*input[type=radio]:checked ~ .warning{
+				display: inline;
+			}*/
+			
+			input[type=radio]:checked:after {
+				content: "确定?";
+				position: relative;
+				top: -3px;
+				margin-left: -200px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<fieldset id="">
+			<legend>表单选择器</legend>
+			<input type="text" name="username" disabled="disabled"
+				 readonly="readonly" value="请输入用户名" />
+			<br />
+			<input type="text" name="tel" id="tel" value="请输入电话号码" />
+			<br />
+			<input type="text" name="email" id="email" value="请输入邮箱" />
+			<span class="warning"> 请输入邮箱号码!</span>
+			<br />
+			男:<input type="radio" name="sex" value="男" />
+			女:<input type="radio" name="sex" value="女" />
+			
+			<!--<input name="" id="" value="" />-->
+		</fieldset>
+	</body>
+</html>
