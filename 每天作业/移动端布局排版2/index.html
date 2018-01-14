@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>首页</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css"/>
+	</head>
+	<body>
+		<div class="app">
+			<div class="shopcar">
+				<img src="./img/car.png"/>
+			</div>
+			<div class="app_title">
+				<div class="app_title_left middle">
+					<span>北京</span>
+					<span class="fa fa-chevron-down"></span>
+				</div>
+				<div class="app_title_center">
+					<div class="appBox middle">
+						<span class="fa fa-search"></span>
+						<input type="text" placeholder="搜索食材,菜品"/>
+					</div>
+				</div>
+				<div class="app_title_right middle">
+					<span class="ling"></span>
+				</div>
+			</div>
+			
+			<!-- 主体 -->
+			<div class="app_center">
+				<!-- banner -->
+				<div class="banner_icon clearfix">
+					<img src="./img/banner.png" alt="无法显示图片" />
+					<div class="center">
+						<p>吃三文鱼的正确姿势</p>
+						<p> 早餐来点啥??</p>						
+					</div>
+					<p class="dian">
+						<span></span>
+						<span></span>
+						<span></span>
+					</p>
+				</div>
+				<!--免抢购-->
+				<div class="shopping">
+					<div class="shoppingBox clearfix">
+						<div class="shopTitle">免抢购</div>
+						<div class="shopBox">
+							<p class="shop_title">精选延庆生态胡萝卜600g</p>
+							<div class="shop_time">
+								<div class="shop_time_left">
+									<span id="hour">00</span>
+									<span>:</span>
+									<span id="minute">00</span>
+									<span>:</span>
+									<span id="second">00</span>
+								</div>
+								<div class="shop_time_price">¥4.20</div>
+							</div>
+							<img src="./img/food1.png" alt="无法显示图片" />
+						</div>
+						<div class="shopBox">
+						<p class="shop_title">精选延庆生态黄瓜500g</p>
+						<div class="shop_time">
+							<div class="shop_time_left">
+								<span id="hour1">00</span>
+								<span>:</span>
+								<span id="minute1">00</span>
+								<span>:</span>
+								<span id="second1">00</span>
+							</div>
+							<div class="shop_time_price">¥9.90</div>
+						</div>
+						<img src="./img/food2.png" alt="无法显示图片" />
+					</div>
+					</div>
+				</div>
+				
+				<!-- 菜品精选 -->
+				
+				<div class="caipingBox">
+					<div class="caiping_title clearfix">
+						<div class="caipingleft">菜品精选</div>
+						<div class="caipingright">查看更多</div>
+					</div>
+					<!-- 菜品盒子图片 -->
+					
+					<div class="caipingPhotoBox clearfix">
+						<div class="caipingPhotoLeft">
+							<img src="./img/food3.png"/>
+						</div>
+						<div class="caipingPhotoRight">
+							<div class="caipingPhotoRightTop">
+								<img src="./img/food4.png"/>
+							</div>
+							<div class="caipingPhotoRightBottom clearfix">
+								<div class="caipingPhotoRightBottomLeft">
+									<img src="./img/food5.png"/>
+								</div>
+								<div class="caipingPhotoRightBottomRight">
+									<img src="./img/food6.png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+			<!-- 菜单栏 -->		
+			<div class="bannerBox">
+				<div class="banner">
+					<img src="./img/home.png"/>
+				</div>
+				<div class="banner">
+					<img src="./img/shop.png"/>
+				</div>
+				<div class="banner">
+					<img src="./img/xuancai.png"/>
+				</div>
+				<div class="banner">
+					<img src="./img/find.png"/>
+				</div>
+				<div class="banner">
+					<img src="./img/mes.png"/>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+		    var hour = document.getElementById("hour");
+		    var min = document.getElementById("minute");
+		    var sen= document.getElementById("second");
+			var hours = document.getElementById("hour1");
+		    var mins = document.getElementById("minute1");
+		    var sens = document.getElementById("second1");
+		    function countTime(){
+		      //获取当前时间
+		    var date=new Date();
+		    var now=date.getTime();//获取现在距离1970年的毫秒数
+		
+		    //设置倒计时截止时间
+		    var endTime= new Date("2018-11-11 11:11:11");
+		    var end=endTime.getTime();
+		
+		    //时间差 剩余时间的毫秒数
+		    var leftTime = end-now;
+		
+		    //定义变量day,hour,min,sen保存倒计时的时间
+		    var hour1,min1,sen1;
+		    if(leftTime >= 0){
+		    //把毫秒分别变成天，小时，分钟，秒
+		    hour1=Math.floor(leftTime/1000/60/60%24);
+		    min1=Math.floor(leftTime/1000/60%60);
+		    sen1=Math.floor(leftTime/1000%60);
+		    }
+		    
+		    if(hour1 < 10) {
+		    	hour1 = "0" + hour1;
+		    }
+		    
+		    if(min1 <10) {
+		    	min1 = "0" + min1;		    	
+		    }
+		    if(sen1 <10){
+		    	sen1 = "0" + sen1;		    	
+		    }
+		
+		    //将得到的值分别赋值到相应的位置
+		    hour.innerHTML = hour1;
+		    min.innerHTML = min1;
+		    sen.innerHTML = sen1;		    	
+		    hours.innerHTML = hour1;
+		    mins.innerHTML = min1;
+		    sens.innerHTML = sen1;
+		  };
+		    //递归每秒，超时定时器settimeout
+		    setInterval(countTime,1000);
+
+    </script>
+	</body>
+</html>

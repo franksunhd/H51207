@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.w1300 {
+  width: 1300px;
+  margin: 0 auto;
+}
+
+h3 {
+  font-size: 30px;
+  text-align: center;
+  padding: 30px 0px;
+}
+
+.mainbg {
+  width: 200px;
+  height: 200px;
+  box-sizing: content-box;
+  border: 1px solid #333;
+}
+
+.mainbg > p {
+  font-size: 25px;
+  text-align: center;
+  line-height: 200px;
+}
+
+.mainbg:hover {
+  background: rgba(0,0,0,0.2);
+}
+
+.mainbg:hover > p {
+  color: #fff;
+}

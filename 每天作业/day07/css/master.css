@@ -88,23 +88,19 @@ a {
   position: relative;
 }
 
-.left-box > .appCodeBox img:first-child:hover{
-  transform: translateX(-55px);
-  transition: all 1s ease-in-out;
-}
-
-.left-box > .appCodeBox img:first-child:hover + img:last-child {
-  transition: all 1s ease-in-out;
-  opacity: 1;
-}
-
 .left-box > .appCodeBox img:first-child {
   width: 130px;
   padding: 2px;
   background: #fff;
   position: relative;
   z-index: 2;
+  left: 0;
   box-shadow: 0 0 5px rgba(0,0,0,.3);
+  transition: 1s;
+}
+
+.left-box > .appCodeBox:hover > img:first-child{
+  left: -55px;
 }
 
 .left-box > .appCodeBox img:last-child {
@@ -113,6 +109,11 @@ a {
   top: -20px;
   right: 10px;
   opacity: 0;
+  transition: 1s;
+}
+
+.left-box > .appCodeBox:hover > img:last-child {
+  opacity: 1;
 }
 
 .left-box > .appLogin {

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>nth结构选择器</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.clearfix::after ,
+			.clearfix::before {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			
+			#box {
+				width: 100%;
+				border: 1px solid red;
+				overflow: hidden;
+			}
+			
+			#box .iBox {
+				width: 30%;
+				height: 100px;
+				float: left;
+				background: cadetblue;
+				display: inline-block;
+				margin-top: 20px;
+			}
+			
+			#box .iBox:nth-child(3n-1) {
+				margin-left: 5%;
+				margin-right: 5%;
+			}
+			
+			#box .iBox:nth-child(1),
+			#box .iBox:nth-child(2),
+			#box .iBox:nth-child(3) {
+				margin-top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div class="iBox"></div>
+			<div class="iBox"></div>
+			<div class="iBox"></div>
+			<div class="iBox"></div>
+			<div class="iBox"></div>
+			<div class="iBox"></div>
+			<div class="iBox"></div>
+			<div class="iBox"></div>
+			<div class="iBox"></div>
+			<div class="iBox"></div>
+			<div class="iBox"></div>
+			<div class="iBox"></div>
+		</div>
+	</body>
+</html>
