@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>旋转扑克牌</title>
+		<style type="text/css">
+			#box {
+				width: 150px;
+				margin: 300px auto;
+				position: relative;
+			}
+			
+			#box img {
+				width: 100%;
+				position: absolute;
+				transform-origin: left top;
+				transition: all 1s linear;
+			}
+			
+			#box:hover img:nth-child(6){
+				transform: rotate(60deg);
+			}
+			#box:hover img:nth-child(5){
+				transform: rotate(120deg);
+			}
+			#box:hover img:nth-child(4){
+				transform: rotate(180deg);
+			}
+			#box:hover img:nth-child(3){
+				transform: rotate(240deg);
+			}
+			#box:hover img:nth-child(2){
+				transform: rotate(300deg);
+			}
+			#box:hover img:nth-child(1){
+				transform: rotate(360deg);
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="box">
+			<img src="img/cardKingClub.png"/>
+			<img src="img/cardKingClub.png"/>
+			<img src="img/cardKingClub.png"/>
+			<img src="img/cardKingClub.png"/>
+			<img src="img/cardKingClub.png"/>
+			<img src="img/cardKingClub.png"/>
+		</div>
+	</body>
+</html>
