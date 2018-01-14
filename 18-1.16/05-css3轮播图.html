@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css3轮播图</title>
+		<style media="screen">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.clearfix::after,
+			.clearfix::before {
+				content: "";
+				clear: both;
+				display: block;
+			}
+
+			#box {
+				width: 520px;
+				height: 280px;
+				margin: 100px auto;
+				overflow: hidden;
+				border: 4px solid blue;
+			}
+
+			#content {
+				width: calc(520px*5);
+				height: 280px;
+			}
+
+			#content img {
+				float: left;
+			}
+
+			#btnBox {
+				display: flex;
+				justify-content: space-around;
+				align-items: baseline;
+				position: relative;
+				top: -30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="content" class="clearfix">
+				<img src="img/1.jpg" alt="" />
+				<img src="img/2.jpg" alt="" />
+				<img src="img/3.jpg" alt="" />
+				<img src="img/4.jpg" alt="" />
+				<img src="img/5.jpg" alt="" />
+			</div>
+
+			<div id="btnBox">
+				<input class="btn" type="button" value="显示1" />
+				<input class="btn" type="button" value="显示2" />
+				<input class="btn" type="button" value="显示3" />
+				<input class="btn" type="button" value="显示4" />
+				<input class="btn" type="button" value="显示5" />
+			</div>
+		</div>
+
+		<script type="text/javascript">
+    	// 元素对象
+			var content = document.getElementById('content');
+			var btn = document.getElementById('btnBox').children;
+			console.log(btn);
+
+			btn[0].onclick = move01;
+			btn[1].onclick = move02;
+			btn[2].onclick = move03;
+			btn[3].onclick = move04;
+			btn[4].onclick = move05;
+
+			function move01() {
+				console.log("1");
+				var value = 520 * 0;
+				content.style.transform = "translateX(" + value + "px)";
+				content.style.transition = "all 0.5s linear";
+			}
+
+			function move02() {
+				console.log("2");
+				var value = 520 * 1;
+				content.style.transform = "translateX(-" + value + "px)";
+				content.style.transition = "all 0.5s linear";
+			}
+
+			function move03() {
+				console.log("3");
+				var value = 520 * 2;
+				content.style.transform = "translateX(-" + value + "px)";
+				content.style.transition = "all 0.5s linear";
+			}
+
+			function move04() {
+				console.log("4");
+				var value = 520 * 3;
+				content.style.transform = "translateX(-" + value + "px)";
+				content.style.transition = "all 0.5s linear";
+			}
+
+			function move05() {
+				console.log("5");
+				var value = 520 * 4;
+				content.style.transform = "translateX(-" + value + "px)";
+				content.style.transition = "all 0.5s linear";
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断一个日期是一个年份的第几天</title>
+</head>
+<body>
+	<input id="year" type="text" placeholder="年">
+	<input id="mon" type="text" placeholder="月">
+	<input id="day" type="text" placeholder="日">
+	<input id="btn" type="button" name="" value="点击">
+	<h1 id="h1"></h1>
+
+	<script type="text/javascript">
+		var year = document.getElementById('year');
+		var mon = document.getElementById('mon');
+		var btn = document.getElementById('btn');
+		var day = document.getElementById('day');
+		var h1 = document.getElementById('h1');
+
+		btn.onclick = function() {
+			var leap = 0, sum = 0;
+			console.log(year.value);
+	    if ((parseInt(year.value) % 400 == 0) || ((parseInt(year.value) % 4 == 0) && (parseInt(year.value) % 100 != 0))){
+	      leap = 1;
+	    }
+
+	    switch (parseInt(mon.value)){
+	      case  12:
+	      sum += 30;
+	      case  11:
+	      sum += 31;
+	      case  10:
+	      sum += 30;
+	      case  9:
+	      sum += 31;
+	      case  8:
+	      sum += 31;
+	      case  7:
+	      sum += 30;
+	      case  6:
+	      sum += 31;
+	      case  5:
+	      sum += 30;
+	      case  4:
+	      sum += 31;
+	      case  3:
+	      sum += 28 + leap;
+	      case  2:
+	      sum += 31;
+	      case  1:
+	      sum += parseInt(day.value);
+	    }
+
+			h1.innerHTML = sum;
+		}
+	</script>
+</body>
+</html>

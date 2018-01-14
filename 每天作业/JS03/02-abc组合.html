@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>abc+cba=1333的abc所有组合</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var sum = 0;
+		for (var a = 0; a < 10; a++) {
+			for (var b = 0; b < 10; b++) {
+				for (var c = 0; c < 10; c++) {
+					sum = 100 * a + 10 * b + c + 100 * c + 10 * b + a;
+					if (sum === 1333) {
+						document.write(" a: " + a + " b: " + b + " c: " + c);
+					}
+				}
+			}
+			document.write("<br />");
+		}
+	</script>
+</body>
+</html>

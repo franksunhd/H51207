@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>开关灯泡</title>
+</head>
+<body>
+	<h2>点击换图片</h2>
+	<img id="light" src="img/pic_bulboff.gif" alt="无法显示图片" title="灯泡">
+	<hr>
+	<img id="light1" src="img/pic_bulboff.gif" alt="无法显示图片" title="灯泡">
+	<hr>
+	<script type="text/javascript">
+		var light = document.getElementById('light');  
+		var light1 = document.getElementById('light1');  
+
+		// 1.定义一个状态变量
+		var open = false;
+		light.onclick = function() {
+			// 状态取反
+			open = !open;
+			light.src = open ? "img/pic_bulbon.gif" : "img/pic_bulboff.gif";
+		};
+
+		// 2. 自定义属性
+		light1.on =false;
+		light1.onclick = function(){
+			// alert(light1.on);
+			light1.on = !light1.on;
+			// 获取绝对路径,不能直接判断相等.
+			// alert(light1.src);
+			light1.src = light1.on ? "img/pic_bulbon.gif" : "img/pic_bulboff.gif";
+		};
+
+		// 3. 
+ 	</script>
+</body>
+</html>

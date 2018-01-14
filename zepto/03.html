@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  div { color:blue; }
+  span { color:red; }
+  </style>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+  <div>
+    The values stored were
+    <span></span>
+    and
+    <span></span>
+  </div>
+<script>
+$("div").data("test", { one: 16, last: "pizza!" });
+$("span:first").text($("div").data("test").one);
+$("span:last").text($("div").data("test").last);
+</script>
+
+</body>
+</html>

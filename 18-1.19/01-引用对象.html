@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>引用类型赋值--地址拷贝</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var person = {
+			name:" 蓝鸥",
+			age:18
+		}
+
+		// 地址拷贝赋值 两个变量名存放相同的地址.
+		
+		var person2 = person;
+		person.name = "菜鸟";
+		console.log(person2.name);  // 菜鸟
+
+		// 地址赋值
+		person = {
+			name:"北京",
+			age:12
+		}
+		var person3 = person;
+
+		console.log(person3);
+
+		// 对象作为参数
+		
+		function exchange(obj) {
+			// obj = person3
+			obj.name = "上海";
+		}
+
+		exchange(person3);
+
+		console.log(person3.name);
+
+		// 函数对象  函数声明方式1
+		function setColor(value) {
+			console.log("set:" + value);
+		}
+
+		// setColor: 函数名存储的就是函数的地址
+		// 函数名的拷贝就是地址的拷贝
+		var setName = setColor;
+		// 调用
+		setName("蓝鸥");
+		setColor("科技");
+
+		// 函数的声明方式2 --> 函数表达式
+		
+		var setAge = function(age) {
+			console.log("set:"+age);
+		}
+
+		setAge(20);
+
+		// 函数地址作为参数传递
+		
+		function load(callback) {
+			// 加载图片..........
+			
+			// 操作完成之后执行 success  可读性不强
+			// success();
+			
+			// 回调 success
+			callback();
+		}
+
+		// 可以调用下面声明创建的函数
+		// 函数的声明和赋值全部前置
+		// 函数的声明提升:
+		// success();
+		function success() {
+			console.log("load加载完毕!");
+		}
+
+		load(success);
+
+		// load(函数地址)
+		
+		load(function() {
+			console.log("success");
+		});
+
+		// 延时调用
+		setTimeout(run,2000);
+
+		function run() {
+			console.log("run执行...");
+		}
+
+		// 立即函数  
+		// 匿名函数的自身调用
+		(function(name) {
+			console.log(name);
+		})("蓝鸥");
+	</script>
+</body>
+</html>

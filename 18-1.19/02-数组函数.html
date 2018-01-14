@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组内置函数</title>
+</head>
+<body>
+	<p id="show">爱好:</p>
+	<ul id="box">
+		<li>姓名:</li>
+		<li>姓名:</li>
+		<li>姓名:</li>
+	</ul>
+	<script type="text/javascript">
+		// 1.字面量方式创建数组
+		
+		var arr = [];
+
+		// 2.构造方法 new
+		// 只有一个number类型的参数,指定数组的长度
+		var str = new Array(5);
+		console.log(str);
+		console.log(str.length);  // 5
+		// 单个参数是长度,多个参数是元素.会自动存入数组
+		str = new Array(1,2,3,"12",{},[]);
+		console.log(str);
+
+		// 二维数组
+		var names = ["蓝鸥","菜鸟"];
+		var ages = [18,20];
+		arr = [names,ages];
+		for (var i = 0 ,len = arr.length; i < len; i++) {
+			// 拿到小数组
+			// console.log(arr[i]);
+			for (var j = 0; j < arr[i].length; j++) {
+				console.log(arr[i][j]);
+			}
+		}
+
+
+		var p1 = {
+			name:"蓝鸥",
+			age:18,
+			hobby:["Web","Java","Unity"]
+		}
+
+		var p2 = {
+			name:"菜鸟",
+			age:20,
+			hobby:["HTML","建模","Unity"]
+		}
+
+		var p3 = {
+			name:"达内",
+			age:21,
+			hobby:["HTML","建模","Unity"]
+		}		
+
+		// 将信息分条打印到页面中
+		var persons = [p1,p2,p3];
+		// console.log(persons);
+		
+		var nameLi = document.getElementById("box").getElementsByTagName('li');
+		// var nameLi = document.getElementById("box");
+		var show = document.getElementById("show");
+		// console.log(nameLi);
+		// 绑定事件
+		show.onclick = function(argument) {
+			// 1.遍历数据
+			// for (var i = 0; i < persons.length; i++) {
+			// 	nameLi.innerHTML += "<li>姓名: " + persons[i].name + "</li>";
+			// }
+			
+			// 2.遍历数据
+			for (var i = 0; i < persons.length; i++) {
+			 	var person = persons[i];
+
+			 	var value = "姓名:" + person.name + ",年龄:" + person.age + ",爱好:" + person.hobby;
+			 	nameLi[i].innerHTML = value; 
+			 } 
+		}
+		
+	</script>
+</body>
+</html>

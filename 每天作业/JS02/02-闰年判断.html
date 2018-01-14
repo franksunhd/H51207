@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断是不是闰年</title>
+	<style media="screen">
+		#num1 {
+			width: 200px;
+		}
+	</style>
+</head>
+<body>
+	<input id="num1" type="text" placeholder="请输入一个年份判断是不是闰年">
+	<input id="btn" type="button" value="查验">
+	<h3 id="result">判断是不是闰年</h3>
+	<h3 id="show">显示闰年</h3>
+	<script type="text/javascript">
+		var num1 = document.getElementById('num1');
+		var btn = document.getElementById('btn');
+		var result = document.getElementById('result');
+		var show = document.getElementById('show');
+		var value;
+		btn.onclick = function () {
+			if (num1.value !== "") {
+				value = parseInt(num1.value);
+				// console.log(value,typeof(value));
+
+        // 判断  闰年  1. 能被4整除 不能被100整除
+        // 2. 能被400整除
+        if (parseInt(value%4) == 0 && parseInt(value%100)!==0 || parseInt(value%400) == 0 ) {
+					result.innerHTML = value + "是闰年";
+        } else {
+					result.innerHTML = value + "不是闰年";
+				}
+			}
+
+			for (var i = 1900; i < 2050; i++) {
+				if (parseInt(i%4) == 0 && parseInt(i%100)!==0 || parseInt(i%400) == 0 ) {
+					show.innerHTML += "<br />" + i;
+        }
+			}
+
+		}
+	</script>
+</body>
+</html>

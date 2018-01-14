@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>下注</title>
+</head>
+<body>
+	<h2 class="show">展示:</h2>
+	<button class="xiazhu">开始下注</button>
+
+	<script type="text/javascript">
+		var show = document.getElementsByClassName("show");
+		var xiazhu = document.getElementsByClassName("xiazhu");
+		console.log(xiazhu[0]);
+		var arr = [];
+		var json = {};
+		// xiazhu[0].onclick = function(){
+		setInterval(function() {
+			// 1)每次重新开辟新的空间
+			// arr = [];
+			// 2)每次先清空原来的数组
+			arr.splice(0,arr.length);
+			json = {};
+			// alert("牛力-油腻 ");
+			// 
+			while(true) {
+			// 1.产生随机数
+			var num = random(0,11);
+			// 2.判断是否重复 存入/不存入
+			//  1)
+			// if (!json[num]) {
+			// 	json[num] = 1;
+			// 	arr.push(num);
+			// }
+			//  2)自定义
+			var ifC = ifContain(arr,num)
+			if (!ifC) {
+				arr.push(num);
+			}
+			// 显示
+			show[0].innerHTML = "展示: " + arr;
+			// 3.跳出循环
+			if (arr.length == 6) {
+				break;
+			}
+		}		
+		},1000);
+		// }
+
+
+		// 随机数
+		function random(num1,num2) {
+			var min = Math.min(num1,num2);
+			return Math.floor(Math.random() * Math.abs(num1 - num2) + min);
+		}
+
+		// 判断数组元素是否
+		function ifContain(str,num){
+			for (var i = 0; i < str.length; i++) {
+				if (str[i] == num) {
+					return true;
+				}
+			}
+			return false;		
+		}
+		
+	</script>
+</body>
+</html>

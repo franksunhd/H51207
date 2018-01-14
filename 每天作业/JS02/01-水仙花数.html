@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断是不是水仙花数</title>
+	<style media="screen">
+		#num1 {
+			width: 200px;
+		}
+	</style>
+</head>
+<body>
+	<input id="num1" type="text" placeholder="请输入一个数判断是不是水仙花数">
+	<input id="btn" type="button" value="查验">
+	<h3 id="result">判断是不是水仙花数</h3>
+	<script type="text/javascript">
+		var num1 = document.getElementById('num1');
+		var btn = document.getElementById('btn');
+		var result = document.getElementById('result');
+		var i;
+		btn.onclick = function() {
+			if (num1.value !== "") {
+				i = parseInt(num1.value);
+				var ge = parseInt(i%10);
+				var shi = parseInt((i/10)%10);
+				var bai = parseInt((i/100)%10);
+				var des = Math.pow(ge,3) + Math.pow(shi,3) + Math.pow(bai,3);
+				if (des == i && i !== 0) {
+					result.innerHTML = i + "是水仙花数"
+				} else {
+					result.innerHTML = i + "不是水仙花数"
+				}
+			}
+		}
+
+
+	</script>
+</body>
+</html>

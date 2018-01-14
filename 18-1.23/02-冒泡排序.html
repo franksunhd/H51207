@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>冒泡排序</title>
+</head>
+<body>
+	<script type="text/javascript">
+	var item = [20,50,30,10];
+	console.log(item);
+	
+	// 冒泡排序 升序 外层循环控制比较的次数,
+	for(var i = 0,len = item.length; i < len - 1; i++){
+		for(var j = 0; j < len - 1 -i; j++) {
+			if (item[j] > item[j+1]) {
+				var temp = item[j];
+				item[j] = item[j+1];
+				item[j+1] = temp;
+			}
+		}
+	}
+	console.log(item);
+	</script>
+</body>
+</html>

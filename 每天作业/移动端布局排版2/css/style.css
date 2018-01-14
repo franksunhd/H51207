@@ -241,7 +241,10 @@ body {
 .app_center .shopping .shoppingBox .shopBox .shop_title {
 	color: #B0B0B0;
 	padding: 0.05rem 0 0;
-	font-size: 0.24rem;
+	font-size: 0.18rem;
+	height: 0.2rem;
+	line-height: 0.2rem;
+	overflow: hidden;
 }
 
 .app_center .shopping .shoppingBox .shopBox .shop_time {

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>随机数</title>
+</head>
+<body>
+	<input id="btn1" type="button" value="点击生成随机数">
+	<h2 id="item1">这里生成随机数</h2>
+
+	<input id="btn2" type="button" value="点击生成随机数">
+	<h2 id="item2">这里生成随机数</h2>	
+	<script src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+		var btn1 = document.getElementById("btn1");
+		var btn2 = document.getElementById("btn2");
+		var item1 = document.getElementById("item1");
+		var item2 = document.getElementById("item2");
+
+		// 1. 封装查找数组中有没有指定元素
+		function find(arr, obj) {  
+	        var i = arr.length;  
+	        while (i--) {  
+	            if (arr[i] === obj) {  
+	                return true;  
+	            }  
+	        }  
+	        return false;  
+	    }
+
+	    btn1.onclick = function () {
+	    	var count1 = 0;
+	    	var arr1 = [];  // 存放6个元素的数组
+	    	while(1){
+	    		var Randomnum = Math.floor(Math.random() * 10 + 1);
+	    		var m = find(arr1,Randomnum);
+	    		if(m === false){
+	    			arr1.push(Randomnum);
+	    			count1++;
+	    			if (count1 === 6) {
+	    				break;
+	    			}
+	    		}
+	    	}
+
+	    	item1.innerHTML = arr1;
+	    }
+
+	    // 
+	    btn2.onclick = function () {
+	    	var count2 = 0;
+	    	var arr2 = [];  // 存放6个元素的数组
+	    	while(1){
+	    		var Randomnum = Math.floor(Math.random() * 10 + 1);
+	    		
+	    		// 2.jQuery inArray(value,array);  返回值 没有为 -1
+	    		var m1 = $.inArray(Randomnum,arr2);
+	    		console.log(m1);
+	    		if(m1 === -1){
+	    			arr2.push(Randomnum);
+	    			count2++;
+	    			if (count2 === 6) {
+	    				break;
+	    			}
+	    		}
+	    	}
+
+	    	item2.innerHTML = arr2;
+	    }
+	    
+	</script>
+</body>
+</html>

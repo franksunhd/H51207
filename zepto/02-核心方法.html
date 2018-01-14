@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ZepTo 核心方法</title>
+		<style media="screen">
+			.blue {
+				color: blue;
+			}
+			ol li {
+				color: #000;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="item">
+	    <li>
+				<p>list item 1</p>
+			</li>
+	    <li>list item 2</li>
+	    <li class="ir">list item 3</li>
+		</ul>
+		<p class="p1" data-item="ip">a paragraph</p>
+		<ol>
+			<li class="ie">  li1</li>
+			<li>li2</li>
+			<li>li3</li>
+			<li>li4</li>
+		</ol>
+
+		<div id="irv">
+			我是文本
+			<p> 我是 p 标签</p>
+			<span></span>
+			哈哈哈
+			<span></span>
+		</div>
+
+		<script src="./zepto.js" charset="utf-8"></script>
+		<script type="text/javascript">
+		$(function() {
+      // 1. add
+      $('ul li').add('p').css('background-color', 'red');
+
+			// 2. addClass  给匹配的元素 添加类
+			$("ul li").addClass("blue");
+
+			// 3. after  给每个匹配的元素后面添加 DOM 节点   对应的有 before
+			$("ul li").after("<li>this is s li tag.</li>");
+
+      // 4. append  appendTo
+      // ...
+
+      // 5. attr  读取或者设置属性
+			console.log($("ul").attr("class"));
+      // 设置属性
+      console.log($("ul").attr("id","item"));
+
+      // 6. children  获得每个匹配元素的 直接子元素
+      $("ol").children("*:nth-child(2n)").css("color","red");
+
+      // 7. clone() 克隆 不会 拷贝 数据和事件处理程序
+      $(".p1").clone().appendTo($("ul li"));
+
+      // 8. closest() 逐级向上层元素匹配 相当于 parent
+
+      // 9. concat 添加一个元素到一个数组中 形成新的数组
+
+			var ss = [1,2,3];
+			console.log(ss.concat(4,5));
+
+      // 10. contents
+			console.log($("#irv").contents());
+
+      // 11. css()
+
+      // 12. data
+      $("#irv").data("test",{one: "16",two: "lisi"});
+			$("#irv span:first-child").text($("#irv").data("test").one);
+			$("#irv span:last-child").text($("#irv").data("test").two);
+
+      // 13. empty 清空选中的元素
+      // 14. eq()
+
+      // 15. filter  过滤对象集合 返回符合 css 选择的元素
+				console.log($("ol li").filter(".ie").text());
+      // 16. first  选择匹配元素的第一个元素
+
+      // 17. forEach 遍历数组中的每一个元素,遇到 flase 也不会停止.
+      //
+      // 18. indexOf
+      //
+      $("<div>123</div>").insertAfter('.p1');
+		});
+		</script>
+	</body>
+</html>
