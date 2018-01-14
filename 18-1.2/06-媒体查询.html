@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>检测屏幕</title>
+		<style media="screen">
+			.one {
+				font-size: 50px;
+			}
+
+			.one::before {
+				content: "等待检测...";
+			}
+
+			@media all and (orientation:portrait) {
+				.one::before {
+					content: "竖屏...";
+				}
+			}
+
+			@media all and (orientation:landscape) {
+				.one::before {
+					content: "横屏...";
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="one"></div>
+	</body>
+</html>
