@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百度新闻导航滑块</title>
+	<style media="screen">
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		#box {
+			width: 800px;
+			height: 50px;
+			background-color: #01204F;
+			position: relative;
+			margin: 50px auto;
+		}
+
+		#navList {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			z-index: 1;
+		}
+
+		#navList li {
+			list-style-type: none;
+			height: 50px;
+			color: #fff;
+			line-height: 50px;
+			padding: 0px 20px;
+			float: left;
+			cursor: pointer;
+		}
+
+		#sliderBox {
+			height: 50px;
+			width: 72px;
+			background-color: red;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			z-index: 0;
+		}
+
+		#slider {
+			height: 10px;
+			width: 72px;
+			border-radius: 5px;
+			background-color: green;
+			position: absolute;
+			bottom: -15px;
+			left: 0px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul id="navList">
+			<li>首页</li>
+			<li>百家</li>
+			<li>国内</li>
+			<li>国际</li>
+			<li>军事</li>
+			<li>社会</li>
+			<li>财经</li>
+			<li>娱乐</li>
+		</ul>
+		<div id="sliderBox"></div>
+		<div id="slider"></div>
+	</div>
+	<script src="./js/tween.js" charset="utf-8"></script>
+	<script src="./js/Tween_move.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var navList = document.getElementById('navList').getElementsByTagName('li');
+		var sliderBox = document.getElementById("sliderBox");
+		var slider = document.getElementById("slider");
+		var timer1 = timer2 = null;
+		for (var i = 0; i < navList.length; i++) {
+			navList[i].index = i;
+			navList[i].onmouseover = function() {
+				clearTimeout(timer1);
+				clearTimeout(timer2);
+				var t = 0;
+				var b = sliderBox.offsetLeft;
+				var c = this.index * sliderBox.offsetWidth - b;
+				var d = 100;
+				timer1 = move(sliderBox,"left",t,b,c,d);
+				timer2 = move(slider,"left",t,b,c,d);
+			}
+		}
+	</script>
+</body>
+</html>
