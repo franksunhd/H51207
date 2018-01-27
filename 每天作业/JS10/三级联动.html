@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>省份三级联动</title>
+</head>
+<body>
+	<div id="wrap">
+		<form action="###" method="get">
+			<select name="province" id="province">
+				<option value="0">请选择省</option>
+			</select>
+
+			<select name="city" id="city">
+				<option value="0">请选择市</option>
+			</select>
+
+			<select name="area" id="area">
+				<option value="0">请选择区</option>
+			</select>
+
+			<input type="submit" value="提交" />
+		</form>
+	</div>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script src="./js/list.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			var pro = $("#province");
+			var city = $("#city");
+			var area = $("#area");
+			// 1.首先先把省份找出来加载到下拉列表
+			console.time("省份");
+	        for (var i = 0; i < oJson.length; i++) {
+				pro.name = oJson[i]["name"];
+	        	$("#province").append("<option value="+ i +">" + pro.name + "</option>");
+	        }
+			console.timeEnd("省份");
+
+			// 2.省份选中的时候才会加载市
+			console.time("城市");
+			var InumPro = null;
+			var InumCity = null;
+			$("#province").change(function() {
+                // 省份改变时先清除除下标为 0 的选中项
+				$("#city").children().not(":eq(0)").remove();
+                $("#area").children().not(":eq(0)").remove();
+                // 获取选中选项的下标
+                InumPro = $(this).children("option:selected").index() - 1;
+				// console.log(InumPro);
+				// 获取省份下城市数组的长度
+				// console.log(oJson[InumPro]["child"].length);
+                // 获取省份下城市数组中第一个子元素的城市名
+				for (var j = 0 , clen = oJson[InumPro]["child"].length; j < clen; j++) {
+					// 获取选中省份元素下的城市名列表
+					// console.log(oJson[InumPro]["child"][j]["name"]);
+					city.name = oJson[InumPro]["child"][j]["name"];
+					$("#city").append("<option value="+ j +">" + city.name + "</option>");
+				}
+			});
+			console.timeEnd("城市");
+            // 3.城市选中的时候才会加载地区
+			console.time("地区");
+			$("#city").change(function() {
+				$("#area").children().not(":eq(0)").remove();
+				InumCity = $(this).children("option:selected").index() - 1;
+				// console.log(InumCity);
+                // 获取城市下地区数组的长度
+                // console.log(oJson[InumPro]["child"][0]["child"].length);
+				// 获取城市下地区数组中第一个子元素的地区名
+				// console.log(oJson[InumPro]["child"][InumCity]["child"][0]["name"]);
+				for (var k = 0,alen = oJson[InumPro]["child"][InumCity]["child"].length; k < alen; k++) {
+					// 获取选中城市元素下的地区列表
+					// console.log(oJson[InumPro]["child"][InumCity]["child"][k]["name"]);
+					area.name = oJson[InumPro]["child"][InumCity]["child"][k]["name"];
+					$("#area").append("<option value="+ k +">" + area.name + "</option>");
+				}
+			});
+			console.timeEnd("地区");
+
+		});
+	</script>
+</body>
+</html>

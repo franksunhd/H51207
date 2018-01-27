@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加列表</title>
+	<style media="screen">
+		.list1 {
+			display: none;
+		}
+
+		#List li{
+			height: 30px;
+			font-size: 20px;
+			line-height: 30px;
+		}
+	</style>
+</head>
+<body>
+	<input id="text" type="text" placeholder="请输入内容">
+	<input id="btn" type="button" value="点击添加">
+	<hr>
+	<ol id="List">
+		<li class="list1" value="0"></li>
+	</ol>
+	<script type="text/javascript">
+		var text = document.querySelector("#text");
+		var btn = document.querySelector("#btn");
+		var List = document.querySelector("#List");
+		var comment = "";
+		var i = 0;
+		 btn.onclick = function() {
+			btn.value = text.value;
+			i++;
+			if (btn.value != "") {
+				comment = document.createElement("li");
+				btn.item = document.createTextNode(btn.value);
+				comment.appendChild(btn.item);
+				comment.innerHTML += "  <a href='###'>删除</a>";
+				comment.setAttribute("value",i);
+			}
+			var list1 = document.querySelector("#List").firstElementChild;
+			List.insertBefore(comment,list1);
+
+			var del = document.querySelectorAll("#List a");
+			for (var j = 0; j < del.length; j++) {
+				del[j].onclick=function() {
+					this.parentNode.style.display="none" ;
+				}
+			}
+		 }
+
+
+	</script>
+</body>
+</html>
