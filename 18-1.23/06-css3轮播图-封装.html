@@ -67,17 +67,24 @@
 				<input class="btn" type="button" value="显示5" />
 			</div>
 		</div>
-
+		<script src="./js/tween.js" charset="utf-8"></script>
 		<script type="text/javascript">
     	// 元素对象
 			var content = document.getElementById('content');
 			var btns = document.getElementsByClassName('btn');
             // 距离左边的距离
 			var offsetLeft = 0;
-
-			var speed = 2;
+            // 移动的速度
+			var speed = 5;
+            // 间隔时间 20ms
+            var inter = 20;
+            // 定时器 函数返回值
 			var timer = null,res = null;
-			timer = setInterval(function() {
+            //
+			timer = setInterval(move,inter);
+
+
+			function move() {
 				offsetLeft -= speed;
                 // 显示最后一张后马上显示第一张.
 				offsetLeft = offsetLeft <= - 5 * 520 ? 0 : offsetLeft;
@@ -87,13 +94,12 @@
                     // 遇到图暂停循环定时器
                     clearInterval(timer);
                     // 暂停500ms 重新开启定时器
-                    var _callee = arguments.callee;
 					clearInterval(res);
 					setTimeout(function(){
-						res = setInterval(_callee,20);
+						res = setInterval(move,inter);
 					},500);
 				}
-			},20);
+			}
 		</script>
 	</body>
 </html>
