@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tween.js</title>
+	<style media="screen">
+		#box {
+			width: 800px;
+			height: 100px;
+			border: 5px solid blue;
+			position: relative;
+		}
+
+		#ball {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			background-color: red;
+			line-height: 100px;
+			text-align: center;
+			font-size: 30px;
+			color: #fff;
+			cursor: pointer;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Tween.JS</h2>
+	<div id="box">
+		<div id="ball">ball</div>
+	</div>
+	<button id="resume">继续</button>
+	<button id="paused">停止</button>
+	<!-- 引入 js 代码包 -->
+	<script src="./js/tween.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		var ball = document.getElementById('ball');
+
+		var timer = null;
+
+
+		ball.onclick = function() {
+			clearInterval(timer);
+            //
+			// console.log(Tween);
+			// t:代表当前时间{初始时间}
+			// b:初始值
+			// c:改变值(结束值-初始值)
+			// d:持续时间
+			var t = 0; // 初始时间,时间用定时器控制累加
+			var b = 0;
+			var c = 700;
+			var d = 100;
+			timer = setInterval(function(){
+				t += 2;
+				var value = Tween.Back.easeInOut(t,b,c,d);
+				console.log(value);
+				ball.style.left = value + "px";
+                // 初始时间 === 持续时间 代表运动结束
+				if(t >= d) {
+					clearInterval(timer);
+                    // 防止超出:b + c = 终点位置
+					ball.style.left = b + c + "px";
+				}
+			},20)
+
+		}
+	</script>
+</body>
+</html>
