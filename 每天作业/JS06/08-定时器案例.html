@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>定时器案例</title>
+	<style media="screen">
+		#box {
+			border: 5px solid blue;
+			width: 800px;
+			height: 100px;
+			position: relative;
+		}
+
+		#ball {
+			width: 100px;
+			height: 100px;
+			font-size: 30px;
+			border-radius: 50%;
+			background: red;
+			line-height: 100px;
+			text-align: center;
+			color: #fff;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			cursor: pointer;
+			animation: run 1s linear infinite alternate;
+		}
+
+		@keyframes run {
+			0% {
+				background-color: red;
+			}
+			50% {
+				background-color: green;
+			}
+			100% {
+				background-color: red;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="ball">ball</div>
+	</div>
+	<input id="btn1" type="button" name="" value="点击停止">
+	<input id="btn2" type="button" name="" value="点击继续">
+	<input id="btn3" type="button" name="" value="点击加速">
+	<input id="btn4" type="button" name="" value="点击减速">
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		var ball = document.getElementById('ball');
+		var btn1 = document.getElementById('btn1');
+		var btn2 = document.getElementById('btn2');
+		var btn3 = document.getElementById('btn3');
+
+		var timer = null;
+        // 定义一个变量 用于判断方向 true 代表向右 false 代表向左
+		var count = true;
+        // 距离做边框的距离
+		var offsetLeft = 0;
+        // 设置初始速度
+        var speed = 1;
+
+        // 打开浏览器默认开始移动
+		move(speed);
+		ball.onclick = function() {
+			clearInterval(timer);
+			move(speed);
+		}
+        // 停止移动,清除定时器
+		btn1.onclick = function() {
+			clearInterval(timer);
+			ball.style.animationPlayState = "paused";
+		};
+        // 继续移动,定时器节流
+ 		btn2.onclick = function() {
+			clearInterval(timer);
+			move(speed);
+		};
+        // 加速移动,定时器节流
+		btn3.onclick = function() {
+			clearInterval(timer);
+			speed++;
+			if (speed >= 0) {
+				move(speed);
+			}
+		};
+
+		// 减速移动,定时器节流
+		btn4.onclick = function() {
+			clearInterval(timer);
+			speed--;
+			if (speed >= 1) {
+				move(speed);
+			} else {
+				speed = 1;
+				clearInterval(timer);
+			}
+		};
+
+        // 小球向右移动函数
+		function run1(step) {
+			timer = setInterval(function() {
+				// 代表小球向右移动
+				count = true;
+				offsetLeft += step;
+				ball.style.left = offsetLeft + "px";
+				ball.style.animationPlayState = "running";
+				ball.style.transform = "rotateZ(" + offsetLeft + "deg)";
+				if(offsetLeft >= 700 || offsetLeft <= 0) {
+                    // 先清除定时器,再向左移动,定时器节流
+					clearInterval(timer);
+					run2(step);
+				}
+			},10);
+		}
+
+        // 小球向左移动函数
+		function run2(step) {
+			timer = setInterval(function() {
+                // 代表小球向左移动
+				count = false;
+				offsetLeft -= step;
+				ball.style.left = offsetLeft + "px";
+				ball.style.animationPlayState = "running";
+				ball.style.transform = "rotateZ(" + offsetLeft + "deg)";
+				if(offsetLeft <= 0) {
+                    // 先清除定时器 ,再向右移动,定时器节流
+					clearInterval(timer);
+					run1(step);
+				}
+			},10);
+		}
+
+        // 封装判断移动方向的函数,向右移动 count 为 true, 反之 为 false
+        // 参数是移动的步长
+		function move(steps) {
+			if (count == true) {
+                // 方向向右,步长递增
+				run1(steps);
+			} else {
+                // 方向向左,步长递减
+				run2(steps);
+			}
+		}
+	</script>
+</body>
+</html>
