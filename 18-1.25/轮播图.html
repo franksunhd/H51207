@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		img {
+			vertical-align: middle;
+		}
+
+		#box {
+			/* width: 100%; */
+			/* border: 2px solid blue; */
+			margin: auto;
+			position: relative;
+			overflow: hidden;
+		}
+
+		#content {
+			/*width: calc(500px * 4);*/
+			width: 600%;
+			/*overflow: hidden;*/
+			/*动画效果*/
+			/*transition: all 1s linear;*/
+			position: relative;
+			/*position: absolute;*/
+			/*定位+动画：要设置初始值,否则动画就没了*/
+			left: 0;
+			overflow: hidden;
+		}
+
+		#content img {
+			float: left;
+			width: 16.66666666%;
+		}
+
+		#left,
+		#right {
+			position: absolute;
+			width: 30px;
+			height: 50px;
+			color: white;
+			font-size: 20px;
+			line-height: 50px;
+			text-align: center;
+			background-color: rgba(0, 0, 0, 0.5);
+			top: 0;
+			bottom: 0;
+			margin: auto 0;
+			left: 10px;
+		}
+
+		#right {
+			right: 10px;
+			left: auto;
+		}
+
+		#solid_box {
+			position: absolute;
+			bottom: 10px;
+			background: rgba(0, 0, 0, 0.3);
+			width: 100px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			left: 0;
+			right: 0;
+			margin: auto;
+			border-radius: 8px;
+		}
+
+		#solid_box li {
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			background-color: black;
+			cursor: pointer;
+		}
+
+		#solid_box .active {
+			background-color: blue;
+			border: 2px solid white;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="content" class="clearfix">
+			<!--img[src="img/$.jpg"]*5-->
+			<img src="img/1.jpg" alt="" />
+			<img src="img/2.jpg" alt="" />
+			<img src="img/3.jpg" alt="" />
+			<img src="img/1.jpg" alt="" />
+			<img src="img/2.jpg" alt="" />
+
+			<!--最后一张-->
+			<img src="img/1.jpg" alt="" />
+		</div>
+		<div id="left"><</div>
+		<div id="right">></div>
+
+		<ul id="solid_box">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+
+	<script src="./js/tween.js" charset="utf-8"></script>
+	<script src="./js/Tween_move.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var LeftButton = document.getElementById('left');
+		var RightButton = document.getElementById('right');
+		var content = document.getElementById('content');
+		var img = document.getElementById('content').getElementsByTagName('img');
+		var sideIndex = document.getElementById("solid_box").getElementsByTagName('li');
+
+		console.log(img);
+        // 定义轮播图中的常量
+		var Swiper = {
+			pn : 0,// 解决连续点击出现的偏移问题
+			width : window.innerWidth, // 设置图片的宽度
+			length: img.length,  // 设置图片的张数
+			side:sideIndex.length,  // 设置 li元素的个数
+			direction:2000,  // 设置图片的轮播速度
+			timer:100,  // 设置图片切换时间的时长
+			autoPalyID: null
+		};
+
+		right.onclick = function() {
+			Swiper.pn = Swiper.pn === Swiper.length-1 ? 0 : Swiper.pn;
+			console.log(Swiper.pn + 1);
+			if (Swiper.pn + 1 === Swiper.length - 1) {
+				Swiper.pn = 0;
+				// content.style.left = "0";
+				console.log("111");
+			}
+			Swiper.pn++;
+			prepareMove();
+
+		}
+
+		left.onclick = function() {
+			Swiper.pn = Swiper.pn === 0 ? Swiper.length-1 : Swiper.pn;
+			Swiper.pn--;
+			prepareMove();
+		}
+
+        // 执行 move
+		function prepareMove() {
+			var t = 0;
+			var b = content.offsetLeft;
+			var c = -Swiper.pn * Swiper.width - b;
+			var d = Swiper.timer;
+			move(content,"left",t,b,c,d,function() {
+				point();
+			});
+		}
+
+		function point() {
+			// 给 "点" 添加样式,获取当前是哪个 点
+			var count = Math.abs(content.offsetLeft / Swiper.width);
+
+			count = count === Swiper.side ? 0 : count;
+            for(var i = 0;i < Swiper.side;i++){
+				sideIndex[i].classList = "";
+			}
+			sideIndex[count].classList = "active";
+		}
+
+        // 绑定 圆点的 点击事件
+        function bindSolid() {
+            for (var i = 0; i < Swiper.side; i++) {
+				sideIndex[i].index = i;
+            	sideIndex[i].onclick = function() {
+					if (Swiper.pn == Swiper.length) {
+						Swiper.pn = 0;
+					}
+					Swiper.pn = this.index;
+					prepareMove();
+            	}
+            }
+        }
+		bindSolid();
+
+		// 浏览器打开开启自动轮播
+		Swiper.autoPalyID = setInterval(right.onclick,Swiper.direction);
+
+		//放置鼠标清除定时器事件
+		box.onmouseover = function() {
+			clearTimeout(Swiper.autoPalyID);
+		}
+		//鼠标离开设置定时器事件
+		box.onmouseout = function() {
+			Swiper.autoPalyID = setInterval(right.onclick,Swiper.direction);
+		}
+	</script>
+</body>
+</html>

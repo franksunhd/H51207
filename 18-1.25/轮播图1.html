@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		img {
+			vertical-align: middle;
+		}
+
+		#box {
+			width: 500px;
+			border: 2px solid blue;
+			margin: auto;
+			position: relative;
+			/* overflow: hidden; */
+		}
+
+		#content {
+			/*width: calc(500px * 4);*/
+			width: 600%;
+			/*overflow: hidden;*/
+			/*动画效果*/
+			/*transition: all 1s linear;*/
+			position: relative;
+			/*position: absolute;*/
+			/*定位+动画：要设置初始值,否则动画就没了*/
+			left: 0;
+			overflow: hidden;
+		}
+
+		#content img {
+			float: left;
+			width: 16.66666666%;
+		}
+
+		#left,
+		#right {
+			position: absolute;
+			width: 30px;
+			height: 50px;
+			color: white;
+			font-size: 20px;
+			line-height: 50px;
+			text-align: center;
+			background-color: rgba(0, 0, 0, 0.5);
+			top: 0;
+			bottom: 0;
+			margin: auto 0;
+			left: 10px;
+		}
+
+		#right {
+			right: 10px;
+			left: auto;
+		}
+
+		#solid_box {
+			position: absolute;
+			bottom: 10px;
+			background: rgba(0, 0, 0, 0.3);
+			width: 100px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			left: 0;
+			right: 0;
+			margin: auto;
+			border-radius: 8px;
+		}
+
+		#solid_box li {
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			background-color: black;
+			cursor: pointer;
+		}
+
+		#solid_box .active {
+			background-color: blue;
+			border: 2px solid white;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="content" class="clearfix">
+			<!--img[src="img/$.jpg"]*5-->
+			<img src="img/1.jpg" alt="" />
+			<img src="img/2.jpg" alt="" />
+			<img src="img/3.jpg" alt="" />
+			<img src="img/1.jpg" alt="" />
+			<img src="img/2.jpg" alt="" />
+
+			<!--最后一张-->
+			<img src="img/1.jpg" alt="" />
+		</div>
+		<div id="left"><</div>
+		<div id="right">></div>
+
+		<ul id="solid_box">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+
+	<script src="./js/tween.js" charset="utf-8"></script>
+	<script src="./js/Tween_move.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var LeftButton = document.getElementById('left');
+		var RightButton = document.getElementById('right');
+		var content = document.getElementById('content');
+		var img = document.getElementById('content').getElementsByTagName('img');
+		var sideIndex = document.getElementById("solid_box").getElementsByTagName('li');
+
+        // 定义用于解决连续点击造成的错位的 offsetLeft
+        var Flag = false;
+
+        // 定义轮播图常量
+        var Swiper = {
+			ImgWidth: 500,
+			length:img.length-1,
+			side:sideIndex.length,
+			direction:2000
+		}
+
+
+		// 定时器开启轮播
+		content.timer = setTimeout(moveImg,Swiper.direction);
+
+        // 点击 点 进行轮播跳转
+        for (var i = 0; i < Swiper.side; i++) {
+        	sideIndex[i].index = i;
+			sideIndex[i].onclick = function() {
+				var t = 0;
+				var b = content.offsetLeft;
+				var c = (-Swiper.ImgWidth * this.index) - b;
+				var d = 50;
+				move(content,"left",t,b,c,d,function() {
+					point();
+				});
+			}
+        }
+
+		// 点击右按钮,content向左移动
+		right.onclick = function() {
+            // 默认是 false  点击一次 判断正确进入函数,说明开始执行move函数
+			if (!Flag) {
+                // 进入函数 变为 true 说明 move 函数 正在执行
+				Flag = !Flag;
+				var t = 0;
+				var b = content.offsetLeft === -Swiper.length*Swiper.ImgWidth ? 0 : content.offsetLeft;
+				var c = -Swiper.ImgWidth;
+				var d = 50;
+				move(content,"left",t,b,c,d,function() {
+					point();
+					// move 函数执行完毕之后改为 false
+					Flag = !Flag;
+				});
+			}
+
+		}
+        // 点击左按钮,content向右移动
+		left.onclick = function() {
+			if(!Flag){
+				Flag = !Flag;
+				var t = 0;
+				var b = content.offsetLeft === 0 ? -Swiper.length*Swiper.ImgWidth : content.offsetLeft;
+				var c = Swiper.ImgWidth;
+				var d = 50;
+				move(content,"left",t,b,c,d,function() {
+					point();
+					Flag = !Flag;
+				});
+			}
+		}
+
+		// 为 点 跟随轮播 添加样式
+		function point() {
+			// 给 "点" 添加样式,获取当前是哪个 点
+			var count = Math.abs(content.offsetLeft / Swiper.ImgWidth);
+			console.log(count); // count 从0开始计数
+			if(count == Swiper.side){
+				count = 0;
+			}
+            for(var i = 0;i < Swiper.side;i++){
+				sideIndex[i].classList = "";
+			}
+			sideIndex[count].classList = "active";
+		}
+
+		function moveImg() {
+			var t = 0;
+			var b = content.offsetLeft === -Swiper.length*Swiper.ImgWidth ? 0 : content.offsetLeft;
+			var c = -Swiper.ImgWidth;
+			var d = 50;
+			move(content,"left",t,b,c,d,function() {
+				point();
+				// move 函数执行完毕之后改为 false
+				content.timer = setTimeout(moveImg,Swiper.direction);
+			});
+		}
+
+		//放置鼠标清除定时器事件
+		box.onmouseover = function() {
+			clearTimeout(content.timer);
+		}
+		//鼠标离开设置定时器事件
+		box.onmouseout = function() {
+			content.timer = setTimeout(moveImg, Swiper.direction);
+		}
+	</script>
+</body>
+</html>
