@@ -60,11 +60,11 @@
 		// 逆序输出
 		arr_names = "1949-10-18";
 		var lec = arr_names.split("-");
-		console.log(lec);
+		console.log(lec);  //  数组对象 长度为3
 
 		// 5.以空字符串分隔
 		var nameArr = arr_names.split("");
-
+		// 数组的内置方法
 		nameArr.reverse();
 		var relName = nameArr.join("");
 		console.log(relName);
@@ -75,11 +75,11 @@
 		// Unicode: 标准
 		items = "abcABC";
 		// 6.charCodeAt()
-		console.log(items.charCodeAt(0));
+		console.log(items.charCodeAt(0));  // 97 
 		// 
 		// 7.通过unicode码获得对应的字符
-		console.log(String.fromCharCode(97));
-		console.log(String.fromCharCode(20154));
+		console.log(String.fromCharCode(97));  // a
+		console.log(String.fromCharCode(20154));  // 人
 
 		// 8.subString(开始位置,结束位置) 字符串截取
 		console.log("------substring------");
@@ -128,7 +128,7 @@
 		
 		// 14. replace()
 		console.log("-------replace------");
-		var color = "lanou";
+		var color = "lanounou";
 		// 返回替换后的字符串,不会引起原字符串的改变
 		var newColor = color.replace("ou","你好");
 		console.log(color,newColor); 
@@ -140,7 +140,7 @@
 
 		// 16.match()
 		console.log("-------match------"); 
-		var matchValue = color.match("ou");
+		var matchValue = color.match(/ou/gi);
 		console.log(matchValue);
 		// 匹配的结果
 		console.log(matchValue[0]);  // ou
