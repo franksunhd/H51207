@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>innerHTML效率问题</title>
+	<style media="screen">
+		#box {
+			width: 600px;
+			height: 600px;
+			border: 5px solid blue;
+			margin: auto;
+		}
+
+		#box .cell {
+			width: 20px;
+			height: 20px;
+			box-sizing: border-box;
+			border: 1px solid black;
+			float: left;
+			border-width: 0px 1px 1px 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		console.time("浪哥")
+		var content = "";
+		for (var i = 0; i < 900; i++) {
+            // 创建 cell
+            // appendChild  2-3ms
+            // var cell = document.createElement("div");
+			// cell.className = "cell";
+			// box.appendChild(cell);
+
+            // 错误 : innerHTML  500-900ms
+			// box.innerHTML += "<div class='cell'></div>";
+
+            // 解决:文档碎片 1ms-3ms
+			content += "<div class='cell'></div>";
+		}
+		box.innerHTML = content;
+		console.timeEnd("浪哥");
+	</script>
+</body>
+</html>

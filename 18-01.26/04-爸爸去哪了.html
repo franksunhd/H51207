@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>爸爸去哪了</title>
+</head>
+<body>
+	<div id="box">
+		<p>baby</p>
+	</div>
+
+	<ul id="box2">
+		<li>
+			<strong>小春-jasper</strong>
+			<a href="#">删除</a>
+		</li>
+		<li>
+			<strong>耕宏-小泡芙</strong>
+			<a href="#">删除</a>
+		</li>
+	</ul>
+
+	<script type="text/javascript">
+		var baby = document.querySelector("#box > p");
+		console.log(baby);  // <p>baby</p>
+
+        // 1.parentElement 不是标准写法
+        baby.parentElement.style.border = "5px solid red";
+        // 2.parentNode 标准写法,找到父节点
+		baby.parentNode.style.borderColor = "blue";
+
+        var del = document.querySelectorAll("#box2 a");
+		for (var i = 0; i < del.length; i++) {
+			del[i].onclick = function() {
+				this.parentNode.style.display = "none";
+			}
+		}
+	</script>
+</body>
+</html>
