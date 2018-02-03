@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浏览器对象模型Onload事件</title>
+	<script type="text/javascript">
+		// onload
+		console.log("苞米地里的小马");
+		var box = document.getElementById('box');
+        
+        /*
+		 * 返回 null body还没有被解析, 所有DOM操作都会出错
+         */
+		console.log(box);  // null
+
+        /*
+         * 所有 DOM 元素(包括图片加载完成),会回调这个方法,(异步方法)
+         */
+		window.onload = function() {
+			console.log("onload开始执行...");
+
+			var box = document.getElementById('box');
+			console.log(box);   // <div id="box"></div>
+
+            // 可直接获取到图片的大小(图片已经加载完成)
+			var HTL = document.querySelector("img");
+			console.log("小灰灰身高:" + HTL.height + "px");
+
+			console.log("onload加载完成!");
+		};
+
+		console.log("onload下面");
+
+		var img = new Image();
+		img.src = "./img2/1.jpg";
+		console.log("马上获取高度:",img.height + "px");
+
+		img.onload = function() {
+			console.log("图片开始 onload..");
+			console.log("图片高度为:",img.height + "px");
+			console.log("图片结束 onload..");
+		}
+		// 只监听 DOM 加载完成,不监听图片的加载
+
+		// 绑定事件的第二种方式
+        window.addEventListener("click",function() {
+			console.log("窗口被点击了");
+        });
+
+
+		// DOM内容被加载完
+		window.addEventListener("DOMContentLoaded",function() {
+			console.log("DOMContentLoaded");
+			var HTL = document.querySelector("img");
+			console.log(HTL);
+			console.log("小灰灰身高:" + HTL.height + "px");  // 0
+			console.log("--------DOMContentLoaded----------");
+		});
+
+
+		console.log("------------------");
+
+        /*
+         * 先执行 DOMContentLoaded 能获取DOM元素,但是图片没加载完成(问题 IE6,7,8下不支持)
+         * 代码顺序执行, onload 有加载顺序
+         * 1. DOMContentLoaded
+         * 2. 图片的 onload
+         * 3. window 的 onload
+         *
+         * 总结:代码写在body的最下面
+         */
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+	<img id="HTL" src="./img/x5.png" alt="灰太狼">
+</body>
+</html>

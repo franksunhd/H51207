@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>window常用属性</title>
+</head>
+<body>
+	<button id="reload">点击测试</button>
+	<script type="text/javascript">
+        /*
+         * 属性:
+         * 1. navigator:获取浏览器信息
+         * 2. location: 网址信息
+         * 3. histoty: 浏览器历史记录
+         * 4. screen: 屏幕信息
+         * 5. localStorage:本地存储
+         */
+
+		console.log(location);  // 打印的是location 对象
+		// 获取网址参数:网址?后面的内容
+		console.log(location.search);
+		// 端口:8020
+		console.log(location.port);
+		// 协议:http
+		console.log(location.protocol);
+		// 哈希: hash  (网址#abc) 可以作为参数进行传递
+		console.log(location.hash);
+		// href:网页的完整地址
+		console.log(location.href);
+		
+		reload.onclick = function(){
+		  //
+          // location.href = "07-open.html?name=lisi&age=18#pink";
+          
+          // 页面刷新
+          // location.reload();
+          
+          // assign 载入新的文档 具有历史记录,可以回退到原来
+          // location.assign("07-open.html?name=lisi&age=18#pink");
+          
+          // replace 新的文档替换当前文档  没有历史记录,不能回退
+          // location.replace("07-open.html?name=lisi&age=18#pink");
+		}
+		
+		
+		// 获取浏览器信息
+		console.log(navigator);
+		//
+		console.log(navigator.userAgent);
+
+		function myBrowser() {
+			var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+			var isOpera = userAgent.indexOf("Opera") > -1;
+			if(isOpera) {
+				return "Opera"
+			}; //判断是否Opera浏览器
+			if(userAgent.indexOf("Firefox") > -1) {
+				return "FF";
+			} //判断是否Firefox浏览器
+			if(userAgent.indexOf("Chrome") > -1) {
+				return "Chrome";
+			}
+			if(userAgent.indexOf("Safari") > -1) {
+				return "Safari";
+			} //判断是否Safari浏览器
+			if(userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE")> -1 && !isOpera) {
+				return "IE";
+			}; //判断是否IE浏览器
+		}
+
+		//以下是调用上面的函数
+		var mb = myBrowser();
+		if("IE" == mb) {
+			alert("我是 IE");
+		}
+		if("FF" == mb) {
+			alert("我是 Firefox");
+		}
+		if("Chrome" == mb) {
+			// alert("我是 Chrome");
+		}
+		if("Opera" == mb) {
+			alert("我是 Opera");
+		}
+		if("Safari" == mb) {
+			alert("我是 Safari");
+		}
+		// 返回浏览器的代码名
+		console.log(navigator.appCodeName);
+		// 返回浏览器的名称
+		console.log(navigator.appName);
+		// 返回浏览器的平台和版本信息
+		console.log(navigator.appVersion);
+		// 返回运行浏览器的操作系统平台
+		console.log(navigator.platform);
+
+		// 获取历史记录
+		console.log(history);
+		console.log(history.length);
+		// 加载记录中的下一个URL
+		history.forward();	
+		// 加载记录中的上一个URL
+		history.back();
+		// 从历史记录列表中跳转到指定的URL
+		window.history.go(-2)
+		
+	</script>
+</body>
+</html>

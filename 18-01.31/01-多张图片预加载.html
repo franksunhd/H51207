@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多张图片预加载</title>
+	<style media="screen">
+		html,body {
+
+		}
+	</style>
+</head>
+<body>
+	<progress value="0.1" max="1">0%</progress>
+	<h1 id="progress"></h1>
+
+	<script type="text/javascript">
+		var imgArr = ["img/game_bg.jpg", "img/h0.png",
+		"img/h1.png", "img/h2.png", "img/h3.png",
+		"img/h4.png", "img/h5.png", "img/h6.png",
+		"img/h7.png", "img/h8.png", "img/h9.png",
+		"img/progress.png", "img/x1.png", "img/x2.png",
+		"img/x3.png", "img/x4.png", "img/x5.png",
+		"img/x6.png", "img/x7.png", "img/x8.png", "img/x9.png"];
+
+        // 区别: 数组,有内置方法
+        // 	选择器返回的元素集合,没有数组的内置方法
+		// var pgs = document.querySelectorAll("progress");
+		// pgs.forEach(function (value,index) {
+		// 	console.log(value,index);
+		// });
+
+		var pg = document.querySelector("progress");
+		var progress = document.querySelector("#progress");
+		var flag = 0;
+		imgArr.forEach(function(value,index) {
+			console.log(value,index);
+            // 每个地址都创建一个对象
+			var obj = new Image();
+            // 下载
+            obj.src = value;
+
+            // 监听下载的完成
+			obj.onload = function () {
+                // 加一下,代表下载完成一项
+				flag++;
+                // 判断执行了数组的 length 次
+                // index:无序,代表图片下载完成顺序和代码执行顺序无关
+                // this:当前下载完成的图片
+				// console.log(flag,"加载完了第",index,"张");
+				// console.log(this);  // 谁下载完了就代表谁
+
+                // 下载过程
+                progress.innerHTML = Math.ceil((flag / imgArr.length) * 100) + "%";
+
+				pg.value = flag / imgArr.length;
+
+                // 判断执行的数组的 length次
+                if (flag == imgArr) {
+                    // 下载完成,隐藏加载界面
+                    pg.style.display = "none";
+                }
+			}
+		});
+	</script>
+</body>
+</html>

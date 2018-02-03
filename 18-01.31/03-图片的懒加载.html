@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片的懒加载</title>
+	<style media="screen">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			list-style-type: none;
+		}
+
+		#box {
+			width: 500px;
+			margin: auto;
+		}
+
+		#box li {
+			border: 5px solid red;
+			margin-bottom: 300px;
+		}
+
+		#box li img {
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li>
+				<img lazy-src="./img2/P_000.jpg" src="http://static.youku.com/v1.0.166/index/img/sprite.gif">
+			</li>
+			<li>
+				<img lazy-src="./img2/P_001.jpg" src="http://static.youku.com/v1.0.166/index/img/sprite.gif">
+			</li>
+			<li>
+				<img lazy-src="./img2/P_002.jpg" src="http://static.youku.com/v1.0.166/index/img/sprite.gif">
+			</li>
+			<li>
+				<img lazy-src="./img2/P_003.jpg" src="http://static.youku.com/v1.0.166/index/img/sprite.gif">
+			</li>
+			<li>
+				<img lazy-src="./img2/P_004.jpg" src="http://static.youku.com/v1.0.166/index/img/sprite.gif">
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var imgArr = ["./img2/P_000.jpg","./img2/P_001.jpg","./img2/P_002.jpg","./img2/P_003.jpg","./img2/P_004.jpg"];
+
+        // 图片懒加载:大型网站,图片比较多的场景使用
+        // 优点:优化网站,让网页加载更流畅
+        // 处理方式:
+        // 没有出现的图片, src 先给一个1像素的占位图,把真实的地址存在其他的属性中,监听网页的滚动
+        // 即将要出现的时候取出真实的地址给 src 赋值
+
+		var lis = document.querySelectorAll("#box li");
+		window.onscroll = function () {
+            // 页面滚出去的距离
+            var sTop = getScrollTop();
+            // 可视区的高度
+            var cHeight = clientHeight();
+
+			for (var i = 0; i < lis.length; i++) {
+                // 元素距离页面顶部的距离
+                var offTop = getOffsetTop(lis[i]);
+                // 刚出现在可视区
+
+				var imgObj = lis[i].children[0];
+				var src = imgObj.getAttribute("lazy-src");
+
+				if (sTop + cHeight > offTop && src) {
+					imgObj.src = src;
+                    // 删除 lazy-src
+                    imgObj.removeAttribute("lazy-src");
+				}
+			}
+		}
+
+        // 默认调用
+        window.onscroll(); // 前边的就会默认显示
+
+		// 页面滚动的距离
+		function getOffsetTop(ele) {
+			if (ele.nodeName == "BODY") {
+				return 0;
+			}
+			var top = 0;
+			while (true) {
+				top += ele.offsetTop + ele.offsetParent.clientTop;
+				ele = ele.offsetParent;
+				// 如果是 body 停止
+				if (ele.offsetParent == null)break;
+			}
+			return top
+		}
+
+		// 获取滚动元素距离屏幕顶部的距离
+		function getScrollTop() {
+		    // 获取:
+		    // 必有一个为 0,所以可以两个值相加
+			// return document.documentElement.scrollTop + document.body.scrollTop;
+			return document.documentElement.scrollTop || document.body.scrollTop;
+		}
+
+        // 页面可视区高度
+		function clientHeight() {
+			return window.innerHeight || document.documentElement.clientHeight;
+		}
+
+	</script>
+</body>
+</html>

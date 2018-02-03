@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>window方法</title>
+</head>
+<body>
+	<div id="box">
+		<button id="open1">打开新窗口</button>
+		<button id="close1">关闭新窗口</button>
+		<button id="moveBtn">移动新窗口</button>
+		<button id="scrollBtn">滚动到</button>
+	</div>
+	<script type="text/javascript">
+        // 直接调用
+		var win = null;
+		open1.onclick = function () {
+            // 参数2: _self:当前窗口 默认 _blank
+            // 打开新的窗口,
+			win = window.open("./03-图片的懒加载.html","_blank","width=500,height=500,left=0,top=0");
+			console.log(win);
+            // 关闭
+			close1.onclick = function () {
+				win && win.close();
+			}
+            // 移动
+            moveBtn.onclick = function () {
+				 win && win.moveTo(1000,1000);
+//				win && win.moveBy(10, 10);
+            }
+		}
+
+		document.body.style.height = "2000px";
+		scrollBtn.onclick = function () {
+			// window.scrollTo(0,1000);
+			window.scrollBy(0,1);
+		}
+
+        // alert()
+		var rel = window.confirm("请问:你有男朋友吗?");
+		console.log(rel);  // 点确定 true 点取消 false
+
+		if (rel) {
+			// alert("尴尬 !V_V!");
+		} else {
+			// alert("高兴 ^_^");
+		}
+
+        //
+        var value = window.prompt("文本提示:","默认输入");
+
+		console.log(value);
+	</script>
+</body>
+</html>

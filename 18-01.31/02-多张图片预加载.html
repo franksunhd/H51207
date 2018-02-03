@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多张图片预加载</title>
+	<style media="screen">
+		html,body {
+
+		}
+		progress {
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<progress value="1" max="100">0%</progress>
+	<h1 id="pro"></h1>
+
+	<script src="./loading.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var imgArr = ["img/game_bg.jpg", "img/h0.png",
+		"img/h1.png", "img/h2.png", "img/h3.png",
+		"img/h4.png", "img/h5.png", "img/h6.png",
+		"img/h7.png", "img/h8.png", "img/h9.png",
+		"img/progress.png", "img/x1.png", "img/x2.png",
+		"img/x3.png", "img/x4.png", "img/x5.png",
+		"img/x6.png", "img/x7.png", "img/x8.png", "img/x9.png"];
+
+		var pg = document.querySelector("progress");
+		var pro = document.querySelector("#pro");
+
+		Loading.prepareLoad(imgArr,function(value) {
+			pg.value = value;
+			pro.innerHTML = value + "%";
+		},function() {
+			pg.style.display = "none";
+		});
+	</script>
+</body>
+</html>
