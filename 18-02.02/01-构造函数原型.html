@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>构造函数原型</title>
+	</head>
+	<body>
+		<ul>
+			<li>12</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+		</ul>
+		<script type="text/javascript">
+			// 
+			function Animal (type,age) {
+				this.type = type || "name";
+				this.age = age || 19;
+			}
+			
+			Animal.prototype.color = "red";
+			
+			Animal.prototype.grow = function () {
+				console.log(this.type,this.age,this.color);
+			}
+			
+			var dog = new Animal("PHP",10,"green");
+			dog.grow();  // PHP 10 red
+			
+			console.log(Animal.prototype);  // Animal对象
+			console.log(dog.__proto__);  // Animal 对象
+			
+			
+			var pig = new Array();
+			// 判断实例对象属于哪个构造函数
+			console.log(dog instanceof Animal);  // true
+			console.log(pig instanceof Animal);  // false
+			
+			// false
+			console.log(pig instanceof Array);  // true
+			
+			// 原型
+			console.log(Array.prototype);  // 数组原型
+			console.log(String.prototype);  // 字符串原型
+			
+			String.prototype.trimAll = function (){
+				console.log(this + "-字符串原型自定义方法");
+				var repStr = this.replace(/浪/gi,"字");
+				console.log(repStr);
+			}
+			console.log(String.prototype);  // 字符串原型
+			
+			var name = " 浪  哥   浪 ";
+			name = name.trim();  // 去除首尾空格
+			console.log(name.length);  // 8
+			var age = "18";
+			var gender = "男";
+			
+			name.trimAll();
+			age.trimAll();
+			gender.trimAll();
+			
+			var arr  = [1,2,3,4,5];
+			// slice 修改了 this 的指向
+			var nArr = arr.slice(0,2);
+			console.log(arr.__proto__); // 数组原型
+			console.log(arr,nArr);
+		
+			// 原理 数组的原型上有个 slice 方法,使用 call 动态改变 this 的指向
+			var kArr = Array.prototype.slice.call(arr,0,2);
+			console.log(kArr);  //
+			
+			// getElementsByTagName 不能通过原型找forEach等方法
+			// 它是一个集合,集合自身没有forEach方法
+			// 原型: HTMLCollection
+			var liCollection1 = document.getElementsByTagName("li");
+			console.log(liCollection1);
+			
+			// querySelectorAll 可以通过原型找 forEach 方法
+			// 原型: NodeList 有一个 forEach 方法
+			var liCollection2 = document.querySelectorAll("li");
+			console.log(liCollection2.__proto__);
+			
+			// 封装函数:让 html 元素集合有 forEach 方法
+			Array.prototype.forEach.call(liCollection1,function (value,index) {
+				console.log(index,value);
+			});
+			
+			// 给所有的 HTMLCollection 集合实例添加 forEach 方法
+			HTMLCollection.prototype.forEach = function(cb){
+				Array.prototype.forEach.call(this,function (value,index) {
+					cb(index,value);
+				});
+			}
+			
+			console.log(liCollection1);  // HTMLCollection对象
+			// HTMLCollection 调用 forEach 方法
+			liCollection1.forEach(function (value,index) {
+				console.log(value,index);
+			});
+			console.log("-------------");
+			console.log(liCollection1[0].__proto__); // HTMLLIElement 对象
+			console.log(document.body.__proto__);  // HTMLBodyElement 对象
+			
+			/*
+			 * Object.prototype: 所有类型原型链的最顶端,可以被所有的实例共享
+			 */
+			Object.prototype.setColor = function () {
+				console.log(this);
+				console.log("setColor");
+			}
+			
+			pig.setColor();  // 数组对象
+			dog.setColor();  // Animal 对象
+			document.body.setColor();  // body 对象
+			liCollection1.setColor();  // HTMLCollection 对象
+			
+			/*
+			 * 原型链:一直通过__proto__ 查找原型的原型,一直到 Object 的构造函数原型结束
+			 */
+			var dog = new Animal();
+			console.log(dog.__proto__.__proto__);
+			console.log(dog.toString());
+		</script>
+	</body>
+</html>

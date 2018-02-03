@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>原型链查找</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* 方法:
+			 * 原型链查找顺序:
+			 * 1.先看自己的实例有没有,如果有就调用.没有就继续找自己构造函数的原型
+			 * 2.构造函数原型有,直接调用并停止查找,没有继续找上层原型对象
+			 * 3.若一直没有,找到最顶层原型 Object, 还没有得话,直接报错,属性返回 undefined
+			 */
+			
+			function Animal (type) {
+				this.type = type;
+			    // 1.先看自己的实例有没有,如果有就调用.没有就继续找自己构造函数的原型
+				this.run = function () {
+					console.log("实例的 run");
+				};
+				
+				this.grow = function (){
+					console.log(this.type);	
+				};
+			}
+			
+			Animal.prototype.run = function () {
+				console.log("Animal 原型 run");
+			};
+			
+			
+			Object.prototype.run = function () {
+				console.log("Object run");
+			};
+			
+			var pig = new Animal("佩奇");
+			pig.run();
+			
+			/*
+			 * 属性:
+			 */
+			 Animal.prototype.job = "PHP";
+			 
+			 // 自定义属性,和原型没有任何关系,这里改的是实例
+			 pig.job = "HTML5";
+			 // 修改原型
+			 pig.__proto__.job = "JavaScript";
+			 
+			 var dog = new Animal("旺财");
+			 // 找原型
+			 console.log(dog.job);
+			 
+			 //  原型链继承
+			 function Dog(type){
+			 	// 实例的继承
+			 	this.type  = type;
+			 };
+			 function Pig(type){
+			 	// 实例的继承
+			 	this.type = type;
+			 };
+			 
+			 // 原型继承
+			 Dog.prototype = new Animal();
+			 Pig.prototype = new Animal();
+
+			 var dog = new Dog("哈士奇");
+			 var pig = new Pig("荷兰猪");
+			 
+			 dog.grow();
+			 pig.grow();
+		</script>
+	</body>
+</html>
