@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>比较两个数的最大值</title>
+</head>
+<body>
+	<input id="btn" type="button" value="点击">
+	<script type="text/javascript">
+		// 功能函数: 比较两个数的最大值
+		
+		function compare(x,y) {
+			// 1.
+			// console.log(x,y);
+			// if (x > y) {
+			// 	return x;
+			// 	alert("123");  // return 之后的代码都不执行
+			// } else {
+			// 	return y;
+			// }
+			// 2.
+			// return x > y ? x : y;
+			// 3.
+			return Math.max(x,y);
+		}
+
+		// 封装一个 在指定范围内产生随机数的函数
+		function random(min,max) {
+			var min = Math.min(min,max);
+			return parseInt(Math.random()* Math.abs(max - min) + min);
+		}
+
+		
+
+		btn.onclick = function (argument) {
+			var m = Math.floor(Math.random()* 100 + 1); 
+			var n = Math.floor(Math.random()* 100 + 1);
+			// console.log("m = ",m);
+			// console.log("n = ",n);
+			var max = compare(m,n);
+			// console.log("m = "+ m + "; n = "+ n + "; max = " + max + ";");
+
+			var num = random(10,20);
+			console.log(num);			 
+		}
+	</script>
+</body>
+</html>
