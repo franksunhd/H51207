@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>canvas 径向渐变</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500">您的浏览器不支持canvas</canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      var circle = ctx.createRadialGradient(300,300,50,300,300,200);
+      circle.addColorStop(0, 'red');
+      circle.addColorStop(0.5, 'blue');
+      circle.addColorStop(1, 'yellow');
+      ctx.fillStyle = circle ;
+      ctx.arc(300,300,200, 0, 2 * Math.PI);
+      ctx.fill();
+    </script>
+  </body>
+</html>

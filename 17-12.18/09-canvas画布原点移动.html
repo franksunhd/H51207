@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>canvas 画布原点移动</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300">您的浏览器不支持canvas</canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      ctx.translate(100,100);
+      ctx.strokeStyle = "red";
+      ctx.lineWidth = 4;
+      ctx.strokeRect(10,10,100,100);
+    </script>
+  </body>
+</html>
