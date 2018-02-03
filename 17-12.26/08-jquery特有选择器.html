@@ -1,0 +1,54 @@
+<!-- 08-jquery特有选择器.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery特有选择器</title>
+	<link rel="stylesheet" type="text/css" href="./css/base.css">
+	<style type="text/css" media="screen">
+		.blue {
+			color: blue;
+			font-size: 20px;
+		}
+
+		.red {
+			color: red;
+			font-size: 20px;
+		}
+
+		.border-red {
+			border: 2px solid red;
+		}
+
+		.border-blue {
+			border: 2px solid blue;
+		}		
+	</style>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		// 偶数 0开始
+		$("ul li:even").addClass("blue");
+		// 奇数 从1开始
+		$("ul li:odd").addClass("red");
+
+		// eq() 从 0 开始
+		$("ul li:eq(3)").addClass("border-red");
+		
+		// nth-child()  从 1 开始
+		$("ul li:nth-child(1)").addClass("border-blue");
+		
+	</script>
+</body>
+</html>
