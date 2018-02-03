@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>rem 新单位</title>
+  <style media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      /* font-size: 10px; */
+      /*
+        文档默认 16px
+        16px * 62.5% = 10px
+       */
+      font-size: 62.5%;
+    }
+
+    /* 整个文档的主题字体大小,行高,字体设置在body */
+    body {
+      font-size: 10px;
+    }
+
+    .box {
+      font-size: 30px;
+    }
+
+    .box p:first-child {
+      background-color: red;
+      /*
+         rem 只参照html根元素,
+       */
+      font-size: 2rem;
+
+      /*
+        rem CSS3 响应式布局的新单位, root em :永远参照根元素 html 的字体大小
+        PC端 受浏览器自身 最小字体的限制较大
+        移动端: rem使用较多
+      */
+      width: 10rem;
+      height: 10rem;
+      padding-left: 1rem;
+      margin-left: 1rem;
+    }
+
+    .box p:last-child {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <p>rem 新单位</p>
+    <p>参照 html页面的字体大小 </p>
+    <p>root em</p>
+  </div>
+
+  <!--
+    物理像素点: 375像素大小(手机尺寸),但是手机屏幕是高清屏,是二倍的物理像素点.
+
+    设计图:一般会以 iphone6作为参考
+
+    iphone6 尺寸: 375px * 667px  原型图的大小:750px * 1334px;
+
+    原图: 42px * 42px
+    移动端高清屏宽度可以设置: 21px * 21px
+
+    iphone5
+    html: 6.83px = 320px / 750px * 16px
+
+
+    iphone6,7
+    html字体:8px = 375px /750px * 16px (16 是参考图 rem 基数)
+
+    淘宝:
+    html字体: 75px = 375px / 750px * 150px
+   -->
+</body>
+</html>

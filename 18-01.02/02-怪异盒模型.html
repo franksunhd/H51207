@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box1 ,
+    .box2 {
+      width: 250px;
+      height: 250px;
+      background: red;
+      border: 10px solid blue;
+      padding: 30px;
+      margin: 50px;
+      display: inline-block;
+      /*
+        标准盒模型的大小:
+
+        盒模型的大小: 250 + 30*2 + 10*2 + 50*2;
+       */
+    }
+
+    .box2 {
+      /* 总的宽高不变 内容部分的宽高变化 */
+      box-sizing: border-box;
+      /* 默认的标准盒模型 */
+      /* box-sizing: content-box; */
+      /*
+        怪异盒子的大小:
+        设置的宽高属性包括: border,padding,内容, 不包括 margin
+       */
+    }
+
+    .box3 {
+      overflow: hidden;
+    }
+
+    .box3 > .left,
+    .box3 > .right {
+      height: 300px;
+      float: left;
+      width: 50%;
+      background-color: red;
+    }
+
+    .box3 > .right {
+      box-sizing: border-box;
+      background-color: green;
+      border-left: 10px solid blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1"></div>
+  <hr>
+  <div class="box2"></div>
+  <hr>
+  <div class="box3">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+  <hr>
+  <br><br><br>
+  
+</body>
+</html>

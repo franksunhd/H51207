@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>em 新单位</title>
+  <style media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 26px;
+    }
+
+    body {
+      font-size: 16px;
+    }
+
+    #box {
+      font-size: 20px;
+    }
+
+    #box p:first-child {
+      background-color: lightblue;
+      /*
+          em 单位:
+       */
+      line-height: 1em;
+      text-indent: 2em;
+      /*
+        明确相对的参考
+        font-size:2em; 参照父元素的设置大小
+       */
+       /* 20*2 = 40px 字体大小 */
+      font-size: 2em;
+      /* width为 120px */
+      width: 3em;
+      /* height: 80px */
+      height: 2em;
+      /*
+        text-indent,line-height,width,height,padding/margin 中的em都是参照自身的元素.
+       */
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+  <p>
+    p1中的em单位
+  </p>
+  <p>
+    p2中的em单位
+  </p>
+  
+  <a href="./04-rem.html">单击跳转</a>
+</div>
+</body>
+</html>
