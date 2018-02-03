@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>on方法绑定事件</title>
+</head>
+<body>
+  <input id="btn1" type="button" value="点击使用on方法改变div1的颜色">
+  <input id="btn2" type="button" value="点击使用on方法自定义事件改变div2的颜色">
+  <div id="p1">this is a div</div>
+  <div id="p2">this is a div</div>
+
+  <script src="./js/jquery.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    //  click 鼠标单击事件
+    $("#btn1").on("click",function() {
+      $("#p1").css({
+        "height":"20px",
+        "background-color":"lightblue"
+      });
+    });
+
+    // 为div2注册自定义事件
+    $("#p2").on("changeColor",function() {
+      $(this).css({
+        "height":"30px",
+        "background-color":"lightgreen"
+      });
+    });
+
+    // trigger触发自定义的事件
+    $("#btn2").on("click",function() {
+      $("#p2").trigger("changeColor");
+    });
+
+  </script>
+</body>
+</html>

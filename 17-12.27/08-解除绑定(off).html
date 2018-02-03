@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>解除on方法的绑定</title>
+</head>
+<body>
+	<input type="button" id="btn1" value="解除on方法的绑定">
+
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+
+		function hander() {
+			console.log("触发1....");
+		}
+
+    // on 方法绑定事件处理函数
+		$("#btn1").on("click",hander);
+
+		// on 方法绑定事件处理函数
+		$("#btn1").on("click",function() {
+			console.log("触发2...");
+
+      // off 解除绑定 不传入参数 可以解除所有的事件及其事件处理函数
+			// $(this).off();
+
+      // 只填写事件名称,会移除该事件上所有的处理函数
+			// #(this).off("click")
+
+      // 解除指定的函数绑定
+      $(this).off("click",hander)
+
+		});
+	</script>
+</body>
+</html>
