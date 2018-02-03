@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<img id="demo" class="item" src="./img/pic_bulboff.gif" onclick = "demo()"/>
+		<input id="btn" type="button" name="btn" value="点击开灯" >
+
+		<script type="text/javascript">
+			var btn = document.getElementById("btn");
+			var demo = document.getElementById('demo');
+			btn.onclick = function() {
+				if (demo.src.match('bulbon')) {
+					demo.src = "./img/pic_bulboff.gif";
+					btn.value = "点击开灯";
+				} else {
+					demo.src = "./img/pic_bulbon.gif";
+					btn.value = "点击关灯";
+				}
+			}
+		</script>
+	</body>
+</html>
