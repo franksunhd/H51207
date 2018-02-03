@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>背景</title>
+		<style type="text/css">
+			#box {
+				width: 300px;
+				height: 200px;
+				border: 20px dotted green;
+				padding: 30px;
+				background-color: #8B0000;
+				background-image: url(img/1.jpg);
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+				/*从边框开始裁切*/
+				background-clip:border-box;
+				/*图片起点在 border*/
+				background-origin:border-box;
+				/*红色部分是背景定位移动的结果*/
+				background-position: 20px 20px;
+			}
+			
+			#box2 {
+				width: 600px;
+				height: 500px;
+				text-align:center;
+				line-height: 500px;
+				font-size: 100px;
+				color:palegreen;
+				/*
+				 * 先设置的背景在上边显示
+				 * 
+				 * 
+				 * 
+				 * 
+				 */
+				background: 
+				url(img/1.jpg) top left / 50% 50% no-repeat,
+				url(img/al.jpg) top right / 50% 50% no-repeat,
+				url(img/al.jpg) bottom left / 50% 50% no-repeat,
+				url(img/1.jpg) bottom right / 50% 50% no-repeat;
+			}
+			
+			#box3 {
+				width: 300px;
+				height: 200px;
+				border: 10px solid #8B0000; 
+				background: url(img/bg_a.jpg) no-repeat;
+				
+				/*contain 包含*/
+				/*background-size: contain;*/
+				
+				/*cover 覆盖*/
+				background-size: cover;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="box2">多背景</div>
+		<div id="box3"></div>
+	</body>
+</html>

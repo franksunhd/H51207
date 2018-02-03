@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>线性渐变</title>
+		
+		<style type="text/css">
+			div {
+				width: 500px;
+				height: 200px;
+				margin-bottom: 20px;
+			}
+			
+			/*
+			 *  渐变只能代替 背景图片
+			 * 
+			 * transparent 透明
+			 */
+			
+			#box1 {
+				background-image: linear-gradient(to right,red 20%,orange 30%,yellow,green 70%,blue 90%,purple);				
+			}
+			
+			#box2 {
+				background-image: linear-gradient(60deg,red 70%,green);
+			}
+			
+			/*
+			 * 重复的渐变 
+			 */
+			
+			#box3 {
+				background-image: repeating-linear-gradient(to bottom,red 20%,green 40%);
+			}
+			
+			#box4 {
+				background-image: linear-gradient(90deg, 
+				red 5%,transparent 10%,
+				blue 15%,transparent 25%,
+				green 30%,transparent 40%,
+				purple 45%,transparent 55%,
+				yellow 60%,transparent 70%,
+				orange 75%,transparent 85%,
+				pink 90%,transparent 100%);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1"></div>
+		<div id="box2"></div>
+		<div id="box3"></div>
+		<div id="box4"></div>
+	</body>
+</html>
