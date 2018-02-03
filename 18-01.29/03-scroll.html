@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>scroll</title>
+	<style media="screen">
+		#box {
+			width: 300px;
+			height: 300px;
+			border: 10px solid red;
+
+			overflow: scroll;
+		}
+
+		#inner {
+			width: 1000px;
+			height: 1000px;
+			background-color: green;
+			font-size: 50px;
+		}
+		#box2 {
+			height: 1000px;
+			width: 10000px;
+		}
+		#go_top {
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			background-color: rgba(0,0,0,0.7);
+			font-size: 20px;
+			line-height: 150px;
+			color: #fff;
+			text-align: center;
+			position: fixed;
+			bottom: 50px;
+			right: 20px;
+		}
+	</style>
+</head>
+<body>
+	<h1>点击盒子查看滚动距离</h1>
+	<div id="box">
+		<div id="inner">
+			**
+			<hr>
+			**
+		</div>
+	</div>
+	<div id="box2"></div>
+	<div id="go_top">回到顶部</div>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		var inner = document.getElementById('inner');
+		var goTop = document.getElementById('go_top');
+
+        /*
+         * 通过父元素获取滚动大小
+         * scrollTop:页面向上走被挡住的距离
+         * scrollLeft:页面先左走的距离,走的越多,值越大
+         *
+         * 都是通过父元素进行获取
+         */
+        console.log(box.scrollWidth,box.scrollHeight);  // 1000 1000
+
+
+		console.log(box.scrollTop,box.scrollLeft); // 0 0
+
+		box.onclick = function() {
+
+            // 设置
+			box.scrollTop = 10;
+			box.scrollLeft = 10;
+			console.log("垂直滚动了:",box.scrollTop);
+			console.log("水平滚动了:",box.scrollLeft);
+		}
+		var timer = null;
+		goTop.onclick = function() {
+			console.log("11");
+			clearInterval(timer);
+			timer = setInterval(function() {
+				var item = document.documentElement.scrollTop;
+				item -= 10;
+
+				if (item <= 10) {
+					document.documentElement.scrollTop = 0;
+					document.documentElement.scrollLeft = 0;
+					clearInterval(timer);
+				}
+				document.documentElement.scrollTop = item;
+				document.documentElement.scrollLeft = 0;
+			},20);
+		}
+
+
+	</script>
+</body>
+</html>

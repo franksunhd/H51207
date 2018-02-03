@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>省市区三级联动</title>
+</head>
+<body>
+	<div id="wrap">
+		<form action="###" method="get">
+			<select name="province" id="province">
+				<option value="0">--请选择省--</option>
+			</select>
+
+			<select name="city" id="city">
+				<option value="0">--请选择市--</option>
+			</select>
+
+			<select name="area" id="area">
+				<option value="0">--请选择区--</option>
+			</select>
+
+			<input type="submit" value="提交" />
+		</form>
+	</div>
+
+	<script src="./js/list.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var provinceEle = document.querySelector("#province");
+		var cityEle = document.querySelector("#city");
+		var areaEle = document.querySelector("#area");
+
+        // 1.第一次加载 省份
+        render(oJson,provinceEle);
+
+        // 2.省份改变的时候加载市
+        provinceEle.onchange = function() {
+            // 清除布局中旧的数据
+            // cityEle.innerHTML = "<option value='0'>--请选择市--</option>";
+			// areaEle.innerHTML = "<option value='0'>--请选择区--</option>";
+			cityEle.length = 1;
+			areaEle.length = 1;
+			provinceEle.index = this.selectedIndex-1;
+            // 防止选择第一个 : 请选择报错
+			if (provinceEle.index == -1) {
+				return;
+			}
+			var citylen = oJson[provinceEle.index]["child"];
+			render(citylen,cityEle);
+        }
+
+        // 3.市改变的时候加载区
+		cityEle.onchange = function() {
+			// areaEle.innerHTML = "<option value='0'>--请选择区--</option>";
+			areaEle.length = 1;
+            // 获取选中的省
+			provinceEle.index = provinceEle.selectedIndex-1;
+            // 获取选中的市
+			cityEle.index = this.selectedIndex-1;
+			if (provinceEle.index == -1 || cityEle.index == -1) {
+				return;
+			}
+			var arealen = oJson[provinceEle.index]["child"][cityEle.index]["child"];
+			render(arealen,areaEle);
+        }
+
+        // 参数列表
+        // data:传入的省市区的数组
+        // parentEle: 给哪个元素添加 option项
+		function render(data,parentEle) {
+			for (var i = 0; i < data.length; i++) {
+                // 获取每个省/市/区
+				var Data = data[i];
+				var opt = document.createElement("option");
+				opt.innerHTML = Data["name"];
+				opt.value = Data["id"];
+				parentEle.appendChild(opt);
+	        }
+		}
+	</script>
+</body>
+</html>

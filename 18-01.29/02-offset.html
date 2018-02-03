@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>offset</title>
+	<style media="screen">
+		*{
+			padding: 0px;
+			margin: 0px;
+		}
+		#wrap {
+			border: 10px solid green;
+			position: relative;
+		}
+		#box {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			padding: 10px;
+			border: 15px solid blue;
+			border-top-width: 30px;
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="box">
+			<a href="#" id="link">链接</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var body = document.body;
+		var box = document.getElementById('box');
+		var wrap = document.getElementById('wrap');
+		var link = document.getElementById('link');
+		/*
+			offsetWidth/Height: 元素外尺寸
+			返回值类型为: number 类型
+			和 client相比 包含了边框
+		 */
+
+		// content + padding + border
+		console.log("外尺寸:宽度",box.offsetWidth,"高度:",box.offsetHeight);
+
+        // offsetParent:偏移父元素
+        // 默认是相对于 body 的
+		// 父元素添加相对定位 就会相对于父元素
+		console.log(box.offsetParent);  // wrap
+		console.log(box.offsetParent.offsetParent);  // body
+
+		// body的 offsetParent 是 null
+		console.log(box.offsetParent.offsetParent.offsetParent);  // null
+
+        // 到它的 offsetParent的内边距的 左边距离和上边距离
+		console.log("元素左边距",box.offsetLeft,"上边距",box.offsetTop);
+
+        // 返回元素到页面顶部的距离
+		function getOffsetTop(ele) {
+			if (ele.nodeName == "BODY") {
+				return 0;
+			}
+			var top = 0;
+			while (true) {
+				top += ele.offsetTop + ele.offsetParent.clientTop;
+				ele = ele.offsetParent;
+                // 如果是 body 停止
+				if (ele.offsetParent == null)break;
+			}
+			return top
+		}
+
+		var topValue = getOffsetTop(link);
+		console.log("topValue:",topValue);
+	</script>
+</body>
+</html>

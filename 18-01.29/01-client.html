@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>client</title>
+	<style media="screen">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#box {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			padding: 10px;
+			border: 15px solid blue;
+			border-top-width: 30px;
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<img src="./10.jpg" alt="无法显示图片">
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		/*
+			clientWidth/Height: 元素内尺寸
+			返回值类型为: number 类型
+			不包含边框
+		 */
+        // content + padding
+		console.log("内尺寸:宽度",box.clientWidth,"高度:",box.clientHeight);
+
+		// 左边框尺寸和上边框尺寸
+		console.log("边框尺寸:左边框",box.clientLeft,"上边框:",box.clientTop);
+
+        // 获取浏览器可视窗口的宽和高
+		console.log("浏览器可视区域宽度:",document.documentElement.clientWidth,"高度:",document.documentElement.clientHeight);
+
+		// IE6,7,8不支持
+		console.log("浏览器可视区域宽度:",window.innerWidth,"高度:",window.innerHeight);
+
+		function clientHeight() {
+			return window.innerHeight || document.documentElement.clientHeight;
+		}
+
+		function clientWidth() {
+			return window.innerWidth || document.documentElement.clientWidth;
+		}
+        /*
+        	获取屏幕分辨率的宽高;(和设备有关)
+        	window.screen.width  1920
+			window.screen.height 1080
+         */
+        console.log("屏幕分辨率的宽度:",window.screen.width,"高度:",window.screen.height);
+
+        /*
+        	屏幕可用工作区的宽高: 不包含任务栏等
+			window.screen.availWidth
+			window.screen.availHeight
+         */
+        console.log("屏幕可用工作区的宽度:",window.screen.availWidth,"高度:",window.screen.availHeight);
+
+	</script>
+</body>
+</html>
