@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>锅打灰太狼</title>
+	<link rel="stylesheet" type="text/css" href="css/master.css"/>
+</head>
+<body>
+	<div id="wrap">
+		<!--蒙版-->
+		<div id="mask">
+			<!--加载进度条的灰色背景-->
+			<div id="pro_bg" class="center">
+				<!--进度条的橘色背景-->
+				<div id="loading"></div>
+			</div>
+		</div>
+		
+		<!--开始游戏-->
+		<div id="menu">
+			<p id="start" class="center">开始游戏</p>
+		</div>
+		
+		<!--成绩显示-->
+		<div id="score">0</div>
+		
+		<!--游戏进度条-->
+		<!--<div id="progress1">-->			
+			<img id="progress" src="img/progress.png"/>
+		<!--</div>-->
+		
+		<!--加载灰太狼和小灰灰-->
+		<div id="wolf-wrap">
+				<!--<img src="img/h0.png" />-->
+		</div>
+	</div>
+	
+	<script src="js/loading.js"></script>
+	<script type="text/javascript">
+		var imgArr = ["img/game_bg.jpg", "img/h0.png", 
+		"img/h1.png", "img/h2.png", "img/h3.png", 
+		"img/h4.png", "img/h5.png", "img/h6.png", 
+		"img/h7.png", "img/h8.png", "img/h9.png", 
+		"img/progress.png", "img/x1.png", "img/x2.png", 
+		"img/x3.png", "img/x4.png", "img/x5.png", 
+		"img/x6.png", "img/x7.png", "img/x8.png", 
+		"img/x9.png"];
+		
+		//所有坑的位置坐标
+		var po1 = {l: "29.6875%",t: "23.85%"};
+		var po2 = {l: '5%', /*16/320*/t: '33.33333%' /*160/480*/};
+		var po3 = {l: '57.8125%', /*185*/t: '29.58333%' /*142*/};
+		var po4 = {l: '31.5625%', /*101*/t: '40%' /*192*/};
+		var po5 = {l: '4.375%', /*14*/t: '46.04167%' /*221*/};
+		var po6 = {l: '61.5625%', /*197*/t: '44.16667%' /*212*/};
+		var po7 = {l: '36.5625%', /*117*/t: '57.08333%' /*274*/};
+		var po8 = {l: '8.4375%', /*27*/t: '61.25%' /*294*/};
+		var po9 = {l: "63.3125%",t: "61.45833%"};
+		// 将坑的位置坐标拼接为一个数组
+		var positions = [po1,po2,po3,po4,po5,po5,po7,po8,po9];
+		
+		//元素获取
+		var loading = document.getElementById("loading");
+		var mask = document.getElementById("mask");
+		var start = document.getElementById("start");
+		var end = document.getElementById("end");
+		var menu = document.getElementById("menu");
+		var score = document.getElementById("score");
+		var progress = document.getElementById("progress");
+		var woldWrap = document.getElementById("wolf-wrap");
+		
+		// 定义全局的常量
+		var glContent = {
+			total: progress.clientWidth,  // 倒计时结束恢复全长
+			totalTime:progress.clientWidth, // 用于倒计时的总时间
+			positions:[po1,po2,po3,po4,po5,po5,po7,po8,po9], // 每个坑的坐标
+			score:0, // 游戏初始分数
+			totalTimerId:null, // 进度条倒计时
+			createTimeId:null, // 创建狼的定时器
+			speedChange:100,  // 换图的速度
+			speed:1000, // 创建狼的间隔时间
+		};
+		
+		// 下载图片资源
+		Loading.prepareLoad(imgArr,function(value){
+			// 进度条的百分比
+			loading.style.width = value + "%";
+			loading.innerHTML = value + "%";
+		},function(){
+			// 下载完成,下载进度条隐藏,进入入口函数
+			// 隐藏下载进度条
+			mask.style.display = "none";
+			
+			// 入口函数
+			main();
+		});
+		
+		// 入口函数
+		function main(){
+			// 点击开始按钮
+			menu.onclick = function (){
+				// 1. 蒙版隐藏				
+				menu.style.display = "none";
+				// 2. 开始倒计时
+				glContent.totalTimerId = setInterval(time,1000);
+				// 3.创建狼
+				glContent.createTimeId = setInterval(createWolf,glContent.speed)
+			}
+		}
+		
+		// 实现游戏时间倒计时
+		function time(){
+			glContent.totalTime -= 10;
+			if(glContent.totalTime <= 0){
+				// 游戏结束  
+				init();
+			}
+			progress.style.width = glContent.totalTime + "px";
+		}
+		
+		// 游戏初始化
+		function init(){
+			// 1.清除游戏倒计时定时器,清除创建狼的定时器
+			clearInterval(glContent.totalTimerId);
+			clearInterval(glContent.createTimeId);
+			// 2.总时间恢复,进度条恢复
+			glContent.totalTime = glContent.total;
+			progress.style.width = glContent.total;
+			// 3.拼接游戏的得分
+			start.innerHTML = "游戏结束!<br/>最终得分:" + glContent.score;
+			// 4.成绩清零,并显示清零
+			glContent.score = 0;
+			score.innerHTML = glContent.score;
+			// 4.显示得分蒙版
+			menu.style.display = "block";
+		}
+		
+		// 创建狼
+		function createWolf() {
+			var wolf = document.createElement("img");
+			// 1.设置 src ?? 它是一个动态的过程,放到函数
+			// 判断一下,随机出现 小灰灰还是 灰太狼
+			wolf.type = randomNumber(0,10) > 4 ? "h" : "x";
+			// 2.设置定位,选择哪个坑
+			var pos = glContent.positions[randomNumber(0,glContent.positions.length - 1 )];
+			// 3.把定位加到创建的对象上
+			wolf.style.left = pos.l;
+			wolf.style.top = pos.t;
+				
+			// 4.把对象添加到页面中渲染
+			woldWrap.appendChild(wolf);
+				
+			// 5.开启随机出狼动画
+			animation(wolf);
+			
+			// 6.为每头狼绑定一个点击事件
+			bindClick(wolf);
+		}
+		
+		// 出狼动画
+		function animation(wolf) {
+			// 图片下标从0开始
+			wolf.index = 0;
+			// 每个狼的出现都有一个定时器
+			wolf.UpTimerId = setInterval(function(){
+				wolf.src = "img/" + wolf.type + wolf.index + ".png";
+				wolf.index++;
+				// 加到6就要清除定期器了
+				if(wolf.index === 6){
+					// 先清除出现的定时器
+					clearInterval(wolf.UpTimerId);
+					// 清除出现的定时器之后,创建新的定时器,实现下降的动画
+					wolf.downTimerId = setInterval(function(){
+						wolf.index--;
+						wolf.src = "img/" + wolf.type + wolf.index + ".png";
+						// 减到0就要清除定期器了
+						if(wolf.index === 0){
+							clearInterval(wolf.downTimerId);
+							// 移除当前的狼对象
+							woldWrap.removeChild(wolf);
+						}
+					},glContent.speedChange)
+				}
+			},glContent.speedChange);
+		};
+		
+		// 绑定狼的点击事件
+		function bindClick(wolf){
+			wolf.onclick = function(){
+				// 1.点击事件,暂停该对象的弹出定时器和返回定时器
+				clearInterval(wolf.UpTimerId);
+				clearInterval(wolf.downTimerId);
+				// 2. 换图
+				JudgeImage(this);
+				// 3.变换分数
+				ChangeScore(this.type);
+				// 4.清除点击事件
+				this.onclick = null;
+			}
+		}
+		
+		// 换图片
+		function JudgeImage(wolf){
+			wolf.index = 6;
+			wolf.src = "img/" + wolf.type + wolf.index + ".png";
+			wolf.hitTimerId =  setInterval(function(){
+				wolf.index++;
+				wolf.src = "img/" + wolf.type + wolf.index + ".png";
+				if(wolf.index === 9){
+					clearInterval(wolf.hitTimerId);
+					woldWrap.removeChild(wolf);
+				}
+			},glContent.speedChange);
+		}
+		
+		// 该分数
+		function ChangeScore(type){
+			// 如果是灰太狼
+			switch(type){
+				case "h":
+					glContent.score += 10;
+					break;
+				case "x":
+					glContent.score -= 10;
+					break;
+				default:
+					break;
+			}
+			score.innerHTML = glContent.score;
+		}
+		
+		// 随机范围数
+		function randomNumber(a, b){
+			var min = Math.min(a, b);
+			return parseInt(Math.random() * Math.abs(a - b + 1) + min);
+		}
+	</script>
+</body>
+</html>
