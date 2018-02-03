@@ -10,6 +10,7 @@
 
 		#List li{
 			height: 30px;
+			list-style: none;
 			font-size: 20px;
 			line-height: 30px;
 		}
@@ -19,9 +20,9 @@
 	<input id="text" type="text" placeholder="请输入内容">
 	<input id="btn" type="button" value="点击添加">
 	<hr>
-	<ol id="List">
+	<ul id="List">
 		<li class="list1" value="0"></li>
-	</ol>
+	</ul>
 	<script type="text/javascript">
 		var text = document.querySelector("#text");
 		var btn = document.querySelector("#btn");
@@ -29,27 +30,27 @@
 		var comment = "";
 		var i = 0;
 		 btn.onclick = function() {
-			btn.value = text.value;
 			i++;
-			if (btn.value != "") {
+			if (text.value != "") {
 				comment = document.createElement("li");
-				btn.item = document.createTextNode(btn.value);
-				comment.appendChild(btn.item);
-				comment.innerHTML += "  <a href='###'>删除</a>";
-				comment.setAttribute("value",i);
-			}
-			var list1 = document.querySelector("#List").firstElementChild;
-			List.insertBefore(comment,list1);
+				comment.innerHTML = i + "." + text.value +  "  <a href='###'>删除</a>";
+				// 1.
+				// List.insertBefore(comment,firstEle(List));
+                // 2.
+				List.insertBefore(comment,List.children[0]);
 
-			var del = document.querySelectorAll("#List a");
-			for (var j = 0; j < del.length; j++) {
-				del[j].onclick=function() {
-					this.parentNode.style.display="none" ;
+				var del = document.querySelectorAll("#List a");
+				for (var j = 0; j < del.length; j++) {
+					del[j].onclick = function() {
+						this.parentNode.remove();
+					}
 				}
 			}
 		 }
 
-
+		 function firstEle(ele) {
+		 	return ele.firstElementChild || ele.firstChild;
+		 }
 	</script>
 </body>
 </html>

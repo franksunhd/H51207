@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -30,15 +31,13 @@
 			var city = $("#city");
 			var area = $("#area");
 			// 1.首先先把省份找出来加载到下拉列表
-			console.time("省份");
 	        for (var i = 0; i < oJson.length; i++) {
 				pro.name = oJson[i]["name"];
-	        	$("#province").append("<option value="+ i +">" + pro.name + "</option>");
+				pro.value = oJson[i]["id"];
+	        	$("#province").append("<option value="+ pro.value +">" + pro.name + "</option>");
 	        }
-			console.timeEnd("省份");
 
 			// 2.省份选中的时候才会加载市
-			console.time("城市");
 			var InumPro = null;
 			var InumCity = null;
 			$("#province").change(function() {
@@ -55,12 +54,11 @@
 					// 获取选中省份元素下的城市名列表
 					// console.log(oJson[InumPro]["child"][j]["name"]);
 					city.name = oJson[InumPro]["child"][j]["name"];
-					$("#city").append("<option value="+ j +">" + city.name + "</option>");
+					city.value = oJson[InumPro]["child"][j]["id"];
+					$("#city").append("<option value="+ city.value +">" + city.name + "</option>");
 				}
 			});
-			console.timeEnd("城市");
             // 3.城市选中的时候才会加载地区
-			console.time("地区");
 			$("#city").change(function() {
 				$("#area").children().not(":eq(0)").remove();
 				InumCity = $(this).children("option:selected").index() - 1;
@@ -73,11 +71,10 @@
 					// 获取选中城市元素下的地区列表
 					// console.log(oJson[InumPro]["child"][InumCity]["child"][k]["name"]);
 					area.name = oJson[InumPro]["child"][InumCity]["child"][k]["name"];
-					$("#area").append("<option value="+ k +">" + area.name + "</option>");
+					area.value = oJson[InumPro]["child"][InumCity]["child"][k]["id"];
+					$("#area").append("<option value="+ area.value +">" + area.name + "</option>");
 				}
 			});
-			console.timeEnd("地区");
-
 		});
 	</script>
 </body>
