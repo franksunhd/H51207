@@ -1,0 +1,101 @@
+<?xml version="1.0" standalone="no"?>
+<!-- 这是对XML的声明
+  version 表示版本号
+  standalone 表示是否是独立的 包含是否对外部文件的引用
+  这里是 DTD 文件
+-->
+<!--
+  引用了外部的 SVG DTD 文件 这个文件是位于 W3C,包含所有的 SVG 元素
+ -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<!--
+    1. 什么是 SVG ?
+      SVG 是可伸缩矢量图形,使用 XML 格式定义图形,放大缩小或改变尺寸不会影响图像的质量
+      SVG 是万维网联盟的标准
+
+    2.SVG 和 canvas 的区别在于:
+      1). SVG 是基于 XML 绘制的2D图形,canvas 是通过 JavaScript 绘制的2D 图形
+      2). canvas 是可以以 .png 或 .jpg 格式进行保存的,而 SVG 不可以保存
+ -->
+
+<!-- svg 标签是根元素,xmlns定义了 svg 命名空间 width 和 height 定义了文档的宽高 -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <!-- circle 定义了圆形 cx cy 圆心位置 , r半径-->
+  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="2" fill="red" />
+
+  <!-- rect 定义了矩形 x,y 左上角位置  style 定义样式-->
+  <rect x="100" y="100" width="150" height="150" style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.5;
+  stroke-opacity:1"/>
+
+  <!-- 圆角矩形 rx,ry 定义圆角水平半径和垂直半径 -->
+  <rect x="300" y="300" rx="20" ry="20" width="150" height="150" style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.5;
+  stroke-opacity:1"/>
+
+  <!-- 椭圆 ellipse cx cy 定义了椭圆圆心的位置-->
+  <ellipse cx="200" cy="500" rx="100" ry="50" style="fill:blue;stroke-width:5;stroke:yellow;opacity:0.5;" />
+
+  <!-- 直线 line x1,y1 起点位置  x2,y2终点位置-->
+  <line x1="300" y1="0" x2="500" y2="200" style="stroke-width:2;stroke:red;"/>
+
+  <!--
+    多边形 polygon poly有 many 的含义 gon 有 angle的含义
+    points: 指定了多边形每个点的坐标位置 x 值和 y 值之间用逗号分隔
+  -->
+  <polygon points="200,270 30,280 110,450" style="fill:lime;stroke:purple;stroke-width:1"/>
+
+  <!--绘制五星 -->
+  <polygon points="100,10 40,180 190,60 10,60 160,180" transform="translate(10,600)"
+  style="fill:red;stroke:orange;stroke-width:5;fill-rule:nonzero;" />
+  <!--
+     fill-rule 属性判断 绘制的点是否都在路径的内部
+        默认:nonzero 非零 发出射线 左至右加一 右至左减一 和为非零在内部
+            evenodd 奇偶 发出射线 路径交叉  奇数内部  偶数外部
+  -->
+  <polygon points="100,10 40,180 190,60 10,60 160,180" transform="translate(250,600)"
+  style="fill:red;stroke:orange;stroke-width:5;fill-rule:evenodd;" />
+
+  <!-- 曲线 -->
+  <polyline points="20,20 45,30 60,90 20,200" transform="translate(500,50)" style="fill:none;stroke-width:2;stroke:purple;" />
+
+  <polyline points="10,10 10,50 50,50 50,90 90,90 90,130" transform="translate(600,100)" style="fill:none;stroke-width:4;stroke:red;"/>
+
+  <!--
+    path 路径
+    M:moveTo , L:LineTo , H:横划线 , V垂直划线 , C:曲线 , S: 光滑曲线 , Q: 二次贝塞尔曲线 , T:光滑二次贝塞尔曲线 , A:椭圆的弧 , Z:closePath
+  -->
+
+  <path transform="translate(700,100)" d="M150 0 L75 200 L225 200 Z" />
+
+  <g transform="translate(500,300)">
+    <!-- AB 线 -->
+    <path  id="lineAB" d="M 100 350 l 150 -300" stroke="red"
+    stroke-width="3" fill="none" />
+    <!-- BC 线 -->
+    <path id="lineBC" d="M 250 50 l 150 300" stroke="red"
+    stroke-width="3" fill="none" />
+    <!-- 切线 l 和 L 的区别在于 大写代表绝对坐标 小写代表相对坐标 -->
+    <path d="M 175 200 l 150 0" stroke="green" stroke-width="3"
+    fill="none" />
+    <!-- 二次贝塞尔曲线 -->
+    <path d="M 100 350 q 150 -300 300 0" stroke="blue"
+    stroke-width="5" fill="none" />
+    <!-- 标记点 -->
+    <g stroke="black" stroke-width="3" fill="black">
+      <circle id="pointA" cx="100" cy="350" r="3" />
+      <circle id="pointB" cx="250" cy="50" r="3" />
+      <circle id="pointC" cx="400" cy="350" r="3" />
+    </g>
+    <!-- 标记文本 -->
+    <g font-size="30" font="sans-serif" fill="black" stroke="none"
+    text-anchor="middle">
+      <text x="100" y="350" dx="-30">A</text>
+      <text x="250" y="50" dy="-10">B</text>
+      <text x="400" y="350" dx="30">C</text>
+    </g>
+  </g>
+
+  <!-- 文本 -->
+  <text x="0" y="15" fill="red" transform="translate(400,30),rotate(30 20,40)">我是 SVG </text>
+ </svg>
