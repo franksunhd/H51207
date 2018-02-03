@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串内置函数方法</title>
+</head>
+<body>
+	<script type="text/javascript">
+		console.log("------属性-----");
+		var names = "frankSun";
+		// 基本数据类型(string)不能自定义属性
+		names.pro = "属性"; 
+		console.log(names.pro);  //undefined
+
+		// 但是可以访问内置的属性或者方法,
+		console.log(names.length);  // 8
+
+		// 方法:
+		console.log("----方法----")
+		
+		// 1.返回字符串对象原始值
+		console.log(names.valueOf());  // frankSun
+		
+		// 2.每种类型都会有的方法 toString() 转换为字符串
+		console.log(names.toString());  // frankSun
+		console.log([1,2,3,4,5].toString()); // 1,2,3,4,5
+		console.log({names:"孙递延"}.toString());  // [object Object]
+		
+		// 构造方法创建
+		// new Object()
+		// new Array()
+		// new String()
+		var keyname = new String("xiaoma");
+		console.log(keyname); // 
+		console.log(typeof(keyname));  // object
+		// 获取字符串对象的原始值
+		console.log(keyname.valueOf());  // xiaoma
+		
+		names = "LangGe";
+		// 3. charAt() 获得指定位置的字符值 
+		var letter = names.charAt(0);
+		console.log(letter);  // L
+		console.log(names[0]);  // L
+
+		var letters = [];
+		for (var i = 0; i < names.length; i++) {
+			// 遍历每个字符
+			console.log(names[i]);
+			letters.push(names[i])
+		}
+		console.log(letters);
+		// 倒序,修改原数组,数组的内置方法
+		letters.reverse(); 
+
+		// 4. join() 数组转换为字符串的方法
+		// 参数是间隔符号,默认是逗号,给空字符串省略间隔
+		var letStr = letters.join("-");		
+		console.log(letStr);  // e-G-g-n-a-L
+
+		// 逆序输出
+		arr_names = "1949-10-18";
+		var lec = arr_names.split("-");
+		console.log(lec);
+
+		// 5.以空字符串分隔
+		var nameArr = arr_names.split("");
+
+		nameArr.reverse();
+		var relName = nameArr.join("");
+		console.log(relName);
+
+
+		// 输出 Unicode 编码
+		// 
+		// Unicode: 标准
+		items = "abcABC";
+		// 6.charCodeAt()
+		console.log(items.charCodeAt(0));
+		// 
+		// 7.通过unicode码获得对应的字符
+		console.log(String.fromCharCode(97));
+		console.log(String.fromCharCode(20154));
+
+		// 8.subString(开始位置,结束位置) 字符串截取
+		console.log("------substring------");
+		var keyitem = "lanou";
+		// 两个参数,先后顺序随意,可以自己比较
+		console.log(keyitem.substring(0,3),keyitem);//lan lanou
+		console.log(keyitem.substring(3,0),keyitem);//lan lanou
+		// 单个参数截取到最后,不支持负数(负数原样输出)
+		console.log(keyitem.substring(3),keyitem);//ou lanou
+
+		
+		// 9.slice() 字符串截取
+		console.log("------slice------");
+		console.log(keyitem.slice(0,3),keyitem);//lan lanou
+		// 不支持顺序相反,不会进行参数比较
+		console.log(keyitem.slice(3,0),keyitem);//  lanou
+		// 单个参数截取到最后
+		console.log(keyitem.slice(3),keyitem);//ou lanou
+		// 支持负数 
+		console.log(keyitem.slice(-2),keyitem);//ou lanou
+
+		// 10.substr(开始位置,截取长度) 不是标准,但是浏览器支持
+		console.log("-------substr------") 
+		console.log(keyitem.substr(3,2),keyitem); //ou lanou
+		// 单个参数截取到最后,代表下标
+		console.log(keyitem.substr(2),keyitem); //nou lanou
+		// 支持负数参数 代表最后两个
+		console.log(keyitem.substr(-2),keyitem); //ou lanou
+		
+		
+		// 11.indexOf() 
+		console.log("-------indexOf------") 
+		console.log(keyitem.indexOf("L"));  // -1
+		console.log(keyitem.indexOf("an"));  // 1 代表索引下标
+
+		var index = keyitem.indexOf("an");
+		console.log(index);  // -1
+		if (index != -1) {
+			console.log("包含字符");
+		}
+
+		// 12.去除首尾空格
+		//  str.trim();
+		// 13.转换为大写 .toUpperCase
+		// 转换为小写 .toLowerCase
+		
+		// 14. replace()
+		console.log("-------replace------");
+		var color = "lanou";
+		// 返回替换后的字符串,不会引起原字符串的改变
+		var newColor = color.replace("ou","你好");
+		console.log(color,newColor); 
+
+		// 15.search()
+		console.log("-------search------"); 
+		var side = color.search("ou");
+		console.log(side);  // 3 找到返回下标,没找到返回-1
+
+		// 16.match()
+		console.log("-------match------"); 
+		var matchValue = color.match("ou");
+		console.log(matchValue);
+		// 匹配的结果
+		console.log(matchValue[0]);  // ou
+		// 匹配的下标
+		console.log(matchValue.index);  // 3
+		// 匹配不到 返回 null 空对象
+
+
+	</script>
+</body>
+</html>
