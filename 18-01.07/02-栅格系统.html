@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- 第一个 meta 标签的意思是 使用 utf-8 编码格式 -->
+	<meta charset="UTF-8">
+	<!-- 第二个 meta 标签的意思是 优先使用最新版本的 IE 浏览器 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- viewport 移动端 浏览器会以原始大小进行显示,不允许进行缩放 -->
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>起步</title>
+	<link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css">
+	<!-- [if lt IE 9]>
+		// IE 9以下会显示
+	<![endif]-->
+	<style media="screen">
+		.container-1 > .row {
+			margin-bottom: 20px;
+		}
+
+		.container-1 > .row > div {
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<!-- bootstrap是移动设备优先的 -->
+	<!-- container 用于固定宽度并支持响应式的容器 -->
+	<div class="container-fluid container-1">
+		<div class="row">
+			<div class="col-md-1">.col-md-1</div>
+			<div class="col-md-1">.col-md-1</div>
+			<div class="col-md-1">.col-md-1</div>
+			<div class="col-md-1">.col-md-1</div>
+			<div class="col-md-1">.col-md-1</div>
+			<div class="col-md-1">.col-md-1</div>
+			<div class="col-md-1">.col-md-1</div>
+			<div class="col-md-1">.col-md-1</div>
+			<div class="col-md-1">.col-md-1</div>
+			<div class="col-md-1">.col-md-1</div>
+			<div class="col-md-1">.col-md-1</div>
+			<div class="col-md-1">.col-md-1</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">.col-md-8</div>
+			<div class="col-md-4">.col-md-4</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">.col-md-8</div>
+			<div class="col-md-8">.col-md-8</div>
+			<div class="col-md-8">.col-md-8</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4 col-sm-6">one</div>
+			<div class="col-md-4 col-sm-6">two</div>
+			<div class="col-md-4 col-sm-6">three</div>
+			<div class="col-sm-6">four</div>
+		</div>
+	</div>
+
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script src="./bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+</body>
+</html>
