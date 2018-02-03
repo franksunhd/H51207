@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>表单</title>
+  </head>
+  <body>
+    <form class="" action="#" method="post">
+      <fieldset>
+        <legend>注册用户</legend>
+        <label for="username">用户名:</label>
+        <input id="username" type="text" name="username" placeholder="请输入用户名">
+        <br>
+        <label for="passwd">密码:</label>
+        <input id="passwd" type="password" name="passwd" placeholder="请输入密码">
+        <br>
+        <!-- 单选radio name 属性相同 -->
+        <label for="">性别:</label>
+        <label for="radio1">男</label>
+        <input id="radio1" type="radio" name="gender" value="0">
+        <label for="radio2">女</label>
+        <input id="radio2" type="radio" name="gender" value="1">
+        <br>
+        <!-- 复选框 checkbox -->
+        爱好:
+        羽毛球:<input type="checkbox" value="0">
+        网球:<input type="checkbox" value="1" checked>
+        乒乓球:<input type="checkbox" value="2">
+        <!-- 图片按钮 -->
+        <br>
+        <input type="image" src="./mi.jpg" alt="无法显示图片" style="width:50px">
+        <br>
+        <input type="file" id="file">
+        <br>
+        <!-- readonly -->
+        <input type="text" name="btn" placeholder="readonly" readonly>
+        <br>
+        <!-- disabled -->
+        <input type="text" name="btn" placeholder="输入数据" readonly>
+        <br>
+        <input type="button" value="禁用" disabled>
+        <br>
+        <textarea name="data" rows="8" cols="40"></textarea>
+        <br>
+        <select>
+          <option value="0">选项一</option>
+          <option value="1" selected>选项二</option>
+          <option value="2">选项三</option>
+          <option value="3">选项四</option>
+        </select>
+        <input type="submit" name="submit" value="提交">
+        <input type="reset" name="reset" value="重置">
+        <br>
+      </fieldset>
+    </form>
+  </body>
+</html>
