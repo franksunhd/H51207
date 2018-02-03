@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM节点</title>
+</head>
+<body>
+	<div id="box" class="box" style="width:100%" name="box">
+		<!--注释1--><!--注释2 -->
+		文本节点
+		<p>p子节点</p>
+	</div>
+	<script type="text/javascript">
+        /* DOM:文档对象模型
+         * document 文档对象
+         * DOM 属性结构 : document ->  html -> 各节点组成
+         */
+
+        /*
+         * 1.元素节点 <div></div> 	nodeType=1
+         * 2.属性节点  id  class 	nodeType=2
+         * 3.文本节点				nodeType=3
+         * 4.注释节点				nodeType=8
+         *
+         * 5.根节点 document 		 document.nodeType=9
+         * 6.<!DOCTYPE html>       document.doctype.nodeType=10
+         */
+        // 1.document
+		console.log(document);  // 文档对象
+
+        // 2.documentElement html对象
+		console.log(document.documentElement);  // 没有<!DOCTYPE html> html对象
+
+		console.log(document.html);  // undefined 未定义,不这么写
+        // 3.head
+		console.log(document.head);		// head 对象
+        // 4.body
+		console.log(document.body);		// body 对象
+
+		var box = document.getElementById('box');
+        // nodeName 标签名
+        // nodeType 节点类型
+        // nodeValue 节点值
+        // 每个节点都具有这三个属性
+		console.log(box.nodeName,box.nodeType,box.nodeValue);  // DIV 1 null
+        // 5.node.childNodes 元素所有子节点
+		console.log(box.childNodes);
+
+		// 6.Node.parentNode 获取节点的父节点
+		console.log(document.body.parentNode);		// html 对象
+
+		// document 对象 是这个文档的根节点吗,没有父节点,输出为空
+		console.log(document.parentNode);  // null
+
+        var nodeT = box.childNodes[0];
+        // #text 代表文本节点  3代表节点类型为文本节点
+		console.log(nodeT.nodeName,nodeT.nodeType,nodeT.nodeValue);  // #text 3
+		var nodeC = box.childNodes[1];
+		console.log(nodeC.nodeName,nodeC.nodeType,nodeC.nodeValue);  // #comment 8 注释1
+        // 根节点: document
+		console.log(document.nodeName,document.nodeType,document.nodeValue);  // #document 9 null
+        // <!DOCTYPE html> 声明节点  html 10 null
+		console.log(document.doctype.nodeName,document.doctype.nodeType,document.doctype.nodeValue);  // html 10 null
+
+		// 7.属性节点
+		// attributes 获取所有的属性节点
+		console.log(box.attributes);
+
+		console.log(box.attributes[0].nodeName);  // id
+		console.log(box.attributes[0].nodeType);  // 2
+	</script>
+</body>
+</html>

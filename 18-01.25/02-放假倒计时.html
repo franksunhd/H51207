@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放假倒计时</title>
+</head>
+<body>
+	<script type="text/javascript">
+        // 当前时间
+
+        // 放假时间  2018-02-09 18:00:00
+		// 获取最最终的时间
+		var fDate = new Date("2018-02-10 01:46:00");
+		function time() {
+            // 获取当前时间
+			var cDate = new Date();
+            //
+			var t = fDate - cDate;
+			day = Math.floor(t/1000/60/60/24);
+    		hour = Math.floor(t/1000/60/60%24);
+    		min = Math.floor(t/1000/60%60);
+    		sen = Math.floor(t/1000%60);
+
+			document.body.innerHTML = "<h1>距离火车开车还有" + day + "天" + hour + "时" + min + "分" + sen + "秒</h1>";
+		}
+
+		setInterval(time,1000);
+	</script>
+</body>
+</html>
