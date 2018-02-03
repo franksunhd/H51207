@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自适应居中问题</title>
+	<style type="text/css" media="screen">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.box {
+			width: 50%;
+			background: #ccc;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<!-- 
+		块元素水平居中问题:内联不行，设置了inline-block后也失效。
+
+		居中方式: 定宽度,左右宽度auto自适应
+
+		左右margin和宽度,确定了其中两个，剩下可以auto自适应.
+
+		margin-left:auto;
+
+		auto:父元素内容的宽度 - 子元素宽度 - 子元素margin-right的值
+	 -->
+
+	 <div class="box">
+	 	<div class="first">first</div>
+	 	<p class="des">内容</p>
+	 </div>
+</body>
+</html>

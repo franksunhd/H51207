@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- <meta charset="UTF-8"> -->
+	<title>浮动问题</title>
+	<style type="text/css" media="screen">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.box {
+			background: lightpink;
+			border: 3px solid red;
+			color: #fff;
+			overflow: hidden;
+		}
+
+		.box .left {
+			width: 100px;
+			background: green;
+			opacity: 0.3;
+			height: 100px;
+			float: left;
+		}
+
+		.box .right {
+			overflow: hidden;
+			padding-left: 20px;
+			/*margin-left: 30px;*/
+		}
+	</style>
+</head>
+<body>
+	<!--
+		浮动: float 
+
+		标准流:按照标签的顺序和默认的行为进行显示，占据页面位置
+		非标准流(脱离标准流):不一定按住顺序进行显示,不占据页面位置,后面的元素会跟上来.
+
+		浮动的特点:(类似inline-block修改元素的性质)
+		1.浮动是脱离标准流的
+		2.不占据页面的位置
+		3.浮动只有左右浮动.
+		4.margin:0 auto;失效
+		5.内联元素可以正常设置宽高,上下margin和padding
+
+		浮动的影响:
+			父元素没有设置高度,子元素设置了宽高之后,子元素撑起父元素的高度,当子元素都设置浮动着之后,子元素脱离标准流,父元素的高度为0,与父元素同级的兄弟元素就会和子元素重叠,使得页面结构混乱.
+
+		清除浮动(四种方式):
+		1.给父元素设置高度
+		2.给发生浮动的父元素添加一个空元素,并设置空元素的属性为clear:both;
+		3.给父元素设置overflow:hidden; 当元素设置了定位之后,定位会受到影响
+		4.伪元素清楚浮动
+
+	 -->
+
+	 <div class="box">
+	 	<div class="left">left</div>
+	 	<div class="right">right right right right right</div>
+	 </div>
+
+</body>
+</html>

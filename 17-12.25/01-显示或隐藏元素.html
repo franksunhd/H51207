@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>显示或隐藏元素</title>
+	<style type="text/css" media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul li {
+      list-style: none;
+    }
+
+		.s1 {
+			border: 5px solid red;
+			display: inline;
+		}
+
+		.s1 span {
+			display: none;
+		}
+
+		.s1:hover span {
+			display: inline;
+		}
+
+	
+		.uls {
+      width: 1000px;
+      height: 30px;
+			background: #960323;
+      line-height: 30px;
+		}
+
+		.uls li {
+			width: 100px;
+      height: 20px;
+      line-height: 20px;
+      line-height: 20px;
+      display: inline-block;
+			border: 1px solid green;
+		}
+	</style>
+</head>
+<body>
+	<!--
+		display:
+			1. 显示或隐藏元素
+			2. block 块(显示) inline 行(显示) block-inline  none(不显示)
+			3. 不占位置的隐藏
+		visibility:
+			1. 显示或隐藏元素
+			2. hidden 隐藏  visiable 显示000
+			3. 占位置的隐藏
+
+		可以使用dispaly样式属性修改元素的性质 (实现内联元素和块元素的相互转换)
+
+		inline-block: 块级元素同行显示 内联元素
+		问题:
+		1. ie6, ie7 ,ie8 版本下不支持这个属性
+		2. 代码中的换行会被浏览器解析为空格
+	 -->
+
+	 <div class="s1">
+	 	<a href="#" title="百度一下 你就知道" target="_blank">链接</a>
+	 	<span>百度一下</span>
+	 </div>
+   <p>参照----------</p>
+
+   <ul class="uls">
+   	<li>HTML</li>
+   	<li>HTML</li>
+   	<li>HTML</li>
+   </ul>
+</body>
+</html>
