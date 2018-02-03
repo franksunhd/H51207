@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>伸缩盒子</title>
+		<style type="text/css">
+			#box1 {
+				width: 100%;
+		        height: 300px;
+		        border: 1px solid red;
+		        box-sizing: border-box;
+		
+		        display: flex;
+		        /*
+		        默认子项都在一行，不会换行
+		        */
+		
+		        /*
+		         * 换行 如果父元素和子元素都设置了高.子元素高不足父元素高时,剩余部分由空白区域平分
+		         */
+		        /*flex-wrap: wrap;*/
+		       flex-wrap: wrap-reverse;
+			}
+			
+			#box1 .box1_s1 {
+				width: 400px;
+		        height: 100px;
+		        background: pink;
+		        flex-grow: 1;
+			}
+			
+			#box2 {
+				width: 100%;
+		        box-sizing: border-box;
+		        border: 1px solid red;
+		        height: 600px;
+		        margin-top: 50px;
+		
+		        display: flex;
+		        flex-direction: column;
+		
+		        /*纵向拆分*/
+		        flex-wrap: wrap;
+			}
+			
+			#box2 .box1_s2 {
+				width: 200px;
+		        height: 200px;
+		        background: green;
+		        flex-grow: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1">
+			<div class="box1_s1">1</div>
+			<div class="box1_s1">2</div>
+			<div class="box1_s1">3</div>
+			<div class="box1_s1">4</div>
+			<div class="box1_s1">5</div>
+			<div class="box1_s1">6</div>
+		</div>
+		
+		<div id="box2">
+			<div class="box1_s2">1</div>
+			<div class="box1_s2">2</div>
+			<div class="box1_s2">3</div>
+			<div class="box1_s2">4</div>
+			<div class="box1_s2">5</div>
+			<div class="box1_s2">6</div>
+		</div>
+	</body>
+</html>
