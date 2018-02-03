@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>锅打灰太狼</title>
+	<style media="screen">
+		*{
+			padding: 0px;
+			margin: 0px;
+		}
+		#box {
+			width: 320px;
+			height: 480px;
+			margin: 50px auto;
+			position: relative;
+		}
+		#box .mask {
+			width: 100%;
+			height: 100%;
+			line-height: 480px;
+			text-align: center;
+			color: #fff;
+			font-size: 20px;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			background-color: rgba(0,0,0,0.5);
+		}
+		#progress {
+			width: 0px;
+			height: 20px;
+			text-align: center;
+			line-height: 20px;
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	<div id="progress">进度条</div>
+	<div id="box">
+		<img src="./img/game_bg.jpg" alt="">
+		<div class="mask">开始游戏</div>
+	</div>
+	<div id="innerBox"></div>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		var innerBox = document.getElementById('innerBox');
+		var progress = document.getElementById('progress');
+
+		var imgArr = ["img/game_bg.jpg", "img/h0.png",
+		"img/h1.png", "img/h2.png", "img/h3.png",
+		"img/h4.png", "img/h5.png", "img/h6.png",
+		"img/h7.png", "img/h8.png", "img/h9.png",
+		"img/progress.png", "img/x1.png", "img/x2.png",
+		"img/x3.png", "img/x4.png", "img/x5.png",
+		"img/x6.png", "img/x7.png", "img/x8.png",
+		"img/x9.png"];
+
+		var Loading = {
+			flag:0,
+			load: function(arr,callback1,callback2) {
+				for (var i = 0; i < arr.length; i++) {
+					var img = document.createElement("img");
+					img.src = imgArr[i];
+					// innerBox.appendChild(img);
+
+					img.onload = function() {
+						Loading.flag++;
+						console.log("加载完第" + Loading.flag + "张图片");
+						var Ivalue = (Loading.flag / arr.length) * 100;
+						callback1(Ivalue);
+
+						if (Loading.flag == arr.length) {
+							callback2();
+						}
+					}
+				}
+			}
+		}
+
+		Loading.load(imgArr,function(value) {
+            // 回调函数1 显示进度条
+            progress.style.width = value + "%";
+		},function() {
+            // 回调函数2
+            console.log("加载完成");
+		})
+
+	</script>
+</body>
+</html>
