@@ -1,0 +1,20 @@
+//
+// 导入外部样式
+@import "./base.css";
+
+// 注释方式有两种 /**/ 和 //
+
+// 变量的定义 $变量名
+$font-size:12px !default;
+$font-size1:15px;
+
+// 变量的调用
+#sidebar {
+  width: 30%;
+  font-size: $font-size;
+  background-color: #faa;
+
+  &:hover {
+    font-size: $font-size1;
+  }
+}
