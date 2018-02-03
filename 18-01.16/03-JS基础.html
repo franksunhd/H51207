@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>JS基础操作</title>
+		<link rel="shortcut icon" type="image/ico" href="./index.ico">
+	</head>
+	<body>
+		<script type="text/javascript">
+			var a = 10 , b = 0;
+      // 与 : 全真为真 一个假 就为 假
+      // 或 : 全假为假 一个真 就为 真
+			if (a > 80 || b == 10 || a ==10 && b == 0) {
+				console.log("成立");
+			} else {
+				console.log("不成立");
+			}
+
+			var s1 = 10 , s2 = 30 , s3 = 25;
+			var max = s1;  // 默认 s1 最大
+
+			if (max < s2) max = s2;
+			if (max < s3) max = s3;
+
+			console.log(max);
+
+			// 三目运算
+			var s = 10 > 50 ? true : ':';
+			console.log(s);
+
+      // 找最大值
+      var mac = s1 > s2 ? s1 : s2;
+			mac = mac > s3 ? mac : s3;
+			console.log(mac);
+
+      // 找最小值
+      var min = (s1 < s2 ? s1 : s2) ? (s1 < s2 ? s1 : s2) : s3;
+			console.log(min);
+
+			var personCount = 1;
+
+			if (personCount == 1) {
+				console.log("一人写代码");
+			} else if (personCount == 2) {
+				console.log("两人一块写代码");
+			} else if (personCount == 3) {
+				console.log("三人一块写代码");
+			} else {
+				console.log("一块敲代码");
+			}
+
+			var score = 85;
+			switch (parseInt(score / 10)) {
+				case 9:
+					console.log("优秀");
+					break;
+				case 8:
+					console.log("良好");
+					break;
+				case 7:
+					console.log("中等");
+					break;
+				case 6:
+					console.log("及格了");
+					break;
+				default:
+					console.log("不及格");
+					break;
+			}
+		</script>
+	</body>
+</html>
