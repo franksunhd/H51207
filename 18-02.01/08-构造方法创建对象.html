@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 * 优点:run创建一次,可以使所有对象共同使用,减少内存消耗,
+			 * 
+			 * 缺点:函数直接暴露在外界,污染全局区,且体现不出构造函数的关联
+			 */
+			
+			function run() {
+				console.log(this.type + "在生长!今年" + this.age + "岁了!" );				
+			}
+			
+			// 自定义构造方法
+			function Animal(type,age) {
+				this.type = type;
+				this.age = age;
+				// 调用 run 函数
+				this.grow = run;
+			}
+			
+			var dog = new Animal("小狗",10);
+			dog.grow();
+			var bear = new Animal("熊二",15);
+			bear.grow();
+		</script>
+	</body>
+</html>

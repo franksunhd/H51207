@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>无刷新替换浏览器地址</title>
+	</head>
+	<body>
+		<div id="box">			
+			<button>replaceState</button>
+			<button>pushState</button>
+		</div>
+		
+		<script type="text/javascript">
+			var replaceState = document.querySelector("#box button:nth-child(1)");
+			var pushState = document.querySelector("#box button:nth-child(2)");
+			// 应用于手机端
+			replaceState.onclick = function () {
+				/*
+				 *  参数1:保存到 history 中的 state 属性中.
+				 *  参数2:新网址的标题,浏览器暂时不支持可以用 null
+				 *  参数3:网址新地址
+				 */
+				history.replaceState({age:18},"页面标题","./01-history.html");				
+				history.replaceState({age:19},"页面标题","./02-history.html");				
+				console.log(history);
+				console.log(history.state);
+				console.log(location);
+			}
+			
+			pushState.onclick = function () {
+				/*
+				 * 与 replaceState 类似,浏览器地址都是显示最后一个
+				 * 区别: replaceState 不能有历史记录,但是 pushState 有历史记录
+				 * 
+				 * 每次调用一次 push, 就向 history 这个容器中压入一个历史记录,和数据结构的栈的概念一样,
+				 * 最后压入的在最顶部,(先进后出)
+				 * 
+				 * 特点:状态变化,
+				 */
+				 history.pushState({
+				 	age:19,
+				 	name:"lisi1"
+				 },null,"./01-history.html");
+				 
+				history.pushState({
+					age:20,
+					name:"lisi2"
+				},null,"./02-history.html");
+				
+				console.log(history);
+				console.log(location);
+			}
+			
+			window.addEventListener("popstate",function () {
+				
+				// 处理代码逻辑,比如发送 Ajax
+				console.log(history);
+				console.log(history.state);
+				console.log(location);
+			});
+		</script>
+	</body>
+</html>

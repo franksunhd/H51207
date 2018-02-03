@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>call-apply-bind</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//  回顾
+			console.log(this);	  // window
+			
+			function fn () {
+				console.log(this);  // window
+			}
+			fn();
+			
+			setTimeout(function(){
+				// 会有延时
+				// console.log(this);   // window
+			},10);
+			
+			var name = "杨浪";
+			var person = {
+				name:"浪哥",
+				obj:{
+					name:"蓝鸥",
+					run:function () {
+						var name = "蓝鸽";
+						console.log(this.name);   // 蓝鸥
+						console.log(name)   // 蓝鸽
+					
+						var _this = this.name;
+					
+						console.log(this === person);  // false
+					
+						function eat () {
+							console.log(this);  // window
+							console.log(_this);  // 蓝鸥
+						}
+						eat();
+					}
+				}
+			};
+			
+			person.obj.run();  
+			// 函数属于某个对象,并且通过该对象去调用,this就代表这个对象
+			
+			var test = person.obj.run;
+			
+			console.log("------test()------")
+			test(); // 杨浪  蓝鸽 false window 杨浪
+			
+			// 修改 this 指向 
+			console.log("------修改 this 指向------")
+			console.log("------call------")
+			function run (a,b,c) {
+				console.log(this,a,b,c);
+			}
+			console.log(typeof run);  // function
+			run.age = 19;
+			console.log(run.age);  // 19
+			console.log(run.call);  
+			// 通过函数的 call 方法,还是调用自己
+			// 参数1:本次调用需要修改 this 的指向
+			// 参数2:函数的原始参数 
+			run.call("你好",10,20,30); // String对象 10,20,30
+			run.call([],20,30,40);  // Array对象 20,30,40
+			
+			
+			// apply
+			console.log("------apply-------");
+			// 参数2:是个数组,存放原始数组
+			run.apply({name:"ssy"},[10,20,30]);
+			
+			var arr = [10,20,15,100];
+			// Math.max(arr[0],arr[1]);
+			// 找最大值
+			var max = Math.max.apply(null,arr);
+			console.log("max =",max);
+			
+			
+			console.log("------bind-------");
+			// bind
+			 function fn(a,b){
+			 	console.log("指向fn函数");
+			 	console.log(this,a,b);
+			 }
+			 
+			 fn.call({name:"call"},10,20); // {name:"call"} 10 20
+			 fn.apply({name:"apply"},[10,20]); // {name:"call"} 10 20
+			 /*
+			  * 参数格式和 call 一样
+			  * bind 不会自动执行原函数
+			  * bind函数执行完成之后会把原函数 copy 一份,存储在新的内存中,
+			  * 执行新的函数地址后, this指向和原参数都是在bind执行时配置好的
+			  */
+			 var newFn = fn.bind({name:"bind"},100,);
+			 console.log(newFn);
+			 console.log(newFn === fn);  // false
+			 newFn(200);  // 上边缺省的第二个参数可以在这个函数中补
+			 
+			 // 标准浏览器写法
+			 // 创建一个匿名函数,然后copy一份,把copy的地址赋给fn2,并且修改this的指向
+			console.log("------bind 标准浏览器写法-------");
+			var fn2 = function (a,b) {
+			 	console.log(a,b);
+			 	console.log(this);
+			 }.bind({name:"bindFn2"});
+			 
+			 fn2(666,888);
+			 
+			 setTimeout(function(a,b,c,d){
+			 	console.log("+====+");
+			 	console.log(a,b,c,d);  //下边"小红"先输出,后边的自动拼接
+			 	console.log(this);  
+			 }.bind({name:"lisi"},"小红"),100,"思研","小马");
+			 
+			 
+			 /*
+			  * 修改this指向问题总结:
+			  * 直接执行并且修改 this 指向,就用 call 或者 apply
+			  * 
+			  * 通过返回地址让系统或者其他模块执行 + 修改 this 指向,用 bind 方法
+			  */
+ 		</script>
+	</body>
+</html>

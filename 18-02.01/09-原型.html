@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 * 原型:构造函数的prototype属性,是一个对象类型
+			 * 原型对象又有一个constructor属性,来标记自己属于哪个构造函数,又指向自己的构造函数
+			 */
+			
+			// 自定义构造方法
+			function Animal(type,age,job) {
+				this.type = type;
+				this.age = age;
+			}
+			// 1.构造函数 找原型
+			// 把方法绑定在原型上
+			Animal.prototype.grow = function (){
+				console.log(this.type + "在生长!今年" + this.age + "岁了!" );				
+			}
+			
+			Animal.prototype.job = "PHP";
+			
+			function Plants (type) {
+				this.type = type;
+			}
+			
+			// 访问原型对象
+			console.log("Animal",Animal.prototype);  // object对象
+			console.log("Plants",Plants.prototype);  // object对象
+			
+			var dog = new Animal("小狗",10);
+			dog.grow();  // 小狗在生长!今年10岁了!
+			console.log(dog.job);  // PHP
+			var bear = new Animal("熊二",15);
+			bear.grow();  // 熊二在生长!今年15岁了!
+			console.log(bear.job);  // PHP
+			// 2.实例对象 找原型
+			console.log("bear",bear.__proto__);  // object对象
+			console.log("dog",dog.__proto__);  // object对象
+			
+			// 验证原型的唯一性
+			console.log(bear.__proto__ === dog.__proto__);  // true  
+			console.log(bear.__proto__ === Animal.prototype);  // true
+			// 验证每个构造函数都有自己独立的原型
+			console.log(Plants.constructor === bear.__proto__);  // false
+			
+			/*
+			 * 变化的属性放到构造函数中,不变的属性或者方法放到原型中,让所有的实例对象共享
+			 */
+		</script>
+	</body>
+</html>

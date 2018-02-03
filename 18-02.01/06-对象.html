@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>原型链</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// 创建对象
+			// 1.字面量
+			var a = {};
+			// 2.构造方法
+			var b = new Object();
+			
+			// 多次创建某一类对象
+			var plants = {
+				name:"月季",
+				grow:function () {
+					console.log(this.name + "在生长");
+				}
+			};
+			
+			plants.grow();   // 月季在生长
+			
+			
+			// 工厂模式创建对象
+			function Plants (type,age) {
+				// 字面量创建
+				var pt = {
+					types:type,
+					ages:age,
+					grow:function () {
+						this.ages++;
+						console.log(this.types + "在生长,今年" + this.ages + "岁了!");
+					}
+				};
+				return pt;
+			};
+			
+			var  md = Plants("牡丹",10);
+			var  rows = Plants("玫瑰",18);
+            md.grow();  // 牡丹在生长,11岁了!
+			rows.grow();  // 玫瑰在生长,19岁了!
+			
+			// 
+			function Animal (type,age) {
+				// 构造方法
+				var aml = new Object();
+				aml.type = type;
+				aml.age = age;
+				aml.grow = function (){
+					this.age++;
+					console.log(this.type + "在成长,今年" + this.age + "岁了!");
+				};
+				return aml;
+			}
+			
+			var dog = Animal("小狗",10);
+			dog.grow();  // 小狗在成长,今年11岁了!
+			var bear = Animal("狗熊",15);
+			bear.grow();  // 狗熊在成长,今年16岁了!
+		</script>
+	</body>
+</html>

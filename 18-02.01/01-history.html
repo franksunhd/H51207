@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>history</title>
+	</head>
+	<body>
+		<h1>1-history</h1>
+		<p>			
+			<a href="02-history.html">下一页</a>
+		</p>
+		<div id="box">
+			<button>下一页</button>
+			<button>历史记录最后一页</button>
+		</div>
+		<script type="text/javascript">
+			// length:历史记录的长度(记录历史地址的数量)
+			console.log(history);
+			
+			var next = document.querySelector("#box button:nth-child(1)");
+			var last = document.querySelector("#box button:nth-child(2)");
+			next.onclick = function(){
+				history.forward();
+				// 或者 下一页
+				// history.go(1);
+				
+				// 刷新当前页面
+				// history.go(0);
+			}
+			
+			last.onclick = function () {
+				history.go(2);
+				// 或者
+				history.go(history.length - 1);
+				// 范围超了没有效果
+				history.go(100);
+			}
+		</script>
+	</body>
+</html>

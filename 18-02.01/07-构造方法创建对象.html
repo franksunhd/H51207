@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>构造方法创建对象</title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			/*
+			 * 系统的构造方法:
+			 * new Object()
+			 * new Image()
+			 * new Array()
+			 * new Date()
+			 * new Number()
+			 */
+			
+			// 自定义构造方法
+			function Animal(type,age) {
+				this.type = type;
+				this.age = age;
+				this.grow = function (){
+					console.log(this.type + "在生长!今年" + this.age + "岁了!" )
+				}
+			}
+			
+			var dog = new Animal("小狗",10);
+			dog.grow();
+			var bear = new Animal("熊二",15);
+			bear.grow();
+			
+			/*
+			 * new 关键字的作用:
+			 * 1.构造函数中,每次调用都会创建一个新的对象 var Animal = {}
+			 * 2.修改 this 指向为当前创建的对象
+			 * 3.把新创建的对象 return 出去
+			 */
+		</script>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>3-history</h1>
+		<div id="box">
+			<button>上一页</button>
+			<button>历史记录第一页</button>
+		</div>
+		
+		<script type="text/javascript">
+			var before = document.querySelector("#box button:nth-child(1)");
+			var first = document.querySelector("#box button:nth-child(2)");
+			before.onclick = function(){
+				history.back();
+			}
+			
+			first.onclick = function () {
+				history.go(-history.length + 1);
+			}
+		</script>
+	</body>
+</html>

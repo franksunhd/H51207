@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>2-history</h1>
+		<p>
+			<a href="03-history.html">下一页</a>			
+		</p>
+		<div id="box">
+			<button>上一页</button>
+			<button>下一页</button>
+			<button>历史记录最后一页</button>
+		</div>
+		
+		<script type="text/javascript">
+			var before = document.querySelector("#box button:nth-child(1)");
+			var next = document.querySelector("#box button:nth-child(2)");
+			var last = document.querySelector("#box button:nth-child(3)");
+			before.onclick = function(){
+				history.back();
+			}
+			next.onclick = function () {
+				history.forward();
+			}
+			
+			last.onclick = function () {
+				history.go(1);
+			}
+		</script>
+	</body>
+</html>
