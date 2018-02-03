@@ -23,13 +23,13 @@
      	 * 6.hasAttributes() 判断元素有没有设置属性 
          */
 
-        console.log(box);
+        console.log(box);  // box节点
 
 		// 1. 点语法
 		console.log("------点语法------");
-		console.log(box.id,box.className);
+		console.log(box.id,box.className);  // box BoxName
 		box.name = "box1";
-		console.log(box.id,box.name);
+		console.log(box.id,box.name);  // box box1
 
 		// 点语法无法获得自定义的属性
 		console.log(box.age);  // undefined
@@ -39,7 +39,7 @@
 		box.age = "20";
 		box.sex = "男";
 		console.log(box.age);  // 20 能打印不能喧染到文档
-
+        
 		console.log("------元素对象[]------");
         // 2.元素对象[] 不能去引号,去掉引号被认为是变量
         console.log(box["id"]);  // box
@@ -54,7 +54,7 @@
 		console.log(box.getAttribute("class"));   // Boxname
 
         // 4.设置: 系统或者自定义的属性都可以被加载到文档中
-        box.setAttribute("sex","男");
+        box.setAttribute("sex","男男");
 
         // 5.获取元素的所有属性节点
         console.log(box.attributes);
