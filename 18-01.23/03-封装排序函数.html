@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装排序函数</title>
+</head>
+<body>
+	<script type="text/javascript">
+
+		var numbers = [20,50,30,10];
+		var item = numbers.concat();
+		console.log("原数组:",numbers);
+
+		// 封装一个排序函数
+        function sort(arr,callback) {
+            // 数组的拷贝,不影响原数组,排序的是拷贝的数组
+			arr = arr.concat();
+			for(var i = 0,len = arr.length; i < len - 1; i++){
+				for(var j = 0; j < len - 1 -i; j++) {
+					var res = false;
+					if (typeof(callback) === "function") {
+						res = callback(arr[j],arr[j+1]);
+					} else {
+						alert("请检查是否传入函数!");
+						return;
+					}
+
+					if (res) {
+						var temp = arr[j];
+						arr[j] = arr[j+1];
+						arr[j+1] = temp;
+					}
+				}
+			}
+			return arr;
+        }
+
+        // 调用 sort 函数  item 接收 返回的 arr
+		var item = sort(numbers,function(a,b){
+			return a > b;
+		});
+
+        // 打印数组信息
+		console.log("新数组:",item);
+		sort(numbers);
+		console.log(typeof sort);
+	</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this问题</title>
+</head>
+<body>
+	<p id="box">元素对象</p>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+
+		box.onclick = function() {
+            // this === 元素对象
+			console.log(this);
+			this.style.backgroundColor = "red";
+		}
+	</script>
+</body>
+</html>

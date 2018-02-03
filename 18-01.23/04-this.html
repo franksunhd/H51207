@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this问题</title>
+</head>
+<body>
+	<script type="text/javascript">
+        // this:当前对象
+        console.log(this);  //
+
+        // window
+        // 全局对象 (最顶层的对象),所有的全局变量或者函数都是属于 window
+
+		var a = 100 , b = 200;
+		console.log(window.a,a);  // 100 100
+
+		function fn() {
+            // 严格模式的声明
+			// "use strict";
+			console.log("全局区域的函数");
+			var c = 300;
+
+			d = 400;  //  省略 var 默认成全局变量,严格模式下会报错,后面的代码不再执行
+			console.log(d);
+		}
+		// 方法;
+		window.fn();
+
+		// c
+		// 使用 window.c 不报错
+		// 相当于把 c 当做了 window 的未定义的属性
+		console.log(window.c);  // undefined
+
+		// window.d
+		// console.log(d,window.d);  // 400 400
+
+		console.log(window.moveBy.length);
+
+		console.log(window.Math.random());
+
+		name = 10;  // 设置 window.name 注意变量的命名
+		console.log(window.name);
+
+        // 严格模式下: undefined
+        // 非严格模式下: window
+		function fn2(){
+			"use strict";
+			console.log(this);   // 有严格模式 undefined 没有严格模式 window 对象
+		}
+		fn2();
+
+        // this
+        var name = "中国";
+		var person = {
+			name : "蓝鸥",
+			run:function(){
+				console.log(this);  // person对象
+				console.log(person);  // person对象
+				console.log(person === this);  // true
+
+				function fn3(){
+                    // window == this
+					console.log(this);
+				}
+
+				fn3();
+			}
+		}
+
+		person.run();
+
+		person.fn = function () {
+            // this == person
+			console.log(this);
+		}
+
+		person.fn();  // 函数挂载在哪个对象上,当前 this 就是这个对象
+
+
+	</script>
+</body>
+</html>
