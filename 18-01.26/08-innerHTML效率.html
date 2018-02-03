@@ -29,12 +29,12 @@
 		for (var i = 0; i < 900; i++) {
             // 创建 cell
             // appendChild  2-3ms
-            // var cell = document.createElement("div");
-			// cell.className = "cell";
-			// box.appendChild(cell);
+             var cell = document.createElement("div");
+			 cell.className = "cell";
+			 box.appendChild(cell);
 
             // 错误 : innerHTML  500-900ms
-			// box.innerHTML += "<div class='cell'></div>";
+			box.innerHTML += "<div class='cell'></div>";
 
             // 解决:文档碎片 1ms-3ms
 			content += "<div class='cell'></div>";
