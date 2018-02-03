@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tween.js</title>
+	<style media="screen">
+		#box {
+			width: 800px;
+			height: 100px;
+			border: 5px solid blue;
+			position: relative;
+		}
+
+		#ball {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			background-color: red;
+			line-height: 100px;
+			text-align: center;
+			font-size: 30px;
+			color: #fff;
+			cursor: pointer;
+			position: absolute;
+			top: 0px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Tween.JS</h2>
+	<div id="box">
+		<div id="ball">ball</div>
+	</div>
+	<button id="resume">继续</button>
+	<button id="paused">停止</button>
+	<!-- 引入 js 代码包 -->
+	<script src="./js/tween.js" charset="utf-8"></script>
+	<script src="./js/Tween_move.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		var ball = document.getElementById('ball');
+
+		ball.style.left = 100 + "px";
+
+
+		ball.onclick = function() {
+			var t = 0; // 初始时间,时间用定时器控制累加
+			var b = 100;
+			var c = 500;  // 变化量 = 最终值  - b
+			var d = 100;
+            // function 是一个回馈函数,告诉结束了
+			move(ball,"left",t,b,c,d,function() {
+				// alert("动画结束");
+				move(ball,"opacity",0,1,-0.9,100);
+			});
+		}
+	</script>
+</body>
+</html>
