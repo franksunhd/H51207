@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3新增选择器</title>
+	<style type="text/css" media="screen">
+		
+		/*
+		 * 相邻选择器 选中的元素是第一个满足之后且第二个满足条件的元素
+		 */
+		p + p {
+			color: red;
+		}
+		
+		/*
+		 * 兄弟选择器 选中的是第一个符合条件的元素的后面的所有符合条件的 p 元素
+		 */
+		p ~ p {
+			background-color: lightblue;
+		}
+		
+		/*
+		 * 属性选择器
+		 */
+		
+		/*
+		 * 伪类/伪元素 选择器
+		 */
+		
+		/*
+		 * nth-child() 和 eq()的区别
+		 */
+		
+		/*
+		 * 选择空元素 选择内容的元素 不能包含空格,回车,换行
+		 */
+		
+		.box2 p:empty {
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+		
+		/*
+		 *  :target{} 配合锚点使用 锚点在谁身上,样式就在谁身上
+		 */
+		#news1,#news2 {
+			display: none;
+		}
+		:target {
+			/*
+			 * 找 p ,这个 p 必须在锚点上
+			 */
+			display: block !important;
+			background: lightpink;
+			font-size: 18px;
+			color: orangered;
+		}
+		
+		/*
+		 * 反选 :not(selector) 排除选中的元素,给其他的元素添加样式 
+		 */
+		
+		/*
+		 *  ::selection 给选中的元素设置样式 这里必须是两个冒号
+		 */
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<p>p1</p> 
+		<p>p2</p> 
+		<h3>这是一个标题</h3> 
+		<p>p3</p> 
+		<h3>这是一个标题</h3> 
+		<p>p4</p> 
+		<p>p5</p>
+	</div>
+	<hr />
+	<div class="box2">
+		<p></p>
+		<p><span id="name">
+			My name is Franksun.
+		</span></p>
+		<p></p>
+	</div>
+	<hr />
+	<div class="box3">
+		<a href="#news1">调到第一段</a>
+		<br />
+		<a href="#news2">调到第二段</a>
+		
+		<br />
+		<p id="news1">我是第一段</p>
+		<p id="news2">我是第二段</p>
+	</div>
+</body>
+</html>
