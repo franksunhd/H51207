@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片的预加载</title>
+	<style media="screen">
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+</head>
+<body>
+	<img id="pic" width="400">
+	<script type="text/javascript">
+		var pic = document.getElementById('pic');
+
+		console.log("宽度:",pic.width,"高度:",pic.height);
+
+		document.onclick = function () {
+            // 预加载图片
+            /*
+             * 图片预加载:提前缓存网页中用到的图片,当使用图片时,可以立马显示并可以获取大小
+             *
+             * 缺点:第一次进入界面的时候会下载所有的图片,造成服务器的压力
+             */
+            var obj = new Image();
+			obj.src = "http://e.hiphotos.baidu.com/zhidao/pic/item/ac345982b2b7d0a2284d772bcdef76094a369afb.jpg";
+            // onload 方法
+			console.log(obj);
+			obj.onload = function() {
+                // 只有该方法回调,才能准确获取图片的大小,图片被浏览器缓存
+				console.log("图片加载完成");
+				console.log("load后(原图):",obj.height);
+
+				pic.src = obj.src;
+				console.log("缓存后:",pic.height);
+			}
+			console.log("------------");
+			console.log("load前:",obj.height);
+		}
+	</script>
+</body>
+</html>

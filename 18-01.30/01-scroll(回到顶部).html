@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>scroll</title>
+	<style media="screen">
+		#box {
+			width: 1000px;
+			height: 2000px;
+			font-size: 50px;
+			background-color: pink;
+		}
+		#inner {
+			width: 50px;
+			line-height: 50px;
+		}
+		#goTop {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			background-color: rgba(0,0,0,0.7);
+			color: #fff;
+			line-height: 100px;
+			text-align: center;
+			position: fixed;
+			bottom: 50px;
+			right: 20px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="inner">这是一段滚动的文字,滚动屏幕就可以查看效果</div>
+	</div>
+
+	<div id="goTop">回到顶部</div>
+
+	<script src="./js/tween.js" charset="utf-8"></script>
+	<script src="./js/Tween_move.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		var inner = document.getElementById('inner');
+		var goTop = document.getElementById('goTop');
+
+		var useable = false;
+		goTop.onclick = function() {
+			// 谷歌,火狐,Opera 有效
+			// console.log(document.documentElement.scrollTop);
+
+            // Safari 有效
+            // console.log(document.body.scrollTop);
+
+			// console.log(getScrollTop());
+			// setScrollTop(0);
+
+			useable = false;
+			var t = 0;
+			var b = MOVE.getScrollTop;
+			var c = 0 - b;
+			var d = 100;
+			MOVE.run(null,"scrollTop",t,b,c,d);
+
+		}
+
+        // 封装两个函数
+		function getScrollTop() {
+            // 获取:
+            // 必有一个为 0,所以可以两个值相加
+			// return document.documentElement.scrollTop + document.body.scrollTop;
+			return document.documentElement.scrollTop || document.body.scrollTop;
+		}
+
+		// function setScrollTop(value) {
+        //     // 设置
+		// 	document.body.scrollTop = document.documentElement.scrollTop = value;
+		// }
+		//
+
+        // 监听窗口滚动,页面滚东,或者第一次刷新,
+		window.onscroll = function() {
+			console.log(getScrollTop());
+
+			var value = getScrollTop();
+			var useable = false;
+			if (value >= 200) {
+                // 显示
+                goTop.style.display = "block";
+				useable = true;
+			} else {
+				// 隐藏
+				goTop.style.display = "none";
+				useable = false;
+			}
+		}
+	</script>
+</body>
+</html>

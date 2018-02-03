@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>瀑布流布局</title>
+	<style media="screen">
+		* {
+			margin:0px;
+			padding: 0px;
+		}
+
+		ul li {
+			list-style-type: none;
+		}
+
+		#box {
+			overflow: hidden;
+			border: 5px solid blue;
+		}
+
+		#box ul {
+			margin-left: 2%;
+			width: 17.6%;
+			float: left;
+		}
+
+		#box ul li {
+			background-color: gray;
+			font-size: 30px;
+			text-align: center;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<!-- <li>第一列</li> -->
+		</ul>
+		<ul>
+			<!-- <li>第二列</li> -->
+		</ul>
+		<ul>
+			<!-- <li>第三列</li> -->
+		</ul>
+		<ul>
+			<!-- <li>第四列</li> -->
+		</ul>
+		<ul>
+			<!-- <li>第五列</li> -->
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		var ulArr = document.querySelectorAll("#box ul");
+		for (var i = 0; i < 100; i++) {
+			var item = document.createElement("li");
+			item.innerText = i + 1;
+			item.style.backgroundColor = randomColor();
+
+            // 随机高度
+            var h = randomNumber(100,400);
+			item.style.height = h + "px";
+			item.style.lineHeight =  h + "px";
+
+			// ulArr[randomNumber(0,4)].appendChild(item);
+			ulArr[getMinIndex()].appendChild(item);
+		}
+
+        // 找最小高度
+        function getMinIndex() {
+			var minIndex = 0;
+			for (var i = 1; i < ulArr.length; i++) {
+				minIndex = ulArr[minIndex].offsetHeight > ulArr[i].offsetHeight ? i : minIndex;
+			}
+			return minIndex;
+        }
+
+		function randomColor() {
+			var r = parseInt(Math.random()*256);
+			var g = parseInt(Math.random()*256);
+			var b = parseInt(Math.random()*256);
+			var a = Math.random();
+			return "rgb(" + r + "," + g +  ","+ b +")";
+		}
+
+        // 包含 a,b
+		function randomNumber(a, b){
+			var max = Math.max(a, b);
+			var min = Math.min(a, b);
+			return parseInt(Math.random() * (max - min + 1) + min);
+		}
+	</script>
+</body>
+</html>
