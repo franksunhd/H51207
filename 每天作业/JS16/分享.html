@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>分享的显示和隐藏</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			
+			#box {
+				display: flex;
+				justify-content: flex-start;
+				float: left;
+			}
+			#show {
+				width: 30px;
+				height: 100px;
+				background-color: peru;
+				color: #fff;
+				text-align: center;
+				font-size: 25px;
+				border-radius: 5px;
+			}
+			#hide {
+				height: 100px;
+				background-color: red;
+				width: 300px;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="hide"></div>
+			<div id="show">分享</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var hide = document.getElementById("hide");
+			box.addEventListener("mouseover",function(){
+				hide.style.display = "block";
+			});
+			
+			box.addEventListener("mouseout",function(){
+				hide.style.display = "none";
+			});
+		</script>
+	</body>
+</html>

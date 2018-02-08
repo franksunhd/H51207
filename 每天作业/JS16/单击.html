@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>点击</title>
+		
+		<style type="text/css">
+			#list {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="btn">点击展开</button>
+		<ul id="list">
+			<li>li元素1</li>
+			<li>li元素2</li>
+			<li>li元素3</li>
+		</ul>
+		<script type="text/javascript">
+			var btn = document.getElementById("btn");
+			var list = document.getElementById("list");
+			
+			btn.addEventListener("click",function(){
+				list.style.display = "block";
+			},true);
+			
+			window.addEventListener("click",function(){
+				list.style.display = "none";
+			},true);
+		</script>
+	</body>
+</html>
