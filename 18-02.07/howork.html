@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			html,body {
+				height: 2000px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">box</div>
+		<script type="text/javascript">
+			var index = 0;
+			var delta;
+			function mousewheel() {
+				delta = null;
+				var mb = myBrowser();
+				if(mb == "FF"){
+					// 火狐浏览器
+					document.addEventListener("DOMMouseScroll",function(ev){
+						delta = ev.detail;
+					});
+				} else if(mb == "Chrome"){
+					// 谷歌浏览器
+					document.onmousewheel = function(ev){
+						ev = ev || window.event;
+						if(ev.wheelDelta < 0){
+							index += 20;
+							delta = 1;
+							console.log("下滚动");
+						} else {
+							index -= 20;
+							index = index <= 0 ? 0 : index;
+							delta = -1;
+							console.log("上滚动");
+						}
+						setScrollTop(index);
+						ev.preventDefault();
+						return delta;
+					}
+				}
+				return delta;
+			}
+			
+			var nk = mousewheel();
+			console.log(nk)
+			
+			function myBrowser() {
+				var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+				var isOpera = userAgent.indexOf("Opera") > -1;
+				if(isOpera) {
+					return "Opera"
+				}; //判断是否Opera浏览器
+				if(userAgent.indexOf("Firefox") > -1) {
+					return "FF";
+				} //判断是否Firefox浏览器
+				if(userAgent.indexOf("Chrome") > -1) {
+					return "Chrome";
+				}
+				if(userAgent.indexOf("Safari") > -1) {
+					return "Safari";
+				} //判断是否Safari浏览器
+				if(userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
+					return "IE";
+				}; //判断是否IE浏览器
+			}
+			
+			function setScrollTop(value) {
+				document.body.scrollTop = document.documentElement.scrollTop = value;
+			}
+		</script>
+	</body>
+
+</html>

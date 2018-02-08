@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>滑动手势</title>
+	<style type="text/css">
+		#box {
+			width: 200px;
+			height: 200px;
+			background-color: lightpink;
+			/*position: absolute;*/
+			transition: 1s;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">box</div>
+	<script type="text/javascript">
+		var x = 0, y = 0;
+		
+		box.addEventListener("touchstart",function(ev){
+			// 拿到按下的位置
+			var touch1 = ev.targetTouches[0];
+			// 位置
+			x = touch1.clientX;
+			y = touch1.clientY;
+			
+			
+			ev.preventDefault();
+		});
+		
+		box.addEventListener("touchmove",function(ev){
+			var touch1 = ev.targetTouches[0];
+			var endX = touch1.pageX;
+			var endY = touch1.pageY;
+			// 右  10是手指抖动的范围
+			if(endX - x > 10 && Math.abs(endY - y) < 10){
+				console.log("move...");
+				box.style.transform = "translateX(100px)";
+			} 
+			// 左
+			else if(endX - x < -10 && Math.abs(endY - y) < 10){
+				box.style.transform = "translateX(-100px)";
+			}
+		});
+	</script>
+</body>
+</html>

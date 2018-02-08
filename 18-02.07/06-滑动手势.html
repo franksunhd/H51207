@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>滑动手势</title>
+		<style type="text/css">
+			#box {
+				width: 200px;
+				height: 200px;
+				background-color: lightpink;
+				/*position: absolute;*/
+				transition: 1s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">box</div>
+
+		<script src="touch.js"></script>
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			touch.on("body #box", "swipeup", function(ev) {
+				box.style.transform = "translateY(0px)";
+			});
+			touch.on("body #box", "swipedown", function(ev) {
+				box.style.transform = "translateY(300px)";
+			});
+			touch.on("body #box", "swiperight", function(ev) {
+				box.style.transform = "translateX(100px)";
+			});
+			touch.on("body #box", "swipeleft", function(ev) {
+				box.style.transform = "translateX(0px)";
+			});
+
+			var angle = 0;
+			touch.on('#box', 'touchstart', function(ev) {
+				ev.startRotate();
+				ev.preventDefault();
+			});
+			touch.on('#box', 'rotate', function(ev) {
+				var totalAngle = angle + ev.rotation;
+				if(ev.fingerStatus === 'end') { //这一句很重要
+					angle = angle + ev.rotation;
+				}
+				this.style.webkitTransform = 'rotate(' + totalAngle + 'deg)';
+			});
+		</script>
+	</body>
+
+</html>

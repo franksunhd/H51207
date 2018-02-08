@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>移动端鼠标滚轮事件</title>
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				background-color: hotpink;
+			}
+			
+			html,body {
+				height: 2000px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">box</div>
+		<script type="text/javascript">
+			var index = 0;
+			// 不兼容火狐
+			document.onmousewheel = function(ev){
+				ev = ev || window.event;
+				
+				/*
+				 * wheelDelta:
+				 * 正数: 向上滚动
+				 * 负数: 向下滚动
+				 */
+				if(ev.wheelDelta < 0){
+					index += 20;
+					console.log("下滚动");
+				} else {
+					index -= 20;
+					index = index <= 0 ? 0 : index;
+					console.log("上滚动");
+				}
+				setScrollTop(index);
+				ev.preventDefault();
+			};
+			
+			function setScrollTop(value) {
+				document.body.scrollTop = document.documentElement.scrollTop = value;
+			}
+			
+			/*
+			 * 火狐特有滚轮事件
+			 */
+			document.addEventListener("DOMMouseScroll",function(ev){
+//				console.log("火狐特有...");
+				console.log(ev);  // 火狐没有 ev.wheelDelta 属性
+				
+				/*
+				 * ev.detail
+				 * -1 代表:向上
+				 * 1 代表:向下
+				 */
+				console.log(ev.detail);
+				
+				/*
+				 * 作业:
+				 * 判断浏览器
+				 */
+				
+//				box.mousewheel(function(ev,delta){
+//					
+//				});
+			});
+		</script>
+	</body>
+</html>
