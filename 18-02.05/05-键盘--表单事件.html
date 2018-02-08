@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>键盘--表单事件</title>
+		<style type="text/css">
+			#username {
+				outline: none;
+			}
+			
+			input:-webkit-autofill {
+				-webkit-box-shadow: 0px 0px 0px 100px white inset;
+				border:1px solid #ccc !important;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" name="username" id="username"/>
+		<input type="text" name="username" id="username1"/>
+		
+		<script type="text/javascript">
+			var username = document.getElementById("username");
+			var username1 = document.getElementById("username1");
+			var box = document.getElementById("box");
+			username.onfocus = function(){
+				console.log("获得焦点");
+			}
+			username.onblur = function(){
+				console.log("失去焦点");
+			}
+			username.onkeydown = function(){
+				console.log("键盘按下.");
+			}
+			
+			username.onkeypress = function(){
+				console.log("按压....");
+				console.log(this.value);  // 第一次执行 值 为空
+			}
+			
+			username.onkeyup = function(){
+				if(this.value.length >= 10){
+					alert("超过十个");
+				}
+				console.log("键盘抬起....");
+			}
+			// 输入框改变时调用,输一次调一次
+			username1.oninput = function(){
+//				console.log("input:" + this.value)
+			}
+			//  输入框内容发生改变,并且失去焦点时调用
+			username1.onchange = function(){
+				console.log("input --:" + this.value);
+			}
+			
+			// 选择的时候:
+			username1.onselect = function(){
+				console.log("开始选择:" + this.value);
+			}
+			
+			// 拷贝的时候
+			username1.oncopy = function(){
+				console.log("开始拷贝");
+			}
+			
+			// 粘贴的时候
+			username1.onpaste = function(){
+				console.log("开始粘贴");
+			}
+			
+			/*
+			 * 键盘事件可以使用 document 进行监听
+			 *  document,body,documentElement 都可以
+			 */
+			document.body.onkeyup = function(){
+				console.log("文档:键盘弹起");
+			}
+		</script>
+	</body>
+</html>

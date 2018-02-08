@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			div {
+				padding: 100px;
+			}
+			
+			#box1 {background-color: royalblue;}
+			#box2 {background-color: burlywood;}
+			#box3 {background-color: greenyellow;}
+		</style>
+	</head>
+	<body>
+		<div id="box1">box1
+			<div id="box2">box2
+				<div id="box3">box3</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// 从上到下
+			window.onclick = function(){console.log("window");}
+			document.onclick = function(){console.log("html");}
+			document.body.onclick = function(){console.log("body");}
+			box1.onclick = function(){console.log("box1");}
+			box2.onclick = function(){console.log("box2");}
+			box3.onclick = function(){console.log("box3");}
+			
+			/*
+			 * 事件冒泡:
+			 * 1.通过 onclick 方式添加的事件都是冒泡事件
+			 * (onmouseenter,leave不冒泡)
+			 * 2.通过监听方式绑定的事件,如果参数3默认(false)也是冒泡事件
+			 * 
+			 * 冒泡的开始:从被点击的元素开始,然后会继续往父元素上冒泡->body->html->window->丢弃
+			 * 冒泡过程中:只要元素绑定了单击事件,都会被执行.
+			 */
+		</script>
+	</body>
+</html>

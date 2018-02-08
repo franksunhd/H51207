@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<fieldset>
+			<legend>表单submit事件</legend>
+			<form id="fm" method="get">
+				<input type="text" name="user" id="username" placeholder="请输入用户名"/>
+				<br /><br />
+				<input type="submit" value="提交"/>
+			</form>
+			
+		</fieldset>
+		<script type="text/javascript">
+			var fm = document.getElementById("fm");
+			// onsubmit:绑定在 form 上
+			fm.onsubmit = function(){
+				// alert("触发");
+				if(username.value != "浪哥"){
+					alert("用户名不对");
+					return false;  // 阻止默认事件
+				}
+			}
+		</script>
+	</body>
+</html>

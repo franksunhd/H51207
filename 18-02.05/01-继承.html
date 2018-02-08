@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>继承</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 * 继承:让子类拥有父类的属性和方法
+			 */
+			
+			// 父类:父构造函数
+			function Animal(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			
+			Animal.prototype.run = function () {
+				console.log(this.name + "在奔跑!");
+			};
+			
+			// 子类:
+			function Dog(type,name,age){
+				// 子类扩展的属性
+				this.type = type;
+				// 继承父类
+				Animal.call(this,name,age);
+			}
+			
+			// 原型的继承:原型赋值
+			Dog.prototype = Animal.prototype;
+			
+			// 子类的扩展
+			Dog.prototype.wang = function () {
+				console.log(this.age + "岁的" + this.type + this.name + "在汪汪叫!");
+			}
+			
+			// 通过子类实例化对象,子类不能实例化
+			var dog = new Dog("哈士奇","小巴",5);
+			dog.wang(); // 5岁的哈士奇小巴在汪汪叫!
+			dog.run();
+			console.log(Dog.prototype);
+			Dog.prototype.constructor = Dog;
+			
+			var dog1 = new Dog("泰迪","小马",3);
+			dog1.wang();  // 3岁的泰迪小马在汪汪叫!
+			dog1.run();
+			
+			console.log("----------Pig----------");
+			function Pig(name,age){
+				Animal.apply(this,arguments);
+			};
+			// 继承
+			Pig.prototype = Animal.prototype;
+			// 扩展
+			Pig.prototype.sleep = function(){
+				console.log(this.name + "在睡觉!");			
+			}
+			var pig = new Pig("小花",5);
+			pig.sleep();
+			pig.run();
+			
+			/*
+			 * 问题:每个子类都共享一个父类的原型;通过任意一个子类修改原型,
+			 * 其他子类都会受到影响.
+			 */
+			pig.wang();
+		</script>
+	</body>
+</html>

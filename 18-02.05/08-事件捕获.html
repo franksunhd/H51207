@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			div {
+				padding: 100px;
+			}
+			
+			#box1 {background-color: royalblue;}
+			#box2 {background-color: burlywood;}
+			#box3 {background-color: greenyellow;}
+		</style>
+	</head>
+	<body>
+		<div id="box1">box1
+			<div id="box2">box2
+				<div id="box3">box3</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			
+			box1.onclick = function(){
+				console.log("冒泡: box1");
+			}
+			
+			box2.onclick = function(){
+				console.log("冒泡: box2");
+			}
+			
+			box3.onclick = function(){
+				console.log("冒泡: box3");
+			}
+			
+			window.onclick = function(){
+				console.log("冒泡: window");
+			}
+			/*
+			 * 捕获型事件:只能通过监听的方式 参数3是 true
+			 * 
+			 * 捕获是从外向内执行,window开始->html->...->事件源结束
+			 * 这个过程中,谁绑定了捕获型事件,就会被执行
+			 * 1.捕获型事件,只在捕获的过程中执行
+			 * 
+			 * 捕获完成后(window->点击的元素):接着从该元素冒泡出去
+			 * 
+			 * 2.冒泡型事件:只在冒泡过程中执行
+			 * 
+			 * 冒泡和捕获同时具备,先执行捕获,再执行冒泡,如果某个元素同时具备冒泡和捕获,从整体来看,先执行捕获,在执行冒泡,当执行到当前同时具备捕获和冒泡的元素上时,当前元素先执行冒泡,在执行捕获,然后从该元素冒泡出去.
+			 */
+			
+			box1.addEventListener("click",function(){
+				console.log("捕获: box1");
+			},true);
+			
+			box2.addEventListener("click",function(){
+				console.log("捕获: box2");
+			},true);
+			box3.addEventListener("click",function(){
+				console.log("捕获: box3");
+			},true);
+			window.addEventListener("click",function(){
+				console.log("捕获: window");
+			},true);
+		</script>
+	</body>
+</html>

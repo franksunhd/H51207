@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>鼠标事件</title>
+		<style type="text/css">
+			#box,#box2 {
+				width: 100px;
+				height: 100px;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">box</div>
+		<hr />
+		<div id="box2">box2</div>
+		<script type="text/javascript">
+			// 1.单击事件 down->up->click
+			var box = document.getElementById("box");
+			var box1 = document.getElementById("box2");
+			box.onclick = function(){
+				console.log("单击...");
+			}
+			// 鼠标按下
+			box.onmousedown = function(){
+				console.log("鼠标按下");
+			}
+			// 鼠标抬起
+			box.onmouseup = function(){
+				console.log("鼠标抬起");
+			}
+			
+			// 鼠标移入
+			box.onmouseover = function(){
+				console.log("鼠标移入over");
+			}
+			// onmouseover 和 onmouseenter 的区别是后者不支持 冒泡
+			box.onmouseenter = function(){
+				console.log("鼠标移入enter")
+			}
+			
+			// 鼠标移除
+			box.onmouseout = function(){
+				console.log("鼠标移出out");
+			}			
+			box.onmouseleave = function(){
+				console.log("鼠标移出leave");
+			}
+			
+			// 鼠标移动
+			var index = 0;
+			box.onmousemove = function(){
+				index++;
+				console.log("鼠标移动" + index + "次");
+			}
+			
+			// 鼠标右键
+			box1.oncontextmenu = function(event){
+				console.log("鼠标右键");
+				event.preventDefault(); // 阻止浏览器默认的行为
+				return false; // 阻止默认
+			}
+			
+			// 取消文本被选中
+			box1.onselectstart = function(){
+				return false;  // 阻止拉取选中文本
+			}
+			
+			// 鼠标双击
+			box1.ondblclick = function(){
+				console.log("鼠标双击");
+			}
+			
+			// 2. 取消绑定事件 event 事件对象
+			document.addEventListener("contextmenu",function(event){
+				event.preventDefault();
+				console.log(event);
+				console.log("文档--右键");
+				return false;  // 监听中无法阻止默认事件
+			});
+		</script>
+	</body>
+</html>
