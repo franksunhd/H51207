@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>本地缓存</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+		 * 本地持久存储:
+		 * HTML5新方法:只有标准浏览器支持
+		 * 存储在了浏览器本地目录,不同浏览器不能共享 localStorage的数据
+		 * 
+		 * 存储生命周期很长：需要手动清除
+		 * 可以在同一个网站下实现页面之间的数据交互（页面之间是共享的，可以相互修改的)
+		 * 同一个网站的不同页面之间的通信，也可以使用 location.search
+		 */
+		console.log(localStorage);
+		
+		localStorage.name = "孙素";
+		
+		console.log(localStorage.name);  // 孙素
+		
+		localStorage.setItem("key0", 0);
+    		localStorage.setItem("key1", 1);
+    		localStorage.setItem("key2", 2);
+		console.log(localStorage.key0);  // 0
+		
+		console.log(localStorage.age);
+		
+		localStorage.age = 20;
+		// 任意类型存储到 localStorage 都会被转换为 字符串类型
+		localStorage.hobby = ["抽烟","喝酒","烫头"];
+		console.log(localStorage.hobby);  // 抽烟,喝酒,烫头
+		
+		// 
+		
+		
+		localStorage.run = function run(){
+			document.write("<h3>run..</h3>");
+		}
+		// 调用要出错
+		// localStorage.run();
+		console.log(localStorage.run);
+		// 'ab' 被认作是 字符串常量
+		eval("(" + localStorage.run + ")('ab')");
+		
+		/*
+		 * eval():可以解析字符串并执行字符串
+		 */
+		var Eval = eval("(1+2)*3");
+		console.log(Eval);  // 9
+		
+		var a = 10, b = 20;
+		var res = eval("a+b");
+		console.log(res);  // 30
+		
+		var Alt = eval("console.log('eval')");
+		console.log(Alt);
+	</script>
+</body>
+</html>

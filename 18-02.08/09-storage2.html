@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>本地缓存-取</title>
+	</head>
+
+	<body>
+		<ol id="list"></ol>
+		<script type="text/javascript">
+			var newArr = localStorage.users === undefined ? [] : localStorage.users.split(",");
+			console.log(newArr);
+			for(var i = 0, len = newArr.length; i < len; i++) {
+				var lis = document.createElement("li");
+				lis.innerText = newArr[i];
+				list.appendChild(lis);
+			}
+		</script>
+	</body>
+</html>

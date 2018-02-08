@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>本地缓存-存</title>
+	</head>
+	<body>
+		<div id="box">
+			<input type="text" name="user" id="user" value="蓝海"/>
+			<button onclick="save()">保存</button>
+		</div>
+		<p>
+			<a href="09-storage2.html" id="show" target="_blank">展示</a>
+		</p>
+		<script type="text/javascript">
+			var users = null;
+			// 旧的数据读出来
+			var oldValue = localStorage.users;
+			if(oldValue) {
+				users = oldValue.split(",");
+			} else {
+				// undefined
+				users = [];
+			}
+			function save(){
+				users.push(user.value);
+				// 数组存在本地
+				localStorage.users = users;
+			}
+		</script>
+	</body>
+</html>
