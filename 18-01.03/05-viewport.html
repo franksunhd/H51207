@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>viewport</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1" >
+	<!--
+		viewport= device-width:设置 viewport 的宽度==自己手机屏幕的宽度(网页的1px 大小在手机上正常显示)
+		initial-scale=1:初始的缩放比例,给1是原始大小
+		minimum-scale=1,maximum-scale=1,最大最小缩放比例
+		user-scalable=no:是否支持手指缩放
+	-->
+	<style type="text/css">
+		#box {
+			width: 1000px;
+			height: 300px;
+			background: linear-gradient(to right,red,pink,blue,purple,green);
+		}
+		
+		@media only screen and (min-width:700px ) {
+			/* min-width:是相对于 viewport 的 */
+		}
+	</style>
+</head>
+<body>
+	<!--
+		什么是 viewport? 
+		
+	虚拟窗口:
+	 -->
+	 <div id="box">
+	 </div>
+	 <h1>标题1</h1>
+	 <h2>标题2</h2>
+</body>
+</html>
