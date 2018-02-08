@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>碰撞检测</title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			body{height: 2000px;}
+			#box,#box1{
+				width: 100px;
+				height: 100px;
+				background-color: palevioletred;
+				position: absolute;
+				left: 300px;
+				top: 200px;
+			}
+			
+			#box1 {
+				left: 100px;
+				top: 100px;
+				background-color: goldenrod;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="box1"></div>
+		<script src="drag.js"></script>
+		<script type="text/javascript">
+			drag(box,function(event){
+				// 移动过程回调
+				var ifCrash = crash(box,box1);
+				if(ifCrash) {
+					box1.style.backgroundColor = "red";
+				} else {
+					box1.style.backgroundColor = "goldenrod";
+				}
+			});
+			
+			drag(box1,function(){
+				// 移动过程回调
+				var ifCrash = crash(box,box1);
+				if(ifCrash) {
+					box1.style.backgroundColor = "red";
+				} else {
+					box1.style.backgroundColor = "goldenrod";
+				}
+			});
+			
+			function crash(ele1,ele2){
+				// 元素1
+				var L1 = ele1.offsetLeft;
+				var T1 = ele1.offsetTop;
+				var R1 = L1 + ele1.offsetWidth;
+				var B1 = T1 + ele1.offsetHeight;
+				// 元素2
+				var L2 = ele2.offsetLeft;
+				var T2 = ele2.offsetTop;
+				var R2 = L2 + ele2.offsetWidth;
+				var B2 = T2 + ele2.offsetHeight;
+				
+				// 所有碰不到
+				var notCrash = R1 < L2 || B1 < T2 || R2 < L1 || B2 < T1;
+				if (notCrash) {
+					// 没有碰到
+					return false;
+				} else {
+					// 碰到了
+					return true;
+				}
+			}
+		</script>
+	</body>
+</html>

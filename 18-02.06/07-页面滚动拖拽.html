@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>拖拽元素</title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			body{
+				height: 2000px;
+			}
+			#box,#box1{
+				width: 100px;
+				height: 100px;
+				background-color: palevioletred;
+				position: absolute;
+				left: 300px;
+				top: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="box1"></div>
+		<script src="drag.js"></script>
+		<script type="text/javascript">
+			drag(box);
+			drag(box1);
+		</script>
+	</body>
+</html>

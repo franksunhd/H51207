@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>event对象坐标点</title>
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+			
+			#box span {
+				background-color: greenyellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<span>子元素</span>
+		</div>
+		<script type="text/javascript">
+			box.onclick = function(event){
+				event = event || window.event;
+				console.log(event);  // event 事件对象
+				
+				/*
+				 * clientX/Y:鼠标点参照浏览器页面左上角的间距
+				 * pageX/Y:鼠标点参照文档左上角的间距,低版本的 IE 不兼容
+				 * 
+				 * 上述两者关系:页面不滚动,两者相等
+				 * pageY = clientY + 滚上去的距离
+				 * 
+				 * 高版本的浏览器的一个属性
+				 * offsetX/Y:鼠标点参照点击元素本身左上角的间距
+				 * offsetY = pageY - 元素距离文档顶部的距离
+				 */
+				
+				// 浏览器的,不考虑文档的滚动
+				console.log("clientX",event.clientX);
+				console.log("clientY",event.clientY);
+				// 文档的,考虑到了文档的滚动
+				console.log("pageX",event.pageX);
+				console.log("pageY",event.pageY);
+				// 元素的,
+				console.log("offsetX",event.offsetX);
+				console.log("offsetY",event.offsetY);
+			}
+		</script>
+	</body>
+</html>

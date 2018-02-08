@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>event对象</title>
+		<style type="text/css">
+			#box {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+			
+			#box span {
+				background-color: greenyellow;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<span>子元素</span>
+		</div>
+		<hr />
+		<input type="text" name="text" id="tx"/>
+		<ul id="list"></ul>
+		<script type="text/javascript">
+			box.onclick = function(event){
+				event = event || window.event;
+				console.log(event);  // event 事件对象
+				
+				/*
+				 * type: 事件类型
+				 */
+				console.log("type:",event.type);  // click
+				
+				/*
+				 * target:事件的来源(点击的是谁)
+				 * currentTarget:绑定事件的元素(特殊性:直接在事件对象中查看是 null)
+				 */
+				console.log(event.target);
+				console.log(event.currentTarget);
+				// IE 下,是否阻止冒泡,默认是 false 
+				console.log("是否阻止冒泡?",event.cancelBubble);
+				// 标准下阻止冒泡
+				event.stopPropagation();
+				// 阻止默认事件
+				event.preventDefault();
+				// 事件类型是否是冒泡
+				console.log("冒泡吗?",event.bubbles);
+				// 判断是鼠标左键还是右键
+				console.log("左键是:",event.button);
+				// 监听是否按住 ALT 键 ,shift 键 ,ctrl 键
+				console.log("按住ALT键了吗?",event.altKey);
+				console.log("按住Ctrl键了吗?",event.ctrlKey);
+				console.log("按住Shift键了吗?",event.shiftKey);
+			}
+			
+			/*
+			 * 键盘:
+			 */
+		 	var tx = document.getElementById("tx");
+			tx.onkeydown = function(event){
+				event = event || window.event;
+				// 判断是否点击回车键
+				console.log(event.keyCode);
+				
+				// 按住Shift 和 Enter键 才确定 
+				if(event.keyCode == 13 && event.shiftKey == true){
+					var lis = document.createElement("li");
+					lis.innerText = this.value;
+					list.appendChild(lis);
+					this.value = "";
+				}
+			}
+		</script>
+	</body>
+</html>

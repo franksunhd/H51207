@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>优化循环绑定事件</title>
+	<style media="screen">
+		#box {
+			width: 900px;
+			height: 900px;
+			border: 5px solid blue;
+			margin: auto;
+		}
+
+		#box .cell {
+			width: 30px;
+			height: 30px;
+			box-sizing: border-box;
+			border: 1px solid black;
+			float: left;
+			font-size: 10px;
+			text-align: center;
+			line-height: 30px;
+			cursor: pointer;
+			border-width: 0px 1px 1px 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		console.time("浪哥")
+		var content = "";
+		for (var i = 0; i < 900; i++) {
+			content += "<div class='cell i"+ i +"'>" + i + "</div>";
+		}
+		box.innerHTML = content;
+		console.timeEnd("浪哥");
+		
+		// 
+		box.onclick = function(event){
+			event = event || window.event;
+			if(event.target == box)return;
+			event.target.style.backgroundColor = "red";
+			
+			switch(event.target.innerText){
+				case "0":
+					console.log("点击的是第一个");
+					break;
+				case "1":
+					console.log("点击的是第二个");
+					break;
+				default:
+					break;
+			}
+		}
+		
+		box.onselectstart = function(){
+ 		   return false;  // 阻止拉取选中文本
+		}
+	</script>
+</body>
+</html>

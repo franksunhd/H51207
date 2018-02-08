@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>拖拽元素</title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			html,body{
+				width: 100%;
+				overflow: hidden;
+				height: 100%;
+			}
+			#box{
+				width: 100px;
+				height: 100px;
+				background-color: palevioletred;
+				position: absolute;
+				left: 300px;
+				top: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		
+		<script type="text/javascript">
+			box.onmousedown =  function(event){
+				event = event || window.event;
+				// 获取鼠标在元素内的坐标
+				var disX = event.offsetX;
+				var disY = event.offsetY;
+				/* // 优化1
+				var disX = event.clientX - this.offsetLeft;
+				var disY = event.clientY - this.offsetTop;
+				*/
+				// 绑定移动
+				document.onmousemove = function(event){
+					event = event || window.event;
+					var leftV = event.clientX - disX;
+					var topV = event.clientY - disY;
+					box.style.left = leftV + "px";
+					box.style.top = topV + "px";
+				}
+				
+				// 抬起
+				document.onmouseup = function(){
+					this.onmouseup = this.onmousemove = null;
+				}
+			}
+		</script>
+	</body>
+</html>

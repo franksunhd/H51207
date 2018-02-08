@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>阻止冒泡</title>
+	</head>
+	<body>
+		<div id="box">
+			<button id="btn">展开</button>
+			<ul id="list" style="display: none;">
+				<li>抽烟</li>
+				<li>喝酒</li>
+				<li>烫头</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			console.log(window.event);  // undefined
+			
+			btn.onclick = function(ev){
+				list.style.display = "block";
+				console.log("btn");
+				
+				/*
+				 * 谷歌:两种方式都支持:
+				 * 火狐:只支持事件对象以参数形式获取,不支持全局 event
+				 * IE: 只能通过全局 event, 不能通过事件对象获取
+				 */
+				
+				// 兼容性写法:
+				ev = ev || window.event;
+				console.log(ev);
+				console.log(window.event);
+				// 是否取消冒泡  执行完,直接丢弃,不再冒泡
+				// 1.IE 特有,但是现在新的浏览器都支持
+				ev.cancelBubble = true;
+				// 2.标准写法, IE 6 7 8不支持
+				ev.stopPropagation();
+				
+				
+				// 兼容性写法
+				if(event.stopPropagation){
+					// 2.标准写法, IE 6 7 8不支持
+					event.stopPropagation();
+				} else {
+					// 1.IE 特有,但是现在新的浏览器都支持
+					event.cancelBubble = true;
+				}
+			}
+			
+			document.onclick = function(event){
+				console.log("window");
+				list.style.display = "none";
+			}
+		</script>
+	</body>
+</html>
