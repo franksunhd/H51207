@@ -1,0 +1,316 @@
+@charset "utf-8";
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+	color: #A8A8A8;
+}
+
+ul li {
+	list-style-type: none;
+}
+
+.clearfix::after,
+.clearfix::before {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.clearfix {
+	zoom:1;
+}
+
+.w {
+	width: 1127px;
+	margin: 0px auto;
+}
+
+.head {
+	height: 67px;
+	background-color: #1B1B1B;
+	color: #A8A8A8;
+	z-index: 10;
+	box-shadow: 0px 1px 2px #999999;
+}
+
+.fixed {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+.head-logo {
+	display: inline-block;
+	height: 100%
+	float: left;
+}
+
+.head-logo img {
+	margin-top: 16px;
+}
+
+.head-nav {
+	height: 67px;
+	line-height: 67px;
+	float: right;
+}
+
+.head-nav > div{
+	height: 100%;
+	margin-right: 30px;
+	float: left;
+}
+
+.head-nav > div a {
+	border-radius: 8px;
+	padding: 5px 10px;
+}
+
+.nav-active,.head-nav > div a:hover {
+	border: 1px solid rgb(123, 123, 123);
+	color: white;
+}
+
+.j-content {
+	width: 980px;
+	margin: 0 auto;
+	margin-bottom: 1em;
+}
+
+.j_ourservice_list {
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	border-bottom: 1px solid #e1e1e1;
+	display: block;
+}
+
+.j_ourservice_list_img {
+	position: relative;
+	top: 0px;
+	max-width: 667px;
+	max-height: 212px;
+	width: 60%;
+	float: left;
+	overflow: hidden;
+}
+
+.j_ourservice_list_img a {
+	display: block;
+	position: relative;
+	width: 100%;
+	float: left;
+	height: 100%;
+	overflow: hidden;
+}
+
+.j_ourservice_list_img a img {
+	height: 100%;
+	width: 100%;
+	float: left;
+}
+
+.j_ourservice_list_img a img:first-child {
+	position: absolute;
+	transition: all .35s;
+	opacity: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	float: left;
+}
+
+.j_ourservice_list_column {
+	background: rgb(176, 176, 176) none repeat scroll 0% 0%;
+	width: 2em;
+	float: left;
+	overflow: hidden;
+	display: block;
+}
+
+.j_ourservice_list_text {
+	width: 34%;
+	padding-left: 2%;
+	overflow: hidden;
+	float: left;
+	color: rgb(176, 176, 176);
+}
+
+.j_ourservice_list_text h6 {
+	color: #000;
+	font-size: 1.875em;
+	font-weight: bold;
+	font-family: arial;
+	padding-top: 0.5em;
+	text-align: left;
+	word-break: break-all;
+}
+
+.j_ourservice_list_text.right {
+	padding-right: 2%;
+	padding-left: 0px;
+}
+
+.j_ourservice_list_text.right p,
+.j_ourservice_list_text.right h6 {
+	padding-right: 3%;
+	text-align: right;
+}
+
+.j_ourservice_list_text p {
+	text-align: left;
+	color: #000;
+	font-family: "微软雅黑";
+	font-size: 0.9375em;
+	line-height: 1.8em;
+	padding-top: 0.5em;
+}
+
+.j_ourservice_list:hover .j_ourservice_list_column {
+	background-color: #CFDB00;
+}
+
+.j_ourservice_list:hover .j_ourservice_list_img > a > img:first-child {
+	opacity: 0;
+}
+
+.j-share {
+	text-align: center;
+	margin-top: 45px;
+	width: 100%;
+}
+
+#mail {
+	width: 25px;
+	height: 19px;
+}
+
+#mail_h {
+	position: absolute;
+	width: 25px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	opacity: 0;
+}
+
+.j-share > a:hover #mail_h {
+	opacity: 1;
+}
+
+.share-other {
+	margin-top: 12px;
+}
+
+.share-wrap {
+	width: 137px;
+	min-width: 137px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.share-wrap > a {
+	width: 25%;
+	text-align: center;
+	float: left;
+	position: relative;
+}
+
+.share-wrap > a:hover img:last-child {
+	opacity: 0;
+}
+
+.share-wrap > a > img {
+	width: 25px;
+}
+
+.share-wrap > a > img:last-child {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+.j-footer {
+	width: 100%;
+    height: 4em;
+    text-align: center;
+    line-height: 4em;
+    overflow: hidden;
+}
+
+.j-footer span {
+	font-size:10px;
+	color: #808080;
+}
+
+.aboutwrap {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.about-wrap {
+	padding-bottom: 2em;
+	background: #e3e3e3 url("../img/world_map.png") no-repeat center center;
+}
+
+.j_cos {
+	text-align: center;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.jos-center {
+	width: 1127px;
+	margin: 0 auto;
+	padding: 0px 0 0;
+}
+
+.j_content_text {
+	width: 490px;
+	text-align: left;
+	padding-top: 100px;
+	padding-left: 10px;
+}
+
+.j_content_text .about_title {
+	font-size: 1.8em;
+	margin-bottom: 20px;
+}
+
+.j_content_text .about_title_p1 {
+	font-size: medium;
+	font-family: arial;
+	font-weight: lighter;
+	color: rgb(0,0,0);
+	padding-bottom: 2em;
+	padding-top: 0px;
+	padding-left: 0px;
+	margin: 0px 0px 0px 80px;
+	line-height: 2em;
+	padding-right: 0px;
+}
+
+.j_content_text .about_title_p2 {
+	margin: 0px;
+}
+
+.share_logo_wrap {
+	margin: 0 auto;
+}
+
+.share_logo_wrap ul li {
+	float: left;
+    height: 75px;
+    margin-bottom: 10px;
+    text-align: left;
+    margin-right: 59px;
+}
