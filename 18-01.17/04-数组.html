@@ -6,64 +6,64 @@
 </head>
 <body>
 	<script type="text/javascript">
-			var hello = "hello";
-			var arr1 = ["name",hello,120];
-      		// 打印数组及其类型  对象类型 object
-			console.log(arr1, typeof(arr1));
-      		// 打印数组长度
-			console.log(arr1.length);
+		var hello = "hello";
+		var arr1 = ["name",hello,120];
+  		// 打印数组及其类型  对象类型 object
+		console.log(arr1, typeof(arr1));
+  		// 打印数组长度
+		console.log(arr1.length);
 
-      		// 给 arr1 对象自定义一个属性.
-			arr1.hello = "一个数组";
-			console.log(arr1.hello);
+  		// 给 arr1 对象自定义一个属性.
+		arr1.hello = "一个数组";
+		console.log(arr1.hello);
 
-      		// 基本类型 不能自定义属性 ! ! !
-			var num = 10 , apple = "pear";
-			num.name = "一个数字";
-			apple.name = "苹果梨";
-			console.log(num.name,apple.name);
+  		// 基本类型 不能自定义属性 ! ! !
+		var num = 10 , apple = "pear";
+		num.name = "一个数字";
+		apple.name = "苹果梨";
+		console.log(num.name,apple.name);
 
 
-			var arr2 = new Array();
+		var arr2 = new Array();
 
-			arr2[0] = "name";
-			console.log("arr2[0] = " , arr2[0]);
-      		// 越界访问
-			console.log("arr2[1000] = " , arr2[1000]);
+		arr2[0] = "name";
+		console.log("arr2[0] = " , arr2[0]);
+  		// 越界访问
+		console.log("arr2[1000] = " , arr2[1000]);
 
-			arr2[1] = "age";
-			console.log(arr2);
+		arr2[1] = "age";
+		console.log(arr2);
 
-			for (var i = 0 , len = arr1.length; i < len; i++) {
-				console.log(arr1[i]);
+		for (var i = 0 , len = arr1.length; i < len; i++) {
+			console.log(arr1[i]);
+		}
+
+      	// 将0-50存入数组
+      	var num = [];
+			for (var i = 0; i <= 50; i++) {
+				num[i] = i;
+			}
+      	// 打印数组
+			console.log(num);
+
+  		// 找出最大值对应的下标
+  		var nums = [1000,30,340,20,39];
+		var max = nums[0];
+		var min = nums[0];
+		var minIndex,maxIndex = 0;
+		for (var i = 0; i < nums.length; i++) {
+			if (max < nums[i]) {
+				max = nums[i];
+				maxIndex = i;
 			}
 
-	      	// 将0-50存入数组
-	      	var num = [];
-				for (var i = 0; i <= 50; i++) {
-					num[i] = i;
-				}
-	      	// 打印数组
-				console.log(num);
-
-      		// 找出最大值对应的下标
-      		var nums = [1000,30,340,20,39];
-			var max = nums[0];
-			var min = nums[0];
-			var minIndex,maxIndex = 0;
-			for (var i = 0; i < nums.length; i++) {
-				if (max < nums[i]) {
-					max = nums[i];
-					maxIndex = i;
-				}
-
-				minIndex = nums[i] < min ? i : minIndex;
-				min = nums[i] < min ? nums[i] : min;
-			}
-			console.log(maxIndex);
-			console.log(max);
-			console.log(minIndex);
-			console.log(min);
+			minIndex = nums[i] < min ? i : minIndex;
+			min = nums[i] < min ? nums[i] : min;
+		}
+		console.log(maxIndex);
+		console.log(max);
+		console.log(minIndex);
+		console.log(min);
 	</script>
 </body>
 </html>

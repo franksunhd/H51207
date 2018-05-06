@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>过渡动画</title>
+		<style type="text/css">
+			/*进入和离开动画*/
+			.aa-enter,.aa-leave-to {
+				transition: all 1s ease-in-out;
+			}
+			/*过渡动画*/
+			.aa-enter-active,.aa-leave-active{
+				background: #f00;
+				transition: all 1s ease-in-out;
+			}
+			/*离开和进入动画*/
+			.aa-enter-to,.aa-leave{
+				background: #00f;
+				opacity: 0;
+				transform: translateX(500px);
+				transition: all 1s ease-in-out;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			过渡:
+			1.如果一些元素需要结合动画,则使用 transition 标签把相应的元素包裹起来
+			2.还要给动画起一个响亮的名字
+			3.设置动画
+			4.设置动画的标签名 tag="p"
+			
+			动画的使用场景:
+			1.v-if
+			2.v-show
+			3.路由
+		-->
+		<div id="app">
+			<child></child>
+		</div>
+	</body>
+</html>
+<template id="child">
+	<div>
+		<button @click="change()">点击切换</button>
+		<!-- name 值即为动画 class 的前缀名 -->
+		<transition-group name="aa">
+			<p v-show="bol" :key=1>两只蝴蝶鸣翠柳</p>
+			<p v-show="!bol" :key=2>一只老虎下山来</p>
+		</transition-group>
+	</div>
+</template>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var child = {
+		template:"#child",
+		data:function(){
+			return {
+				bol:true
+			}
+		},
+		methods:{
+			change(){
+				this.bol = !this.bol;
+			}
+		}
+	}
+	
+	var vm1 = new Vue({
+		el:"#app",
+		data:{},
+		methods:{},
+		components:{
+			child
+		}
+	});
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>插入</title>
+	<style media="screen">
+		div.d1 {
+			border: 3px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<p><strong>--内部插入参照目标--</strong></p>
+	</div>
+	<hr>
+	<div id="box1">
+		<p class="p1"><strong>--外部插入参照目标--</strong></p>
+	</div>
+	<hr>
+	<div id="box2">
+		<p class="p1"><strong>--包裹参照目标1(wrap)--</strong></p>
+		<p class="p1"><strong>--包裹参照目标2(wrap)--</strong></p>
+	</div>
+
+	<hr>
+	<div id="box3">
+		<p class="p1"><strong>--包裹参照目标1(wrapAll)--</strong></p>
+		<p class="p1"><strong>--包裹参照目标2(wrapAll)--</strong></p>
+	</div>
+	<hr>
+	<div id="box4">
+		<p class="p1"><strong>--包裹参照目标1(unwrap)--</strong></p>
+		<p class="p1"><strong>--包裹参照目标2(unwrap)--</strong></p>
+	</div>
+	<hr>
+	<div id="box5">
+		<p class="p1"><strong>--包裹参照目标1(unwrap)--</strong></p>
+		<p class="p1"><strong>--包裹参照目标2(unwrap)--</strong></p>
+	</div>
+	<hr>
+	<div id="box6">
+		<p class="p1"><strong>--包裹参照目标(clone)--</strong></p>
+	</div>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		// DOM操作:创建拼接
+
+		// 内部末尾
+		$("#box").append("<p>我是第一! -- append</p>");
+		$("<p>我是第二! -- appendTo</p>").appendTo("#box");
+
+		// 内部开头
+		$("#box").prepend("<p>我是第一! -- prepend</p>");
+		$("<p>我是第二! -- prependTo</p>").prependTo("#box");
+
+		// 外部开头
+		$("#box1 .p1").before("<p>我是第一! -- before</p>");
+		$("<p>我是第二! -- insertBefore</p>").insertBefore("#box1 .p1");
+
+		// 外部末尾
+		$("#box1 .p1").after("<p>我是第一! -- after</p>");
+		$("<p>我是第二! -- insertAfter</p>").insertAfter("#box1 .p1");
+
+		// 匹配元素各包裹一层
+		$("#box2 .p1").wrap("<div class='d1'></div>");
+
+		// 匹配元素全部包裹一层
+		$("#box3 .p1").wrapAll("<div class='d1'></div>");
+
+		// 移除匹配元素的父级包裹元素
+		$("#box4 .p1").unwrap();
+
+		// 给每个匹配元素的内层元素包裹一层
+		$("#box5 .p1").wrapInner("<div class='d1'></div>");
+
+		// empty() 没有参数,清空调用者
+		// remove() 删除调用者
+		// detach()
+
+		// clone() 深度拷贝
+		var p1 = $("#box6 .p1").clone();
+		console.log(p1);
+		$("#box6").append(p1);
+	</script>
+</body>
+</html>

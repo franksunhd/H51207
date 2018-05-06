@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas基础</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+		body {
+			background-color: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持canvas,太low了,赶快升级吧!
+	</canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		// 设置2d画板
+		var cxt = canvas.getContext("2d");
+
+		var draw = function (x,y) {
+			cxt.clearRect(0,0,cxt.width,cxt.height);
+
+			if (!x) {
+				x = 0;
+			}
+			if (!y) {
+				y = 0;
+			}
+			// 左侧半圆
+			cxt.beginPath();
+			cxt.fillStyle = "#000";
+			// cxt.arc(300,300,200,-1/2 *Math.PI,1/2 *Math.PI,true);
+			cxt.arc(0,0,200,-1/2 *Math.PI,1/2 *Math.PI,true);
+			cxt.fill();
+			cxt.closePath();
+
+			// 右侧半圆
+			cxt.beginPath();
+			cxt.fillStyle = "#fff";
+			// cxt.arc(300,300,200,1/2 *Math.PI,-1/2 *Math.PI,true);
+			cxt.arc(0,0,200,1/2 *Math.PI,-1/2 *Math.PI,true);
+			cxt.fill();
+			cxt.closePath();
+
+			// 上侧白圆
+			cxt.beginPath();
+			cxt.fillStyle = "#fff";
+			// cxt.arc(300,200,100,0,2 *Math.PI,true);
+			cxt.arc(0,-100,100,0,2 *Math.PI,true);
+			cxt.fill();
+			cxt.closePath();
+
+			// 上侧内部黑圆
+			cxt.beginPath();
+			cxt.fillStyle = "#000";
+			// cxt.arc(300,200,20,0,2 *Math.PI,true);
+			cxt.arc(0,-100,20,0,2 *Math.PI,true);
+			cxt.fill();
+			cxt.closePath();
+
+			// 下侧黑圆
+			cxt.beginPath();
+			cxt.fillStyle = "#000";
+			// cxt.arc(300,400,100,0,2 *Math.PI,true);
+			cxt.arc(0,100,100,0,2 *Math.PI,true);
+			cxt.fill();
+			cxt.closePath();
+
+			// 下侧内部白圆
+			cxt.beginPath();
+			cxt.fillStyle = "#fff";
+			// cxt.arc(300,400,20,0,2 *Math.PI,true);
+			cxt.arc(0,100,20,0,2 *Math.PI,true);
+			cxt.fill();
+			cxt.closePath();
+		}
+
+		var rotateAct = function(){
+			cxt.rotate((Math.PI/180)*32);
+			draw(0, 0);
+			play();
+		};
+		var play = function(){
+			setTimeout(rotateAct, 80);
+		};
+
+		cxt.translate(300, 300); //将原点移动到画布的中心
+		play();
+
+
+	</script>
+</body>
+</html>

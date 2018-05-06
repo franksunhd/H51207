@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>插槽</title>
+	</head>
+	<body>
+		<!--
+			使用 slot 可以更好地进行组件复用
+			显示组件标签里面的内容,
+		-->
+		<div id="app">
+			<h1>蜀道难</h1>
+			<child>
+				<p>一夫当关万夫莫开</p>	
+			</child>
+		</div>
+	</body>
+</html>
+<template id="child">
+	<div>
+		<slot>如果没有内容,则显示,默认显示</slot>
+	</div>
+</template>
+
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var child = {
+		template:'#child'
+	}
+	var vm1 = new Vue({
+		el:"#app",
+		data:{},
+		methods:{},
+		components:{
+			child
+		}
+	});
+</script>

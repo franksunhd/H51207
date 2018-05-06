@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas渐变</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持canvas,太low了,赶快升级吧!
+	</canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		// 设置2d画板
+		var cxt = canvas.getContext("2d");
+
+		// 保存之前的画布状态,包含画笔的状态
+		// cxt.save();
+
+		// 恢复距离它最近的 save 状态
+		// cxt.restore();
+		cxt.beginPath();
+		cxt.moveTo(0,0);
+		cxt.lineTo(200,200);
+		cxt.lineWidth = 5;
+		cxt.strokeStyle = "#0f0";
+		cxt.stroke();
+		cxt.closePath();
+
+		// 保存当前的画布状态
+		cxt.save();
+
+		cxt.beginPath();
+		cxt.moveTo(200,200);
+		cxt.lineTo(400,400);
+		cxt.strokeStyle = "#00f";
+		cxt.stroke();
+		cxt.closePath();
+
+		// 恢复保存的画布状态
+		cxt.restore();
+
+		cxt.beginPath();
+		cxt.moveTo(400,400);
+		cxt.lineTo(600,600);
+		cxt.stroke();
+		cxt.closePath();
+	</script>
+</body>
+</html>

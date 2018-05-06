@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内置函数</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// reg.test(str) 返回布尔值
+		var str = "a00c annc a_c";
+		var reg = /\ba\w*c\b/g;
+
+		// reg.exec(str)
+		var value = reg.exec(str);
+		console.log(value);
+		// 返回数组:包含匹配到的字符串和下标
+		// 匹配不到返回: null
+		console.log(value[0],value.index);
+
+		// 特点: 每次查找都是在上一次的基础上进行查找,一直到最后返回 null
+		value = reg.exec(str);
+		console.log(value);
+
+		// 每次都会创建一个正则对象,默认从开始位置匹配
+		value = /\ba\w*c\b/g.exec(str);
+		console.log(value);
+	</script>
+</body>
+</html>

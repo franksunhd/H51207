@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>cookie</title>
+</head>
+<body>
+	<script type="text/javascript">
+        var NowDate = new Date("2018-02-26 17:49:00");
+        // toGMTString 转换为格林尼治时间
+        console.log(NowDate.toGMTString());
+        document.cookie = "weight = 65Kg; expires = " + NowDate.toGMTString();
+	</script>
+</body>
+</html>

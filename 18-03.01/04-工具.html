@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>工具</title>
+</head>
+<body>
+	<ul>
+		<li>li1</li>
+		<li>li2</li>
+	</ul>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("ul li").each(function(index,value) {
+			console.log(index,value);
+		});
+
+		// $.each() 遍历对象或数组
+		$.each([1,2,3,[4,5,6]],function(index,value) {
+			console.log(index,value);
+		});
+
+		var person =  {name:"lisi",age:18};
+		$.each(person,function(key,value) {
+			console.log(key,value);
+		});
+
+
+		// $.extend() 扩展对象,返回值是扩展的对象
+		var temp = {};
+		var person1 = {
+			name:"lisi",
+			hobby:["抽烟","喝酒","烫头"]
+		};
+		var person2 = {
+			name:"ssy",
+			age:18
+		};
+		// 把 person1和 person2扩展到 temp中
+		// 参数1给 true, 深拷贝,重新开辟内存空间
+		var extendObj = $.extend(temp,person1,person2);
+		console.log(temp,extendObj); // {name: "ssy", hobby: Array(3), age: 18} {name: "ssy", hobby: Array(3), age: 18}
+		// 返回值和 第一个对象 是相等的
+		console.log(temp == extendObj);  // true
+
+		// 深复制和浅复制
+		temp.name = "frank";
+		// 不会修改person1
+		console.log(person1); // {name: "lisi", hobby: Array(3)}
+
+		temp.hobby.push("吃鸡");
+		// person1 受到影响
+		console.log(person1.hobby);  // ["抽烟", "喝酒", "烫头", "吃鸡"]
+
+		// 补充: extend可以扩展公用的函数
+		$.extend({
+			request:function() {
+				console.log("公用请求函数");
+				console.log(this.url);
+				console.log(this === $);
+			},
+			url:"http://www.baodu.com"
+		});
+
+		$.request();  // 公用请求函数  http://www.baodu.com  true
+		console.log($.url); // http://www.baodu.com
+
+		// 扩展2
+		console.log($.prototype);
+		// 1.
+		jQuery.prototype.run = function() {
+			console.log(this);
+			console.log("跑步");
+		}
+
+		// $("ul li").run();
+		// $("#box").run();
+
+		// 2.$.fn JQ对象的原型
+		console.log($.fn);
+		console.log($.fn === $.prototype);  // true
+		$.fn.eat = function() {
+			console.log("eat----");
+		}
+		$("#box").eat();
+
+		// 3.
+		$.fn.extend({
+			move:function() {
+				console.log("开始移动");
+			},
+			speed:20
+		});
+		$("#box").move();  // 开始移动
+		console.log($.fn.speed);  // 20
+	</script>
+</body>
+</html>

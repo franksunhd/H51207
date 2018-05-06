@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>组件</title>
+	</head>
+
+	<body>
+		<!--
+			组件: 是 vue 的核心部分,组件一旦创建完成,就可以重复使用
+			
+			创建全局组件
+			组件的命名:
+			1.组件的命名要区别于 html 标签
+			2.组件的命名原则最好为 a-a 的形式
+			3.支持驼峰命名, myTop, 引用的时候使用 my-top的方法使用
+			
+			注册全局组件,尽量使用驼峰命名法
+			
+			关键字为component 第一个参数为 组件名,第二个参数组件的实体
+			Vue.component(组件名,{})
+			
+			组件的显示内容都赋值给 template 显示在 html 中
+			
+			组件模板可以写在 template 标签中, 在其中必须是一个整体标签, template 有一个 id 值,作为外部引入的标识
+			此刻创建的组件里面 写 template:'#id' 即可使用
+		-->
+		<div id="app">
+			<my-top></my-top>
+			<my-head></my-head>
+			<ten></ten>
+			<get-all></get-all>
+			<set-all></set-all>
+		</div>
+	</body>
+</html>
+<template id="com">
+	<div>
+		<p>滕王高阁临江储</p>
+		<p>佩玉鸣鸾罢歌舞</p>
+	</div>
+</template>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	Vue.component('myTop', {
+		// 模板
+		template: '<p>刑天舞干戚</p>'
+	});
+
+	Vue.component('myHead', {
+		// 模板
+		template: `
+		<pre>
+			人之初
+			性本善
+		</pre>
+		`
+	});
+	Vue.component('Ten', {
+		// 模板
+		template: '#com'
+	});
+
+	var vm1 = new Vue({
+		el: "#app",
+		data:{},
+		methods:{
+			
+		},
+		// 注册局部组件,创建组件的关键字为 components
+		components:{
+			getAll:{
+				template:'<h1>天生我才必有用</h1>'
+			},
+			setAll:{
+				template:'#com'
+			}
+		}
+	});
+</script>

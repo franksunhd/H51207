@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>元字符</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// \d 查找数字 \D 查找非数字
+		var str = "https://www.baidu.com";
+		var reg = str.replace(/\.com$/gi,"*");
+		var reg1 = /\.com$/gi;
+
+		// 匹配是否是 .com 结尾
+		var text = reg1.test(str);
+		console.log("是否有.com:",text);
+		console.log("匹配.com结尾:",str,"|",reg);
+		// 匹配以 http:// 或者 https://开头
+		// n? 修饰0个或1个
+		reg1 = /^https?:\/\//;
+		// reg1 = /^https{0,1}:\/\//;
+		text = reg1.test(str);
+		console.log("是否有http://或https://:",text);
+	</script>
+</body>
+</html>

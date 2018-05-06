@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>post提交</title>
+    <link rel="stylesheet" href="01-post.css">
+</head>
+<body>
+    <div id="box" class="wp">
+        姓名: <input type="text" name="username" id="user" value="">
+        年龄: <input type="text" name="age" id="age" value="">
+        <input type="file" name="pic" id="pic">
+        <input type="submit" value="提交" id="btn">
+        <div id="msg"></div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="./jquery-3.1.1.js"></script>
+<script type="text/javascript">
+    $(function(){
+       // post提交
+       $("#btn").click(function () {
+            $.post('/post',{name:$('#user').val(),age:$('#age').val()},function (data) {
+                $('#msg').text(data);
+            });
+       });
+    });
+</script>

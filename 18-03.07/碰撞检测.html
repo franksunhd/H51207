@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>碰撞检测</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#wp {
+			width: 600px;
+			height: 500px;
+			border: 1px solid;
+			position: relative;
+
+
+		}
+
+		#box {
+			width: 50px;
+			height: 50px;
+			background: red;
+			position: absolute;
+			border-radius: 50%;
+		}
+
+		#box2 {
+			width: 100px;
+			height: 100px;
+			background: orange;
+			position: absolute;
+			top: 150px;
+			left: 250px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="wp">
+		<div id="box"></div>
+		<div id="box2"></div>
+	</div>
+
+	<script type="text/javascript">
+		var wp = document.getElementById('wp');
+		var box = document.getElementById('box');
+		var box2 = document.getElementById('box2');
+
+
+		var bl = box.offsetLeft;
+
+		var bt = box.offsetTop;
+		var bv = 1;
+		var bv2 = 1;
+		var aa;
+
+		setInterval(function() {
+
+			if (bl >= (wp.clientWidth - box.offsetWidth) || bl < 0) {
+				bv *= -1;
+			}
+			if (bt >= (wp.clientHeight - box.offsetHeight) || bt < 0) {
+				bv2 *= -1;
+			}
+
+
+			//左上角，右上角，左下角，右下角
+			if (!(bl == box2.offsetLeft - box.offsetWidth && bt == box2.offsetTop - box.offsetHeight || bl == box2.offsetLeft + box2.offsetWidth && bt == box2.offsetTop - box.offsetHeight || bl == box2.offsetLeft - box.offsetWidth && bt == box2.offsetTop +
+					box2.offsetHeight || bl == box2.offsetLeft + box2.offsetWidth && bt == box2.offsetTop + box2.offsetHeight)) {
+				if (bl > (box2.offsetLeft - box.offsetWidth) && bl < box2.offsetLeft + box2.offsetWidth && bt > (box2.offsetTop - box.offsetWidth) && bt < (box2.offsetTop + box2.offsetHeight)) {
+					bv *= -1;
+					bv2 *= -1;
+				}
+
+				// 左侧
+				else if (bl == (box2.offsetLeft - box.offsetWidth) && bt >= (box2.offsetTop - box.offsetWidth) && bt <= (box2.offsetTop + box2.offsetHeight)) {
+					bv *= -1;
+				}
+				// 上侧
+				else if (bt == (box2.offsetTop - box.offsetHeight) && bl >= (box2.offsetLeft - box.offsetWidth) && bl <= box2.offsetLeft + box2.offsetWidth) {
+					bv2 *= -1
+				}
+
+				// 右侧
+				else if (bl == (box2.offsetLeft + box2.offsetWidth) && bt >= (box2.offsetTop - box.offsetWidth) && bt <= (box2.offsetTop + box2.offsetHeight)) {
+					bv *= -1;
+				}
+				// 下侧
+				else if (bt == (box2.offsetTop + box2.offsetHeight) && bl >= (box2.offsetLeft - box.offsetWidth) && bl <= box2.offsetLeft + box2.offsetWidth) {
+					bv2 *= -1
+				}
+			}
+
+			bl += bv;
+			bt += bv2;
+
+			box.style.left = bl + "px";
+			box.style.top = bt + "px";
+		}, 10)
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+</body>
+</html>
+<script type="text/babel">
+    function aa(str) {
+        alert('十步杀一人,千里不留行' + str);
+    }
+
+    // 为了和原生的作区分,使用驼峰的方式来执行 click 事件
+    ReactDOM.render(<div>
+        <button onClick={aa.bind(this,',谁能书阁下')}>点击</button>
+    </div>,document.getElementById("test"));
+
+    var arr = ['唐僧', '悟空', '八戒', '沙僧'];
+    function show(str) {
+        alert(str);
+    }
+    ReactDOM.render(<ul>{
+        arr.map(function (item){
+            return <li onClick={show.bind(this,item)} style={{color:'#f00',fontSize:'30px'}}>{item}</li>
+        })
+    }</ul>,document.getElementById("test"));
+
+</script>

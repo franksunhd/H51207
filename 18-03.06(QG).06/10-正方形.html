@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正方形旋转</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持canvas,太low了,赶快升级吧!
+	</canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		// 设置2d画板
+		var cxt = canvas.getContext("2d");
+
+		// window.requestAnimationFrame 帧动画,按照关键帧的频率进行循环操作
+
+		var deg = 0;
+		cxt.fillStyle = "#f00";
+		function rect() {
+			deg++;
+			cxt.save();
+			cxt.clearRect(0,0,600,600);
+			cxt.translate(300,300);
+			cxt.rotate(Math.PI/180 * deg);
+			cxt.fillRect(-100,-100,200,200);
+			cxt.restore();
+			window.requestAnimationFrame(rect);
+		}
+
+		rect();
+	</script>
+</body>
+</html>

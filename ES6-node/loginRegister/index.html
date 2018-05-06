@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录&注册</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- 注册 -->
+    <form class="reg" action="/reg" method="post" enctype="multipart/form-data">
+        姓名: <input type="text" name="username" value="">
+        密码: <input type="text" name="pwd" value="">
+        头像: <input type="file" name="pic">
+        <input type="submit" value="提交">
+    </form>
+
+    <br/>
+    <hr/>
+    <br/>
+    <!-- 登录 -->
+    <form class="login" action="/login" method="get">
+        姓名: <input type="text" name="username" value="">
+        密码: <input type="text" name="pwd" value="">
+        <input type="submit" value="登录">
+    </form>
+</body>
+</html>

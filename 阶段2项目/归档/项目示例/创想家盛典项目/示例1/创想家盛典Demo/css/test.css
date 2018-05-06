@@ -1,0 +1,96 @@
+/* 全局样式  */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../images/bg01.jpg);
+    overflow: hidden;
+    /* perspective: 800px; */
+    /* transform-style: preserve-3d; */
+}
+
+
+.page{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/***********************************page 04************************* */
+#page04{
+    /* display:none; */
+    background-image:url(../images/p04-points.png);
+    background-size: 110vw 100vh;
+    background-position-x: -10vw;
+    background-repeat: no-repeat;
+}
+
+#page04 img{
+    position: absolute;
+}
+
+
+#page04 #p04-taptip{
+    top: 80vh;
+    left: 30vw;
+    width: 40vw;
+    animation: showhide 1s linear 0s normal infinite;
+}
+@keyframes showhide{
+    50%{
+	opacity: 0;
+    }
+}
+
+#page04 #p04-words{
+    top: 30vh;
+    left: 30vw;
+    width: 40vw;
+}
+
+#page04 .detail{
+    /* display: none; */
+    position: absolute;
+    padding-top: 10vh;
+    width: 100%;
+}
+
+#page04 .detail img{
+    position: relative;
+}
+
+#page04 .detail .close{
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    width: 50px;
+    z-index: 10;
+}
+
+.swiper-container {
+	// position: absolute;
+    width: 100%;
+    margin: 0 auto;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}

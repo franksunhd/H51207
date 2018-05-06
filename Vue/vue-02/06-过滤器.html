@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>过滤器</title>
+	</head>
+
+	<body>
+		<!--
+		 	过滤器关键字:filter
+		 	第一个参数: 过滤器的名字
+		 	第二个参数: 回调函数,参数1:要过滤的值,参数2,3...要过滤的参数列表
+		 	Vue.filter('过滤器名字',function(要过滤的值,arg1,arg2){}),
+		-->
+		<div id="app">
+			<p>{{12.34| currency('¥',2)}}</p>
+			<p>{{123.4| addTxt('¥',2) }}</p>
+		</div>
+	</body>
+
+</html>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	// 全局过滤
+	Vue.filter('currency', function(value, arg1, arg2) {
+		if(!arg1) {
+			return '$' + value;
+		} else {
+			if(arg2) {
+				return arg1 + value.toFixed(arg2);
+			} else {
+				return arg1 + value;
+			}
+		}
+	});
+	// 局部过滤
+	var vm1 = new Vue({
+		el: "#app",
+		data: {},
+		methods: {},
+		// 局部过滤,关键字 filters
+		filters: {
+			addTxt: function(value, arg1, arg2) {
+				if(!arg1) {
+					return '$' + value;
+				} else {
+					if(arg2) {
+						return arg1 + value.toFixed(arg2);
+					} else {
+						return arg1 + value;
+					}
+				}
+			}
+		}
+	})
+</script>

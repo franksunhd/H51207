@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>组件获取属性值</title>
+	</head>
+	<body>
+		<div id="app">
+			<child :tag="'红消香断有谁怜'"></child>
+			<hr />
+			<child :tag="txt"></child>
+			<hr />
+			<aa :url="url1"></aa>
+		</div>
+	</body>
+</html>
+<template id="child">
+	<div>
+		<p v-show='bol'>{{tag}}</p>
+		<button @click="change()">点击切换</button>
+	</div>
+</template>
+
+<template id="aa">
+	<a :href="url">百度</a>
+</template>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	
+	var vm1 = new Vue({
+		el:'#app',
+		data:{
+			txt:'天生我才必有用',
+			url1:'http://www.baidu.com'
+		},
+		methods:{},
+		components:{
+			aa: {
+				template:"#aa",
+				props:['url']
+			},
+			child:{
+				template:'#child',
+				// 组件中设置属性
+				props:['tag'],
+				data:function(){
+					return {
+						bol:true
+					}
+				},
+				methods:{
+					change(){
+						this.bol = !this.bol;
+					}
+				}
+			}
+		}
+	});
+</script>

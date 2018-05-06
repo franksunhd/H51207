@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图像合并</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持 canvas! 太low了,赶快升级吧!
+	</canvas>
+
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var cxt = canvas.getContext("2d");
+
+		// cxt.globalCompositionOperation() 合并图像属性
+		// source-over:默认值,表示新图在老图上面
+		// source-in:保留新老图的重合部分,其他部分清空,新图在上面
+		// source-out:保留 新图中 新图和老图 的 非 重合部分,其他全部清空
+		// source-atop:保存老图 和 新图与老图的重叠部分,新图在上,其他全部清空
+
+		// destination-over:保留新图和老图,老图在上
+		// destination-in:保留新老图的重合部分,其他部分清空,老图在上面
+		// destination-out:保留 老图中 新图和老图 的 非 重合部分,其他全部清空
+		// destination-atop:保存新图 和 新图与老图的重叠部分,老图在上,其他全部清空
+		cxt.beginPath();
+		cxt.fillStyle = "#f00";
+		cxt.fillRect(100,100,200,200);
+		cxt.closePath();
+
+		cxt.globalCompositeOperation = "destination-atop";
+
+		cxt.beginPath();
+		cxt.fillStyle = "#ff0";
+		cxt.fillRect(200,200,200,200);
+		cxt.closePath();
+
+		// copy:只保留新图,其他清空
+		// lighter:贤显示新图和老图
+		// xor:保留新图和老图之间的非重叠部分
+	</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jq文档加载完成回调</title>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		// jQuery(callback);
+		$(function() {
+			// 文档就绪
+			console.log($("#box"));
+		});
+
+		$(document).ready(function() {
+			// 文档就绪
+		});
+	</script>
+</head>
+<body>
+	<div id="box">box</div>
+</body>
+</html>

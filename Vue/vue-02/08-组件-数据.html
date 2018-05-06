@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>组件处理数据</title>
+	</head>
+	<body>
+		<div id="app">
+			<get-all></get-all>
+			<hr />
+			<du-shu></du-shu>
+			<hr />
+			<get-all></get-all>
+			<hr />
+			<set-all></set-all>
+			<hr />
+			<temp></temp>
+			<hr />
+			<guan-fang></guan-fang>
+		</div>
+	</body>
+	<!-- 
+		组件的 data 和 vue 实例中的 data 不同,组件中的 data 是一个函数,返回一个对象
+	-->
+</html>
+<template id="alldom">
+	<div>
+		<p>{{txt}}</p>
+		<p>{{aaa}}</p>
+	</div>
+</template>
+
+<template id="gg">
+	<div>
+		<template v-for="item in arr">
+			<p>{{item}}</p>
+		</template>
+	</div>
+</template>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	Vue.component('getAll',{
+		template:'<p>{{name}},你今年{{age}}岁了</p>',
+		data:function() {
+			return {
+				name:'孙文',
+				age:18
+			}
+		}
+	});
+	
+	var temp = {
+		template:'#alldom',
+		data:function(){
+			return {
+				txt:'百无一用是书生',
+				aaa:'万紫千红一片绿'
+			}
+		}
+	}
+	
+	// 全局引用外部模板
+	Vue.component('duShu',temp);
+	
+	var vm1 = new Vue({
+		el:"#app",
+		// 创建局部组件
+		components:{
+			getAll:{
+				template:'#alldom',
+				data:function(){
+					return {
+						txt:'百无一用是书生',
+						aaa:'万紫千红一片绿'
+					}
+				}
+			},
+			// 引入外部组件1
+			setAll:temp,
+			// 引入外部组件2
+			temp,  // 相当于 temp:temp
+			guanFang:{
+				template:'#gg',
+				data:function(){
+					return {
+						arr:[1,2,3]
+					}
+				}
+			}
+ 		}
+	});
+</script>

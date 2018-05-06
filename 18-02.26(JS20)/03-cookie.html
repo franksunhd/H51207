@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>cookie</title>
+</head>
+<body>
+	<!--
+		Cookie: 持久性存储,用于存储 web 页面的用户信息。
+		兼容性好,但是使用比较麻烦
+
+		存储时间:默认杀死浏览器,自动清空
+
+		特点:当浏览器从服务器上请求 web 页面时,
+			属于该页面的 cookie 会被添加到该请求中.服务端通过这种方式来获取用户的信息。
+		
+		生命周期:expires
+	-->
+	<script type="text/javascript">
+		console.log(document.cookie);  //
+		console.log(typeof document.cookie);  // string
+
+        // 赋值
+        document.cookie = "username = Frank sun";
+        document.cookie = "age = 18;";
+        
+        // 不能直接存储汉字
+        // document.cookie = "hobby = 喝酒";
+        
+        // escape() 转义字符
+        var firstName = escape("杨");
+        console.log(firstName);  // %u6768
+        
+        // 解码为汉字
+        var firstNameEnd = unescape(firstName);
+        console.log(firstNameEnd);
+        
+        document.cookie = "hobby =" + escape("喝酒");
+        
+        
+        // 过期时间: 不能一次写入多个
+        document.cookie = "height = 190";
+        
+        // 注意:设置过期时间cookie 需要参照格林尼治时间,在需要设置的事件的基础上减去8小时
+        // 如有效期至 2018-02-26 17:49:00,需设置 2018-02-26 09:49:00
+        var NowDate = new Date("2018-02-26 09:49:00");
+        console.log(NowDate);
+        document.cookie = "weight = 65Kg; expires = " + NowDate.toString();
+        
+        // 删除 cookie: 给定过期时间
+        document.cookie = "age = 80; expires = " + NowDate;
+        
+        
+        // 设置有效期 max-age = 秒数 ; 
+        // 设置10秒过期  
+        // 1天 = 60*60*24s = 86400s
+        document.cookie = "name = ssy; max-age = 10";
+        
+        // 使用 max-age 删除 cookie: 给值设置 0 或者是负数
+        document.cookie = "name = frank; max-age = 0";
+        
+        function getCookie(key){
+        		var kyArr = document.cookie.split("; ");
+        		for(var value of kyArr){
+        			// console.log(value);
+        			var kys = value.split("=");
+        			if(kys[0].trim() === key) {
+        				return kys[1];
+        			}
+        		}
+        }
+        var value = getCookie("username");
+        console.log(unescape(value));
+	</script>
+</body>
+</html>

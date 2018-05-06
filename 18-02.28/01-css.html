@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>css</title>
+	</head>
+	<body>
+		<div id="box">
+			<p>p1</p>
+			<p>p2</p>
+		</div>
+		<script src="./js/jquery.min.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			$("#box p").css("color","red").css("font-size","30px");
+
+			// 获取
+			var value = $("#box p").css("width");  // 包含单位
+
+			// html() 内容相关 可以包含 html 标签
+			$("#box p").eq(0).html("w:" + value);
+
+			// 参数对象
+			$("#box p:eq(1)").css({
+				// 注意驼峰命名,数字单位可以省略
+				textDecoration:"line-through",
+				color:"pink"
+			});
+
+			// 回调函数
+			$("#box p").css("background-color",function(index) {
+
+				if(index === 0) return "yellow";
+				if(index === 1) return "blue";
+			});
+
+			$("#box p").css({
+				width:function(index,value) {
+					return parseFloat(value) - 100;
+				},
+				height:function(index,value) {
+					return parseFloat(value) + 100;
+				}
+			});
+
+			// text() 内容相关 不包含 html 标签
+
+			// val() 表单内容相关
+		</script>
+	</body>
+	</html>

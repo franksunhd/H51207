@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6-基础</title>
+</head>
+<body>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    /*
+        变量的声明方式: var const let
+
+        变量的作用域:
+            1.函数作用域:在代码的上下文中,但是不在{}中,均可视为函数作用域
+            2.块级作用域:声明在{}里面的变量具有块级作用域
+
+        var声明的变量就具有函数作用
+     */
+
+    for(var i = 0; i < 8; i++) {}
+    console.log(i);  // 8
+
+    for(let j = 0;j < 8; j++) {}
+    // console.log(j);  // 报错, j未定义
+
+    // 为了避免出现变量的污染,使用立即执行函数,即匿名函数
+    var aa = 100;
+    // 块级作用域
+    (function () {
+        var aa = 200;
+    })();
+
+    console.log(aa);  // 100
+
+    {
+        let aa = 300;
+    }
+    console.log(aa);  // 100
+
+    // let 声明的变量不能重名
+    let str = "春江水暖鸭先知";
+    // let str = "儿童散学归来早";
+    console.log(str);  // 重名报错
+
+    // const 声明常量,常量名用大写字母,常量一旦声明,不允许修改
+    const PI = 3.14;
+
+    // 声明的常量具有块级作用域
+    if(true){
+        const HEIGHT = 100;
+    }
+    // console.log(HEIGHT);  // HEIGHT 未定义
+
+    var a = 1;
+    var b = 2;
+    var c = 3;
+
+    console.log(a,b,c);  // 1 2 3
+    a = b = c = 10;
+    console.log(a,b,c);  // 10 10 10
+
+    // 模式匹配: 等号左边的模式相同,左侧的变量就会附上右侧对应的值
+    var [a ,b, c] = ['曹操','刘备','关羽'];
+    console.log(a,b,c);  // 曹操 刘备 关羽
+
+    var [a1,,c1] = ['曹操','刘备','关羽'];
+    console.log(a1,c1);  // 曹操 关羽
+
+    // ...e1 获取剩余的内容,吧内容全部赋值给 '...' 修饰的变量
+    var [d1,...e1] = ['曹操','刘备','关羽'];
+    console.log(d1,e1); // 曹操 (2)["刘备", "关羽"]
+
+    var [f1,f2 = '窦娥'] = ['小包菜','司马毛'];
+    console.log(f1,f2);  // 小包菜 司马毛
+
+
+    // 对象进行解构,只与对象的属性名有关,与次序无关
+    var {name,job,age} = {age:'56',job:'开封府府尹',name:'包文正'};
+    console.log(name,job,age);  // 包文正 开封府府尹 56
+
+    // 模式匹配的用途:
+    var num1 = 100;
+    var num2 = 200;
+    var temp = 0;
+
+    // 用途1:交换变量
+    temp = num1;
+    num1 = num2;
+    num2 = temp;
+    console.log(num1,num2);  // 200 100
+
+    var num1 = 100;
+    var num2 = 200;
+    [num1,num2] = [num2,num1];
+    console.log(num1,num2);  // 200 100
+
+
+    // 用途2:函数返回多个值:
+    function afun () {
+        return ['悟空','八戒','沙僧'];
+    }
+
+    var [w1,w2,w3] = afun();
+    console.log(w1,w2,w3);  // 悟空 八戒 沙僧
+
+    // 用途3:解析后台传过来的数据
+    var json = {
+        name:'孙传挺',
+        age:34,
+        job:'武将'
+    };
+
+    var {name,job,age} = json;
+    console.log(name,age,job);  // 孙传挺 34 武将
+</script>

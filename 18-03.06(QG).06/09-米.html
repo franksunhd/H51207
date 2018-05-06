@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>红色的米</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持canvas,太low了,赶快升级吧!
+	</canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		// 设置2d画板
+		var cxt = canvas.getContext("2d");
+
+		for (let i = 0; i < 4; i++) {
+			// 保存最初的状态
+			cxt.save();
+			cxt.beginPath();
+			cxt.translate(300,300);
+			// 先旋转坐标轴
+			cxt.rotate(Math.PI/180 * (i*45));
+
+			// 绘制
+			cxt.moveTo(-300,0);
+			cxt.lineTo(300,0);
+			//
+			cxt.strokeStyle = "#f00";
+			cxt.lineWidth = 10;
+			cxt.stroke();
+
+			cxt.closePath();
+			cxt.restore();
+		}
+
+	</script>
+</body>
+</html>

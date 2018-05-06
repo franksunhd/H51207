@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			1.在子组件上绑定一个 自定义的 事件名(方法名) aa-fun
+			2.在子组件的操作中,使用 $emit 方法触发 aa-fun 事件,
+			  进而执行绑定在 aa-fun 上的父组件的方法,
+			  从而达到将子元素的值传给父元素
+		-->
+		<div id="app">
+			<h1>{{str}}</h1>
+			<hr />
+			<mingyue @aa-fun="shou($event)"></mingyue>
+		</div>
+	</body>
+</html>
+<template id="tem">
+	<div>
+		<h2>{{msg}}</h2>
+		<button @click="chuan()">点我接收子元素数据(子传父)</button>
+	</div>
+</template>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	// 使用$emit 触发事件
+	var mingyue = {
+		template:'#tem',
+		data:function(){
+			return {
+				msg:'相见为兄弟,何必骨肉亲--- 子'
+			}
+		},
+		methods:{
+			chuan(){
+				// $emit第一个参数直接命名事件的事件名,不要写成驼峰,多个单词使用-链接
+				// 该事件绑定在组件上,一旦触发,组件上的绑定页立即触发
+				// 第二个参数是要传的值
+				this.$emit('aa-fun',this.msg);
+			}
+		}
+	};
+	
+	var vm1 = new Vue({
+		el:"#app",
+		data:{
+			str:'莫愁前路无知己---父'
+		},
+		methods:{
+			shou(info){
+				this.str = info;
+			}
+		},
+		components:{
+			mingyue
+		}
+	});
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>组件默认属性</title>
+    <script src="./js/react.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/react-dom.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/browser.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="test"></div>
+</body>
+</html>
+<script type="text/babel">
+    var SetProp = React.createClass({
+        // 获取默认设置的属性
+        getDefaultProps:function () {
+            return {
+                name:"李白",
+                age:18
+            }
+        },
+
+        // 设置属性的类型
+        // 设置 name 为 string 类型且必填
+        propTypes:{
+            name: React.PropTypes.string.isRequired,
+            age: React.PropTypes.number.isRequired
+        },
+        render:function () {
+            return <p>花间一壶酒--{this.props.name}--{this.props.age}</p>
+        }
+    });
+
+    ReactDOM.render(<SetProp name="杜甫" age="120"></SetProp>,document.getElementById("test"));
+</script>

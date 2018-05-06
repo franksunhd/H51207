@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>输入实时显示--双向绑定</title>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+</body>
+</html>
+<script type="text/babel">
+    var StateInput = React.createClass({
+        // 设置默认状态
+        getInitialState:function () {
+            return {
+                val:'才饮长江水'
+            }
+        },
+        render:function () {
+            return <div>
+                <input type="text" value={this.state.val} onChange={this.changeVal}/>
+                <p>{this.state.val}</p>
+            </div>
+        },
+        changeVal: function (event) {
+            this.setState({
+               val: event.target.value
+            });
+        }
+    });
+    ReactDOM.render(<StateInput></StateInput>,document.getElementById("test"));
+</script>

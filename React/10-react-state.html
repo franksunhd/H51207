@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>组件--状态</title>
+    <script src="./js/react.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/react-dom.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/browser.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="test"></div>
+</body>
+</html>
+<script type="text/babel">
+    // state 状态 实质上也是属性,但是他和 props 的区别为
+    // state 可以改变值, props 不可以改变值
+
+    var StateDoc = React.createClass({
+        // 设置状态的默认值
+        getInitialState:function () {
+          return {
+              ok:true
+          }
+        },
+        
+        render:function () {
+            // 获取某个状态的值 this.state.状态名
+            return <div>
+                <p>{this.state.ok?'天若有情天亦老':'人间正道是沧桑'}</p>
+                <button onClick={this.changeState}>点击</button>
+            </div>
+        },
+        // 自定义改变状态的值,使用 this.setState({})
+        changeState:function () {
+            this.setState({
+                ok:!this.state.ok
+            })
+        }
+    });
+
+    ReactDOM.render(<StateDoc></StateDoc>,document.getElementById("test"));
+</script>

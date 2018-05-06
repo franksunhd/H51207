@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>视频播放</title>
+		<style type="text/css">
+			#canvas {
+				border: 2px solid red;
+				display: block;
+				margin: 0 auto;
+			}
+			
+			video {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="600" height="400">
+			你的浏览器不支持canvas!
+		</canvas>
+		<video id="vplay" width="600" height="400">
+			<source src="./video/1.mp4" type="video/mp4"></source>
+		</video>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas");
+			var cxt = canvas.getContext("2d");
+			
+			var video = document.getElementById("vplay");
+			// canvas 视频播放就像电影胶片一样,把视频整理成一张张生动的图片,
+			// 然后使用绘图方法循环绘制到 canvas 中,形成动画效果
+			// 只有在视频加载完成之后,才能播放
+			// video.oncanplay 视频加载完成播放
+			
+			video.oncanplay = function(){
+				// 播放视频
+				video.play();
+				function move(){
+					cxt.clearRect(0,0,600,400);
+					cxt.drawImage(video,0,0,600,400);
+					window.requestAnimationFrame(move);
+				}
+				move();
+			};
+		</script>
+	</body>
+</html>

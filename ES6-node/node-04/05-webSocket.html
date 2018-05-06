@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webSocket聊天室</title>
+    <link rel="stylesheet" href="./05-webSocket.css">
+</head>
+<body>
+    <ul></ul>
+    昵称: <input type="text" placeholder="输入昵称" value="" id="niName"> <br> <br>
+    信息: <br>
+    <textarea placeholder="输入聊天内容" id="msg" name="" id="" cols="30" rows="10"></textarea> <br>
+    <button id="send">发送</button>
+    <button id="close">退出聊天室</button>
+</body>
+</html>
+<script type="text/javascript" src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+    // 1.实例化一个 webSocket 实体
+    var ws = new WebSocket('ws://172.18.30.237:3000');
+
+    // 2.检查是否链接成功
+    ws.onopen = function(){
+        // 设置链接成功
+        // ws.readyState 可以获取链接的状态, 值为1 链接成功,值为0 链接失败
+        var state = ws.readyState == 1 ? "成功" : "失败";
+        console.log(state);
+    };
+
+    // 3.设置接收信息
+    ws.onmessage = function(ev){
+        $("ul").append("<li>"+ ev.data +"</li>");
+    };
+
+    // 4.关闭信息,服务器自动断开
+    ws.onclose = function(ev){
+        console.log(ev);
+    }
+
+    // 5.发送信息
+    $("#send").click(function(){
+        var userName = $.trim($("#niName").val());
+        var msg =  $.trim($("#msg").val());
+
+        // 把数据拼接成 json 发送给 websocket 服务器
+        if(userName == "" || msg == "") {
+            alert("请补全信息!");
+        } else {
+            var jsonStr = '{"name":"'+ userName +'","msg":"'+ msg +'"}'
+
+            // 发送
+            ws.send(jsonStr);
+        }
+    });
+
+    // 6. 关闭链接
+    $("#close").click(function(){
+        ws.close();  // 关闭也就是下线了
+    });
+
+</script>

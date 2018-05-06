@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>$emit(子串子)</title>
+	</head>
+	<body>
+		<div id="app">
+			<h1>{{txt}}</h1>
+			<hr />
+			<son2></son2>
+			<hr />
+			<son1></son1>
+		</div>
+	</body>
+</html>
+<!--子组件1-->
+<template id="son1">
+	<div>
+		<h2>{{msg}}</h2>
+		<button @click="add()">点击传值</button>	
+	</div>
+</template>
+<!--子组件2-->
+<template id="son2">
+	<h1>{{str}}</h1>
+</template>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var son1 = {
+		template:"#son1",
+		data:function(){
+			return {
+				msg:"同心同德---son1"
+			}
+		},
+		methods:{
+			add(){
+				// 此刻需要传值操作,使用公共的实力对象作为媒介,
+				// 也就是在 bus 上使用$emit 进行绑定事件
+				bus.$emit('addss',this.msg);
+			}
+		}
+	}
+	
+	var son2 = {
+		template:"#son2",
+		data:function(){
+			return {
+				str:"同室操戈---son2"
+			}
+		},
+		methods:{
+			
+		},
+		// 钩子函数
+		mounted:function(){
+			// $emit 监听事件是否触发,使用 $on 进行监听
+			// $on 的 this 指的不是当前组件的 this, 所以要监听并修改组件的内容的时候,要改变 this 的指向
+			// 推荐两种方法,第一种: var _this  = this 第二种在函数的最后 bind(this)
+			// $on 两个参数,第一个参数,要监听的事件,第二个参数为回调函数,处理数据使用
+			bus.$on('addss',function(value){
+				this.str = value;
+			}.bind(this))
+		}
+	}
+	/*
+	 * 子组件相互传值,需要借助公共的vue实例
+	 */
+	var bus = new Vue();
+
+	var vm1 = new Vue({
+		el:"#app",
+		data:{
+			txt:"同归于尽---父"
+		},
+		methods:{},
+		components:{
+			son1,
+			son2
+		}
+	})
+</script>

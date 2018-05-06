@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>空地反弹</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="400" height="400">
+		您的浏览器不支持 canvas! 太low了,赶快升级吧!
+	</canvas>
+
+	<script src="./js/jquery-2.0.3.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var canvas = $("#canvas");
+		var cxt = canvas.get(0).getContext("2d");
+
+		// 1. drawImage(图片资源,开始点的 x, 开始点的 y);
+		// 		注意: 图像不会被压缩,完全显示在 canvas区域中
+
+		var img = $("<img />");
+		img.prop("src","./img/bg2.jpg");
+
+		// 注意:只有在图片加载完成之后,才能完成 canvas 的图片绘制
+		img.load(function() {
+			// cxt.drawImage(this,0,0);
+		});
+
+		// 2. drawImage("资源",绘制图片的左上角 x, 绘制图片的左上角的 y, 绘制宽度,绘制高度);
+		// 		注意: 把图片绘制到指定的区域,图片会被压缩
+		img.load(function() {
+			// cxt.drawImage(this,0,0,200,200);
+		});
+
+		// 3. drawImage("资源",图像起始 x, 图像起始 y, 图像的宽,图像的高,canvas 起始 x,canvas 起始 y,canvas 图像宽,canvas图像高);
+		// 		注意:
+
+		img.load(function() {
+			cxt.drawImage(this,100,100,100,100,200,200,100,100);
+		});
+	</script>
+</body>
+</html>

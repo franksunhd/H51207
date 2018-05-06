@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>绘制曲线</title>
+		<style type="text/css">
+			#canvas1,
+			#canvas2 {
+				border:  2px solid red;
+				display: block;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<span>二次贝塞尔曲线</span>
+		<img src="img/beisaier.gif"/>
+		<span>三次贝塞尔曲线</span>
+		<img src="img/beisaier3.gif"/>
+		<canvas id="canvas1" width="400" height="400">
+			您的浏览器不支持 canvas!
+		</canvas>
+		<canvas id="canvas2" width="400" height="400">
+			您的浏览器不支持 canvas!
+		</canvas>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas1");
+			var canvas1 = document.getElementById("canvas2");
+			var cxt = canvas.getContext("2d");
+			var cxt1 = canvas1.getContext("2d");
+			
+			// 二次贝塞尔曲线
+			// cxt.quadraticCurveTo(控制点 x, 控制点 y, 终点 x, 终点 y);
+			
+			cxt.beginPath();
+			cxt.moveTo(300,300);
+			cxt.quadraticCurveTo(200,200,300,240);
+			cxt.stroke();
+			cxt.moveTo(300,300);
+			cxt.quadraticCurveTo(400,200,300,240);
+			cxt.stroke();
+			cxt.fillStyle = "#FF0000";
+			cxt.fill();
+			cxt.closePath();
+			
+			// 三次贝塞尔曲线
+			// cxt1.bezierCurveTo(控制点1x,控制点1y, 控制点2x, 控制点2y, 终点 x, 终点 y)
+			cxt1.translate(150,100);
+			
+			cxt1.beginPath();
+			cxt1.moveTo(0,100);
+			cxt1.bezierCurveTo(50,70,90,120,0,200);
+			cxt1.stroke();
+			cxt1.fillStyle = "#FF0000";
+			cxt1.fill();
+			cxt1.closePath();
+			
+			// 关于 y = 0 对称
+			
+			cxt1.beginPath();
+			cxt1.moveTo(0,100);
+			cxt1.bezierCurveTo(-50,70,-90,120,0,200);
+			cxt1.stroke();
+			cxt1.fillStyle = "#FF0000";
+			cxt1.fill();
+			cxt1.closePath();
+		</script>
+	</body>
+</html>

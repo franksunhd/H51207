@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>输入实时显示--双向绑定</title>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/browser.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        h1 {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            color: #fff;
+            font-size: 30px;
+            margin: 20px auto 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="test"></div>
+</body>
+</html>
+<script type="text/babel">
+    var LifeDom = React.createClass({
+        getInitialState:function () {
+          return {
+              opacity:1 // 设置默认的透明度
+          }
+        },
+        componentDidMount: function () {
+            console.log('5');
+        },
+        componentWillMount:function () {
+            console.log('3');
+            // 计时器是一个闭包,它里面的 this 指的是 window, 而咱们希望 this 指向当前的组件,所以在计时器函数里面添加
+            // bind(this) 这样就等于把当前的 this 指向到 计时器里面的函数
+            this.timer = setInterval(function () {
+                // 获取状态的值
+                var opc = this.state.opacity;
+                opc -= 0.05;
+                if(opc <= 0.1) {
+                    opc = 1;
+                }
+
+                this.setState({
+                    opacity: opc
+                })
+            }.bind(this),100);
+        },
+        render: function () {
+            return <h1 style={{opacity:this.state.opacity}}>南村群童欺我老无力</h1>
+        }
+
+    });
+
+    ReactDOM.render(<LifeDom></LifeDom>,document.getElementById("test"));
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>插槽</title>
+	</head>
+
+	<body>
+		<div id="app">
+			<child>
+				<h1 slot="header">蜀道难</h1>
+				<p>正文</p>
+				<p slot="footer">底部信息</p>
+			</child>
+		</div>
+	</body>
+
+</html>
+<template id="child">
+	<div>
+		<slot name="header"></slot>
+		<slot></slot>
+		<slot name="footer"></slot>
+	</div>
+</template>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var child = {
+		template:"#child"
+	}
+	
+	var vm1 = new Vue({
+		el:"#app",
+		data:{},
+		methods:{}
+	});
+</script>

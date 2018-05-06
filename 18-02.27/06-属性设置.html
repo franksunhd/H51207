@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>属性设置</title>
+	<style media="screen">
+		#box {
+			width: 100px;
+			height: 50px;
+			border: 2px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">box</div>
+	<div id="box2">
+		<p name="p1">p1</p>
+		<p name="p2">p2</p>
+		<p name="p3">p3</p>
+	</div>
+
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		// document.setAttrbute
+		// document.getAttrbute
+		// document.removeAttrbute
+
+		// attr
+		// 获取属性
+		var ar = $("#box").attr("id");
+		console.log(ar);
+
+		// 获取样式
+		console.log($("#box").css("width"));
+		console.log($("#box").css("border"));
+
+		// 设置
+		$("#box").attr("age","18");
+
+		// 参数对象,设置多个属性
+		$("#box").attr({
+			name:"lisi",
+			sex:"nv",
+			src:"地址",
+			alt:"提示"
+		});
+
+		// 移除 一个或者多个
+		$("#box").removeAttr("age sex");
+
+		// 回调函数
+		$("#box").attr("src",function(index,oldValue) {
+			console.log(index,oldValue);
+			return "新的地址";
+		});
+
+		$("#box").test = "测试";
+		console.log($("#box").test);  // undefined
+
+		var obj = $("#box");
+		obj.test = "测试1";
+		console.log(obj.test);  // 测试1
+		// 验证: $("#box") 每次执行都会 new 一个新的一模一样的对象返回
+		console.log($("#box") === $("#box"));  // false
+
+
+		function $2(selector) {
+			var arr = new Array();
+			arr.push(document.querySelector(selector));
+			return arr;
+		}
+		$2.prototype.css = function(){}
+		$2.prototype.addClass = function(){}
+
+		console.log($2("#box"));
+
+		// prop(): 类似原生点语法自定属性,行间不可见
+
+		// 设置
+		$("#box2").prop("age","18");
+
+		// 获取
+		var age = $("#box2").prop("age");
+		console.log(age,box2.age);  // 18 18
+		console.log($("#box"));
+		console.log($("#box2"));
+
+		// 原生对象只有一份,多个 JQ 对象共享一个原生对象
+		$("#box2")[0].test = "测试3";
+		console.log($("#box2")[0].test);  // 测试3
+	</script>
+</body>
+</html>

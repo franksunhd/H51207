@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>元字符</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// \d 查找数字 \D 查找非数字
+		var str = "java 123 +-= html #$%_@ 456 css";
+		var reg = str.replace(/\d/g,"*");
+		var reg1 = str.replace(/\D/g,"*");
+		console.log("*替换数字:",str,"|",reg);
+		console.log("*替换非数字:",str,"|",reg1);
+
+		// \w 查找单词字符 字母数字下划线
+		// \W 可以删除特殊字符
+		reg = str.replace(/\w/gi,"*");
+		reg1 = str.replace(/\w+/gi,"*");
+		console.log("*替换单个字母或数字:",str,"|",reg);
+		console.log("*替换单词:",str,"|",reg1);
+
+		// \s 查找空白字符 前两个空格,后1个空格
+		str = "  java 123 +-= html #$%_@ 456 pytioshon ios css ";
+		reg = str.replace(/\s/g,"*");
+		console.log("*替换空白字符:",str,"|",reg);
+		// 去除开头空格
+		console.log("原始长度:",str.length);
+		// 量词
+		// 匹配开头 ^
+		reg = str.replace(/^\s+/g,"");
+		console.log("去除开头空格:",str,"|",reg);
+		console.log("去除开头空格后:",reg.length);
+		// 匹配结尾 $
+		reg = str.replace(/\s+$/g,"");
+		console.log("去除结尾空格:",str,"|",reg);
+		console.log("去除结尾空格后:",reg.length);
+		// 开头或结尾
+		reg = str.replace(/^\s+|\s+$/g,"");
+		console.log("去除开头结尾空格:",str,"|",reg);
+		console.log("去除开头结尾空格后:",reg.length);
+
+		// 替换 html 和 ios 和 python
+		reg = str.replace(/\bhtml\b|\bios\b|\bjava\b/gi,"**");
+		console.log("替换html和ios和java:",str,"|",reg);
+
+		// \b 匹配单词边界
+		reg = str.replace(/\bios\b/gi,"**");
+		console.log("**替换具有单词边界的ios:",str,"|",reg);
+
+		// \B 不匹配单词边界
+		reg = str.replace(/\Bios\B/gi,"**");
+		console.log("**替换不具有单词边界的ios:",str,"|",reg);
+
+		// . 匹配单个字符,除了换行和行结束符
+		str = "ad123\n=-%$*"
+		reg = str.replace(/./gi,"*");
+		console.log("匹配单个字符,除了换行和行结束符:",str,"|",reg);
+		// \n 换行符 \t 制表符 \r 回车符 \f 换页符
+
+		// 匹配是否是 .com 结尾
+		str = "http://www.baidu.com";
+		reg = str.replace(/\.com$/gi,"*");
+		console.log("匹配.com结尾:",str,"|",reg);
+	</script>
+</body>
+</html>

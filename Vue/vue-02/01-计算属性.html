@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			vue 中可以使用{{}} 来展示相对比较简单的数据,如果要展示比较庞大的或者逻辑比较复杂的数据,{{}} 就会有它的局限性,不利于操作,难以维护,
+			所以使用计算属性(computed) 来展示数据
+			
+			计算属性的优点:
+			1.数据没有变化的时候,优先读取计算属性里面的值
+			2.他有 set 和 get 方法可以灵活设置
+			
+		-->
+		<div id="app">
+			<h1>{{str1}}</h1>
+			<template v-for="item in arr1">
+				<p>{{item}}</p>
+			</template>
+			<h1>{{showTxt}}</h1>
+		</div>
+	</body>
+</html>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var vm1 = new Vue({
+		el:"#app",
+		data:{
+			str:'青龙白虎',
+			arr:[1,2,3,4,5,6,7,8,9,10]
+		},
+		methods:{},
+		// 计算属性的钩子函数
+		computed:{
+			str1:function(){
+				return this.str + ",朱雀玄武"; 
+			},
+			arr1:function(){
+				// filter 过滤方法 参数为一个 回调函数,它是书写过滤规则的
+				return this.arr.filter(function(n){
+					return n%2 == 0;
+				});
+			},
+			showTxt:{
+				// 每一个计算属性的方法里面都有两个函数,一个是 set, 一个是 get ,默认是 get
+				// 先 get 再 set
+				set:function(value){
+					// 参数为 该数据原来的值
+					console.log("set");
+					this.str += value; 
+				},
+				get:function(){
+					console.log("get")
+					return this.str += '孰能生巧';
+				}
+			}
+		}
+	});
+	vm1.showTxt = '孔子东游';
+</script>

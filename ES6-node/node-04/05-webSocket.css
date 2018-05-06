@@ -1,0 +1,11 @@
+ul li {
+    list-style-type: none;
+}
+
+button {
+    outline: none;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 10px;
+    border-radius: 5px;
+}

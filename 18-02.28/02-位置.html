@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>位置坐标</title>
+	<style media="screen">
+		#box {
+			position: relative;
+		}
+
+		#box a {
+			position: absolute;
+			left: 10px;
+			top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<a href="#">子元素</a>
+	</div>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#box").css({
+			border:"5px solid red",
+			height:"200px",
+			width:"200px"
+		});
+
+		// offset:获取到页面顶部(左)的距离
+		var offsetBox = $("#box").offset();
+		console.log(offsetBox);  // object对象 包含 left = 8和 top = 8
+		console.log(offsetBox.top,offsetBox.left);  // 8 8
+
+		var offsetA = $("#box a").offset();
+		// offset 与父元素的定位没有关系,永远都是相对于文档的距离
+		console.log(offsetA);  // object对象 包含 left = 23 和 top = 23
+		console.log(offsetA.top,offsetA.left); // 23 23
+
+		// 设置
+		$("#box").offset({
+			left:0,
+			top:1000
+		});
+
+		// position() 获取相对于父元素的偏移,只能获取,不能设置
+		var pos = $("#box a").position();
+		console.log(pos);  // object 对象
+		console.log(pos.left,pos.top); // 10 10
+
+		$("#box").click(function() {
+			// 获取
+			var sTop = $(document.body).scrollTop();
+			console.log(sTop);
+			var sTop1 = $(document.documentElement).scrollTop();
+			console.log(sTop);
+
+
+			// 设置
+			// $("body,html").scrollTop(0);
+
+			// 动画
+			$("body,html").animate({
+				scrollTop:0
+			},1000);
+		});
+	</script>
+</body>
+</html>

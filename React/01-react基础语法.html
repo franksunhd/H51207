@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>React基础语法</title>
+		<!-- react.js 是 react 的核心模块 -->
+		<script src="js/react.min.js" type="text/javascript" charset="utf-8"></script>
+		<!-- react-dom.js 是控制 dom 元素的 js -->
+		<script src="js/react-dom.min.js" type="text/javascript" charset="utf-8"></script>
+		<!-- browser 是 babel 转换器 -->
+		<script src="js/browser.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="test"></div>
+	</body>
+</html>
+<script type="text/babel">
+	/*
+		ReactDom 执行 react 对象的,他有一个 render 方法,该方法拥有两个参数,
+		第一个参数是要渲染的dom 结构
+		第二个参数是要把 dom 元素渲染到哪里,只能是原生获取
+
+		React 下有 createElement 方法,意为创建元素,有三个参数,
+		第一个参数为要创建的元素标签名,
+		第二个参数为给元素 添加样式,
+		第三个参数为元素的内容
+	 */
+	ReactDOM.render(<p>画虎画皮难画骨!</p>,document.getElementById("test"));
+
+	var html = React.createElement('h1',null,'报与桃花一处开');
+	ReactDOM.render(html,document.getElementById("test"));
+
+	// 创建一个 ul
+    var li1 = React.createElement('li',null,"三光者");
+    var li2 = React.createElement('li',null,"日月星");
+    var li3 = React.createElement('li',null,"三才者");
+    var li4 = React.createElement('li',null,"天地人");
+	var ul =  React.createElement('ul',null,[li1,li2,li3,li4]);
+	ReactDOM.render(ul,document.getElementById("test"));
+
+	// jsx 语法,规定 遇到 {} 在它里面就执行 js 语法,遇到 html 标签就执行 html 语法,也就是把 html 标签里面的内容按照 html 进行解析
+	// render 的第一个参数,必须是一个完整的元素,也就是说必须是一个整体元素
+
+	ReactDOM.render(<div>
+        <p>1+2={1+2}</p>
+		<p>{1 > 2 ? '1>2' :'错误'}</p>
+	</div>,document.getElementById("test"));
+
+
+    ReactDOM.render(React.createElement('h1',null,'他年我若为青帝'),document.getElementById("test"));
+</script>

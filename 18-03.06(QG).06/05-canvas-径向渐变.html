@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas渐变</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持canvas,太low了,赶快升级吧!
+	</canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		// 设置2d画板
+		var cxt = canvas.getContext("2d");
+
+		// 径向渐变 (起始圆心 x, 起始圆心 y, 结束圆心 x,结束圆心 y,半径)
+		var circle = cxt.createRadialGradient(300,300,100,300,300,300);
+      	circle.addColorStop(0.0, '#0f0');
+		circle.addColorStop(0.2, '#0f0');
+      	circle.addColorStop(0.2, '#f0f');
+		circle.addColorStop(0.4, '#f0f');
+		circle.addColorStop(0.4, '#0ff');
+		circle.addColorStop(0.6, '#0ff');
+		circle.addColorStop(0.6, '#f00');
+		circle.addColorStop(0.8, '#f00');
+		circle.addColorStop(0.8, '#ff0');
+		circle.addColorStop(1.0, '#ff0');
+	  	//关键点，把渐变设置到 填充的样式
+      	cxt.fillStyle = circle ;
+      	cxt.fillRect(0,0,600,600);
+	</script>
+</body>
+</html>

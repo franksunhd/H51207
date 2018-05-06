@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全选和反选</title>
+</head>
+<body>
+	<div id="box">
+		<input id="btn1" type="button" name="btn1" value="全选">
+		<input id="btn2" type="button" name="btn2" value="反选">
+	</div>
+
+	<ul id="list">
+		<li><input type="checkbox"></li>
+		<li><input type="checkbox"></li>
+		<li><input type="checkbox"></li>
+		<li><input type="checkbox"></li>
+		<li><input type="checkbox"></li>
+		<li><input type="checkbox"></li>
+		<li><input type="checkbox"></li>
+		<li><input type="checkbox"></li>
+	</ul>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		// 全选
+		$("#btn1").click(function() {
+			$("#list > li > input").prop("checked",true);
+		});
+
+		// 反选
+		$("#btn2").click(function() {
+			$("#list > li > input").prop("checked",function(index,old) {
+				return !old;
+			});
+		});
+	</script>
+</body>
+</html>

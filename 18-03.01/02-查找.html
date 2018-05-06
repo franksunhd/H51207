@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>查找</title>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li class="l1">li1</li>
+			<li>li2</li>
+			<li class="l3">li3</li>
+			<li>li4</li>
+		</ul>
+	</div>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		/*
+		 * 找祖先元素
+		 */
+		console.log($(".l1").parent());  // ul
+		console.log($(".l1").parents()); // ul div#box body html
+		console.log($(".l1").parents("#box")); // div#box
+		// parentsUntil() 找的元素不包含参数
+		console.log($(".l1").parentsUntil("body")); // ul div#box
+
+		// offsetParent() 和原生的一样,查找具有定位关系的父元素
+		console.log($("#box").offsetParent());  // html
+
+		/*
+		 * 找后代元素
+		 */
+		// children 找第一代
+		console.log($("#box ul").children()); // li.l1  li   li.l3   li
+		// find(选择器|JQ对象|原生对象) 参数必传
+		console.log($("#box").find("ul")); // ul
+
+
+		/*
+		 * 查找同级元素
+		 */
+		// siblings(选择器)
+		console.log($("#box .l1").siblings());  // li  li.l3  li
+		// prev() prevAll() prevUntil()
+		// next() nextAll() nextUntil()
+
+		console.log($("#box .l3").prevUntil("#box"));  // li  li.l1
+		console.log($("#box .l3").nextUntil("#box"));  // li
+
+	</script>
+</body>
+</html>

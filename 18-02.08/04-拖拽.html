@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
@@ -11,21 +10,21 @@
 				background-color: lightpink;
 				transition: 1s;
 			}
-			
+
 			#show {
 				position: fixed;
 				bottom: 0;
 				left: 0;
 				right: 0;
 				text-align: center;
+				font-size: 50px;
 			}
 		</style>
 	</head>
-
 	<body>
 		<div id="box"></div>
 		<p id="show">信息</p>
-		
+
 		<script src="touch.js"></script>
 		<script type="text/javascript">
 			show.innerText = "抓取并拖拽目标元素";
@@ -42,12 +41,11 @@
 				var offy = dy + ev.y + "px";
 				this.style.webkitTransform = "translate3d(" + offx + "," + offy + ",0)";
 			});
-			touch.on('#box', 'dragend', function(ev) {9
+			touch.on('#box', 'dragend', function(ev) {
 				dx += ev.x;
 				dy += ev.y;
 				show.innerText = "当前x值为:" + dx + ", 当前y值为:" + dy + ".";
 			});
 		</script>
 	</body>
-
 </html>

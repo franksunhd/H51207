@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery语法特点</title>
+</head>
+<body>
+	<h3>
+		<a href="http://www.runoob.com/jquery/jquery-intro.html">
+			兼容性问题:如果兼容 ie6,7,8下载1.9版本
+		</a>
+	</h3>
+	<div class="box"></div>
+	<p>
+		jQuery是一个快速、简洁的JavaScript框架，
+		是继Prototype之后又一个优秀的JavaScript代码库（或JavaScript框架）。
+		jQuery设计的宗旨是“write Less，Do More”，即倡导写更少的代码，做更多的事情。
+		它封装JavaScript常用的功能代码，提供一种简便的JavaScript设计模式，
+		优化HTML文档操作、事件处理、动画设计和Ajax交互。
+	</p>
+	<p>
+		jQuery的核心特性可以总结为：
+		具有独特的链式语法和短小清晰的多功能接口；
+		具有高效灵活的css选择器，并且可对CSS选择器进行扩展；
+		拥有便捷的插件扩展机制和丰富的插件。
+		jQuery兼容各种主流浏览器，如IE 6.0+、FF 1.5+、Safari 2.0+、Opera 9.0+等
+	 </p>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		console.log(jQuery); // ƒ (a,b){return new r.fn.init(a,b)}
+		console.log($);  // ƒ (a,b){return new r.fn.init(a,b)}
+		console.log($ === jQuery);  // true
+
+		// 选择器,返回一个 JQ 封装的对象
+		var eles = $("p");
+		console.log(eles,typeof eles); // jquery对象  "object"
+
+		// css样式
+		// 链式操作
+		// $("p").css("color","red").css("font-size","20px");
+
+		$("p").css({
+			"color":"red",
+			"font-size":"20px"
+		});
+	</script>
+</body>
+</html>

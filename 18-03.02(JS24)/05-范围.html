@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>范围</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var str = "abc-def-apc";
+
+		// 只匹配 a和c
+		var reg = str.replace(/[ac]/g,"*");
+		console.log("只匹配a和c:",str,"|",reg);
+		// 手机号码: 1-3/5/7
+		reg = str.replace(/^1[357]/g,"*");
+
+		// [^abc]:匹配不再 abc范围内的字符
+		reg = str.replace(/[^abc]/g,"*");
+		console.log("匹配不再 abc范围内的字符:",str,"|",reg);
+	</script>
+</body>
+</html>

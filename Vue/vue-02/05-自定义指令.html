@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义指令</title>
+		<style type="text/css">
+			.aa {
+				width: 200px;
+				height: 200px;
+				background: indianred;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--
+			自定义的指令
+			当需要对 dom 进行底层操作,使用自定义指令
+			
+			创建全局指令:directive
+			
+			Vue.directive('指令名',{ 指令内容 });
+			指令内容对象一般包含四个方法.
+			bind:指令第一次绑定到 dom 元素的时候触发
+			inserted: 指令所在的元素插入到父节点的时候调用
+			update: 指令所在的元素值发生改变的时候调用
+			unbind: 解绑的时候触发
+		-->
+		<!-- 第一个 vue 视图 -->
+		<div id="app">
+			<div v-abc="{color:'#f00'}" class="aa">第一个视图</div>
+			<hr />
+			<div v-jubu="{color:'#0f0'}" class="aa">第1.1个视图</div>
+		</div>
+		<hr />
+		<!-- 第二个 vue 视图 -->
+		<div id="bpp">
+			<div v-abc="{color:'#f00'}" class="aa">第二个视图</div>
+		</div>
+	</body>
+
+</html>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	// 全局指令
+	// 先指令,
+	Vue.directive('abc', {
+		// 第一个参数为当前绑定的元素,第二个参数为指定的值
+		bind: function(el, val) {
+			console.log(el, val);
+			el.onmouseenter = function() {
+				el.style.backgroundColor = val.value.color;
+			};
+			el.onmouseleave = function() {
+				el.style.backgroundColor = 'indianred';
+			};
+		},
+		update: function(el, val) {
+			console.log(el, val);
+			el.onmouseenter = function() {
+				el.style.backgroundColor = val.value.color;
+			};
+			el.onmouseleave = function() {
+				el.style.backgroundColor = 'indianred';
+			};
+		}
+	});
+
+	// 简写: 当 bind 和 update 一致的时候,不管其他的钩子函数,可以写成简写的方式
+	Vue.directive('abc', function(el, val) {
+		el.onmouseenter = function() {
+			el.style.backgroundColor = val.value.color;
+		};
+		el.onmouseleave = function() {
+			el.style.backgroundColor = 'indianred';
+		};
+	});
+	// 创建局部指令
+	// 后实例化
+	var vm1 = new Vue({
+		el: '#app',
+		data:{},
+		methods:{},
+		directives:{
+			jubu:{
+				bind:function(el,val){
+					console.log(el,val);
+					el.onmouseenter = function() {
+						el.style.backgroundColor = val.value.color;
+					};
+					el.onmouseleave = function() {
+						el.style.backgroundColor = 'indianred';
+					};
+				},
+				// 需要访问该指令所绑定元素的父级,所以要写在 inserted 中
+				inserted:function(el,val){
+					console.log(el.parentElement);
+				}
+			}
+		}
+	});
+	var vm2 = new Vue({
+		el: "#bpp"
+	})
+</script>

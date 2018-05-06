@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas基础</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+		body {
+			background-color: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持canvas,太low了,赶快升级吧!
+	</canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		// 设置2d画板
+		var cxt = canvas.getContext("2d");
+		var positions = [
+			["#000",0,0,200,-1/2 *Math.PI,1/2 *Math.PI,true],
+			["#fff",0,0,200,1/2 *Math.PI,-1/2 *Math.PI,true],
+			["#fff",0,-100,100,0,2 *Math.PI,true],
+			["#000",0,-100,20,0,2 *Math.PI,true],
+			["#000",0,100,100,0,2 *Math.PI,true],
+			["#fff",0,100,20,0,2 *Math.PI,true]
+		];
+		var deg = 0;
+		function draw() {
+			deg++;
+			cxt.save();
+			cxt.clearRect(0,0,cxt.width,cxt.height);
+			cxt.translate(300, 300); //将原点移动到画布的中心
+			cxt.rotate(Math.PI/180 * deg);
+
+			for (var i = 0; i < 6; i++) {
+				cxt.beginPath();
+				cxt.fillStyle = positions[i][0];
+				cxt.arc(positions[i][1],positions[i][2],positions[i][3],positions[i][4],positions[i][5],positions[i][6]);
+				cxt.fill();
+				cxt.closePath();
+			}
+			cxt.restore();
+			window.requestAnimationFrame(draw);
+		}
+		draw();
+	</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>修饰符</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+		 * 修饰符
+		 */
+		var rex = "1Hella3 JAvaScript";
+		// 所有的 a 替换为 o
+		// i:不区分大小写
+		// g:全局匹配
+		// m:多行匹配
+		var rex1 = rex.replace(/a/gi,"o");
+		console.log("用o替换a:",rex,"|",rex1);
+
+		// 去除 所有的数字
+		var rex2 = rex.replace(/\d/g,"");
+		console.log("去除数字:",rex,"|",rex2);
+
+		// 构造函数创建正则
+		var str = "1Hella3 JAvaScript";
+		// 参数1:规则
+		// 参数2:修饰符
+		var reg = new RegExp("a","gi");
+		var newReg = str.replace(reg,"*");
+		console.log("用*替换a:",str,"|",newReg);
+
+		var str = "1Hella3 JAvaScript";
+		// 注意: 构造函数中 \必须转义
+		var reg = new RegExp("\\d","g");
+		var newReg = str.replace(reg,"*");
+		console.log("用*替换数字:",str,"|",newReg);
+
+		// 如果有变量:必须使用构造函数
+		var str = "1Hella3 JAva2Script CSS Java ios";
+		var value = "css";
+		var reg = new RegExp(value,"gi");
+		var newReg = str.replace(reg,"*");
+		console.log("构造函数使用变量:",str,"|",newReg);
+	</script>
+</body>
+</html>

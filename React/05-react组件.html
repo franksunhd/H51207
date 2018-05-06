@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/browser.min.js"></script>
+</head>
+<body>
+    <div id="test"></div>
+</body>
+</html>
+<script type="text/babel">
+    // 组件(类) 是 react 的核心内容,声明组件,首字母必须大写,使用驼峰命名,声明组件的方法是 createClass
+
+    var HtmlDom = React.createClass({
+        render:function () {
+            return <h1>白发三千丈{this.props.name}</h1>
+        }
+    });
+
+    // 使用组件,可以是单标签,也可以是双标签
+    ReactDOM.render(<HtmlDom></HtmlDom>,document.getElementById("test"));
+
+    // 属性,可以展示的内容,但是不能够修改
+    // 获取属性,只需要在他所在的组件中使用 this.props.要获取的属性名 就可以获取, this.props指的是他所在的组件的属性集合
+    ReactDOM.render(<HtmlDom name="李白"></HtmlDom>,document.getElementById("test"));
+</script>

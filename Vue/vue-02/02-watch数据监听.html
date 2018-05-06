@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数据监听</title>
+	</head>
+	<body>
+		<div id="app">
+			<label for="">姓名1:</label>
+			<input type="text"  v-model="val"/> <br />
+			<label for="">姓名2:</label>
+			<input type="text"  v-model="name"/> <br />
+		</div>
+	</body>
+</html>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var vm1 = new Vue({
+		el:"#app",
+		data:{
+			val:'天苍苍,野茫茫',
+			name:'风吹草低见牛羊'
+		},
+		// 数据监听的方法
+		watch:{
+			// 监控数据需要写数据的名称为 watch 的属性名
+			// 它的值是一个函数,该函数有两个参数,第一个参数为变化后的值,第二个参数为变化前的值
+			val:function(newVal,oldVal){
+				console.log("新=" + newVal);
+				console.log("旧=" + oldVal);
+			}
+		}
+	});
+	// 在外部进行监听,使用 $watch 方法,
+	// 第一个参数为 要监听数据的变量名,第二个方法是监听的回调函数
+	vm1.$watch('name',function(newName,oldName){
+		console.log("新=" + newName);
+		console.log("旧=" + oldName);
+	});
+</script>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>生命周期</title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="a"/>
+		</div>
+	</body>
+</html>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var vm1 = new Vue({
+		el:"#app",
+		data:{
+			a:3
+		},
+		created:function(){
+			// 该方法在实例化创建之后执行
+			console.log("create方法= " + this.a);
+		},
+		beforeCreate:function(){
+			// 在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。
+			console.log("beforeCreate方法");
+		},
+		beforeMount:function(){
+			// 只有在实例化之后,也就是在执行了挂载之后也就是指定了 el 之后调用
+			console.log("beforeMount方法");
+		},
+		mounted:function(){
+			// 只有在 mounted 之后才能执行一系列的 dom 操作
+			// 可以在该函数里面使用加载立即执行的方法
+			console.log("欢迎 mounted方法");
+		},
+		beforeUpdate:function(){
+			// 当数据发生变化时,或者 view 视图重新绘制的时候执行该方法
+			console.log("beforeUpdate方法");
+		},
+		updated:function(){
+			// 数据或者 dom 发生改变时
+			console.log("updated 方法");
+		},
+		beforeDestroy:function(){
+			// 实例销毁之前调用
+			console.log("beforeDestroy");
+		},
+		destroyed:function(){
+			// 实例销毁的时候被调用,该方法调用后, vue 实例就被销毁
+			console.log("destroyed 方法");
+		}
+	});
+	// 综上,都是 vue 的生命周期函数,也叫钩子函数
+	// 常用的: mounted(欢迎提示),methods(方法),computed(监听)
+</script>

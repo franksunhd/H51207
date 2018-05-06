@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>addClass</title>
+	<style media="screen">
+		.s1 {
+			background: red;
+		}
+
+		.s2 {
+			border: 5px solid blue;
+		}
+
+		.s3 {
+			text-decoration: underline;
+		}
+
+		.s4 {
+			font-size: 40px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<p>p1</p>
+		<p>p2</p>
+		<p>p3</p>
+	</div>
+	<div id="box1">
+		<p>p1</p>
+		<p>p2</p>
+		<p>p3</p>
+	</div>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		// addClass 添加样式
+		$("#box p").eq(0).addClass("s1 s2 s4").removeClass("s3").toggleClass("s3");
+		// removeClass 删除样式
+		// toggleClass 有就删除,没有就添加
+
+		//  参数2:控制删除(false) 或者 添加(true) Class
+		$("#box p:last-child").toggleClass("s1 s2",true);
+
+		$("#box p").click(function() {
+			console.log(this);
+			$(this).toggleClass("s1 s2");
+		});
+
+		$("#box1 p").eq(0).addClass("s1");
+
+		// 参数是匿名函数
+		$("#box1 p").addClass(function(index,className) {
+			// console.log(1);
+			console.log(index,className);
+			if (index === 0) return "s1";
+			if (index === 1) return "s2";
+			if (index === 2) return "s3";
+		});
+	</script>
+</body>
+</html>

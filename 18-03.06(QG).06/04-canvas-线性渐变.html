@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas渐变</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持canvas,太low了,赶快升级吧!
+	</canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		// 设置2d画板
+		var cxt = canvas.getContext("2d");
+
+		// 线性渐变 (起点 x, 起点 y, 终点 x,终点 y)
+		var circle = cxt.createLinearGradient(100,200,100,500);
+      	circle.addColorStop(0, '#0f0');
+	  	//添加一个渐变颜色，第一个参数介于 0.0 与 1.0 之间的值，表示渐变中开始与结束之间的位置。
+      	circle.addColorStop(0.2, '#0ff');
+		circle.addColorStop(0.4, '#f0f');
+		circle.addColorStop(0.6, '#0ff');
+		circle.addColorStop(0.8, '#f00');
+		circle.addColorStop(1, '#ff0');
+	  	//关键点，把渐变设置到 填充的样式
+      	cxt.fillStyle = circle ;
+      	cxt.fillRect(100,200,100,300);
+
+		var circle1 = cxt.createLinearGradient(100,200,100,500);
+      	circle1.addColorStop(0.0, '#0f0');
+		circle1.addColorStop(0.2, '#0f0');
+      	circle1.addColorStop(0.2, '#f0f');
+		circle1.addColorStop(0.4, '#f0f');
+		circle1.addColorStop(0.4, '#0ff');
+		circle1.addColorStop(0.6, '#0ff');
+		circle1.addColorStop(0.6, '#f00');
+		circle1.addColorStop(0.8, '#f00');
+		circle1.addColorStop(0.8, '#ff0');
+		circle1.addColorStop(1.0, '#ff0');
+	  	//关键点，把渐变设置到 填充的样式
+      	cxt.fillStyle = circle1 ;
+      	cxt.fillRect(300,200,100,300);
+	</script>
+</body>
+</html>

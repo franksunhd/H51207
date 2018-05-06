@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>整屏滚动</title>
+	<link href="./css/jquery.fullpage.css" rel="stylesheet">
+	<link href="./css/animate.min.css" rel="stylesheet">
+	<style media="screen">
+		.section:nth-child(1) {background-color: lightblue;}
+		.section:nth-child(2) {background-color: yellowgreen;}
+		.section:nth-child(3) {background-color: lightgreen;}
+		.section:nth-child(4) {background-color: lightblue;}
+		#slider {
+			width: 50px;
+			height: 50px;
+			position: fixed;
+			bottom: 30px;
+			left: 0;
+			right: 0;
+			margin: auto;
+			z-index: 10;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+	    <div class="section">
+	        <h3 class="h1">第一屏</h3>
+	    </div>
+	    <div class="section">
+	        <h3 class="h2">第二屏</h3>
+	    </div>
+	    <div class="section">
+	        <h3 class="h3">第三屏</h3>
+	    </div>
+	    <div class="section">
+	        <h3 class="h4">第四屏</h3>
+	    </div>
+	</div>
+	<img id="slider" class="animated bounce infinite" src="./images/arrow-up.png" alt="">
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script src="./js/jquery.easings.min.js"></script>
+	<script src="./js/jquery.fullpage.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#box').fullpage({
+				// index 从 1 开始
+				afterLoad:function(anchorLink,index) {
+					if (index === 1) {
+						$(".h1").addClass("animated shake");
+					} else if (index === 2) {
+						$(".h2").addClass("animated swing");
+					} else if (index === 3) {
+						$(".h3").addClass("animated shake");
+					} else if (index === 4){
+						$(".h4").addClass("animated shake");
+					}
+				}
+			});
+
+			$("#slider").on("touchstart click",function(ev) {
+				ev.preventDefault();
+				$.fn.fullpage.moveSectionDown();
+			});
+		});
+	</script>
+</body>
+</html>

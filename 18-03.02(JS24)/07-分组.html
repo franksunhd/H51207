@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分组</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 分组:()
+		// 1.
+		var str = "";
+		var reg = /[]/g;
+		var newStr = str.replace(reg,"**");;
+
+		reg = /(abc){2}/g;
+		reg = /(^\s*)|(\s*$)/g;
+
+		// 3.
+		str = "aa-abab-bb-abcc-dc";
+		// \1:指第一个分组匹配的结果,是个动态的值
+		reg = /([a-z])\1/g;
+		newStr = str.replace(reg,"**");
+		console.log(newStr);
+
+		reg = /(a)(b)\1\2/g;
+		newStr = str.replace(reg,"**");
+		console.log(newStr);
+
+		//
+		str = "2018-03-02";
+		// 03月02日2018年
+		reg = /(\d{4})-(\d{1,2})-(\d{1,2})/g;
+		// $1:取第一个分组的值
+		newStr = str.replace(reg,"$2月$3日$1年");
+		console.log(newStr);
+		// 本次匹配后的每个分组的值
+		console.log(RegExp.$1);  // 2018
+		console.log(RegExp.$2);  // 03
+		console.log(RegExp.$3);  // 02
+	</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+    <script src="./js/react.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/react-dom.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/browser.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="test"></div>
+</body>
+</html>
+<script type="text/babel">
+    var arr = [
+        <p>人面桃花相映红.</p>,
+        <p>人面不知何处去,</p>,
+        <p>桃花依旧笑春风.</p>
+    ];
+
+    var SetArr = React.createClass({
+        render:function () {
+            return <h1>
+                <p>去年今日此门中,</p>{this.props.arr}
+            </h1>
+        }
+    });
+
+    ReactDOM.render(<SetArr arr={arr}></SetArr>,document.getElementById("test"));
+
+    // 获取双标签中的内容
+    var Count = React.createClass({
+       render:function () {
+           // this.props.children 专门获取标签内部的元素
+           return <div>{
+               // console.log(this.props.children)
+
+               // this.props.children
+
+               this.props.children.map(function (item) {
+                   return item
+               })
+           }</div>
+       } 
+    });
+
+    ReactDOM.render(<Count>
+        <h1>赵钱孙李</h1>
+        <h1>周吴郑王</h1>
+        <h1>冯陈楚卫</h1>
+        <h1>蒋沈韩杨</h1>
+    </Count>,document.getElementById("test"));
+</script>

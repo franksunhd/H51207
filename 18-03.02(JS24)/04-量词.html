@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>量词</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var str = "a1234 B1546 c12 ad2937 ads23";
+		// n{X}: 匹配包含 X 个 n 的序列的字符串.
+		// 匹配: 开头是字母,后面跟着四个数字.
+		var reg = str.replace(/[a-z]{1}[0-9]{4}/gi,"*");
+		console.log("开头是字母,后面跟着四个数字:",str,"|",reg);
+
+		// n{X,Y}: 匹配至少 X个,至多 Y个
+		// 贪婪模式:量词范围会尽可能多的匹配
+		reg = str.replace(/[a-z]\d{2,4}/gi,"*");
+		console.log("开头是字母,后面跟着二至四个数字:",str,"|",reg);
+
+		// n? 尽可能少的匹配
+		reg = str.replace(/[a-z]\d{2,4}?/gi,"*");
+		console.log("开头是字母,后面跟着二至四个数字:",str,"|",reg);
+
+		/*************前瞻*************/
+		// ?=n
+		reg = str.replace(/ad(?=s)/gi,"*");
+		console.log("找出紧跟s的ad:",str,"|",reg);
+
+		str = "this all is";
+		// ?=n
+		// all是用来前瞻修饰 is 的,不会参与替换
+		reg = str.replace(/is(?= all)/gi,"*");
+		console.log("找出紧跟 all的is:",str,"|",reg);
+
+		// ?!n
+		reg = str.replace(/is(?! all)/gi,"*");
+		console.log("找出不是紧跟 all的is:",str,"|",reg);
+	</script>
+</body>
+</html>

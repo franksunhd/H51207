@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>组件refs</title>
+    <script src="./js/react.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/react-dom.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/browser.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="test"></div>
+</body>
+</html>
+<script type="text/babel">
+    // refs 是特殊的属性,它是所有附带有 ref 属性的集合,通过 this.refs.a 可以获取到 ref 的值为 a 的元素
+
+    var RefsClass = React.createClass({
+        changeColor: function() {
+            this.refs.a.style.color = '#0f0';
+        },
+        render:function () {
+           return <div>
+               <p ref="a">退一步海阔天空</p>
+               <button onClick={this.changeColor}>点击</button>
+           </div>
+       }
+    });
+
+    ReactDOM.render(<RefsClass></RefsClass>,document.getElementById("test"));
+</script>

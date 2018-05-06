@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>合法匹配</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 合法匹配
+		var http = "http://www.baidu.com";
+		var reg = /^(https?:\/\/)(w{3}\.)\w+\.(cn|com)/g;
+		var newStr = reg.test(http);
+		console.log(newStr ? "合法链接" : "非法链接");
+	</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>过滤</title>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li class="l1">li1</li>
+			<li class="l1">li2</li>
+			<li class="l3">li3</li>
+			<li>li4</li>
+		</ul>
+	</div>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		// hasClass(类名)   结合 addClass 和 removeClass
+		console.log($("#box li").hasClass("l1")); // true
+
+		// filter()
+		console.log($("#box li").filter(".l1"));  // li.l1  li.l1
+		console.log($("#box li").filter(".l1:first"));  // li.l1
+
+		// is() 判断父级元素是否与情况一致
+		console.log($("#box li").parent().is("ul")); // true
+
+		// map()
+		$("#box li").map(function (index,value) {
+			index += 10;
+			console.log(index,value);
+		});
+
+		// has()
+		console.log($("#box ul").has(".l1"));
+
+		// not()
+		console.log($("#box ul").not(".l1"));
+
+		// slice(start,[end])
+	</script>
+</body>
+</html>

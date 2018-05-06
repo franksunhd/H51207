@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas放大镜</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="300" height="450">
+		您的浏览器不支持 canvas!
+	</canvas>
+
+	<script src="./js/jquery-2.0.3.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var canvas = $("#canvas");
+		var cxt = canvas.get(0).getContext("2d");
+
+		$("<img/>").prop("src","./img/bg4.jpg").load(function() {
+			cxt.drawImage(this,0,0,canvas.width(),canvas.height());
+		});
+
+		// 设置鼠标进入图片操作
+		function enter() {
+
+			canvas.mousemove(move);
+
+			function move(ev) {
+				cxt.clearRect(0,0,canvas.width(),canvas.height());
+
+				// 再次绘制
+				var img1 = $("<img/>").prop("src","./img/bg4.jpg").get(0);
+				cxt.drawImage(img1,0,0,canvas.width(),canvas.height());
+
+				var dx = ev.pageX - canvas.offset().left;
+				var dy = ev.pageY - canvas.offset().top;
+
+				// 设置合并属性
+				// cxt.globalCompositeOperation = "destination-out";
+
+				// 开始绘制
+				cxt.beginPath();
+				cxt.arc(dx,dy,40,0,Math.PI*2,false);
+				cxt.fill();
+				cxt.closePath();
+
+				// 设置合并属性
+				// cxt.globalCompositeOperation = "destination-over";
+
+				var img2 = $("<img/>").prop("src","./img/bg4.jpg").get(0);
+				cxt.drawImage(img2,dx*2-40,dy*2-40,80,80,dx-40,dy-40,80,80);
+			}
+
+			canvas.mouseleave(leave);
+
+			function leave() {
+				cxt.clearRect(0,0,canvas.width(),canvas.height());
+				
+				var img1 = $("<img/>").prop("src","./img/bg4.jpg").get(0);
+				cxt.drawImage(img1,0,0,canvas.width(),canvas.height());
+			}
+		}
+
+		enter();
+	</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>props多样性</title>
+	</head>
+	<body>
+		<div id="app">
+			<h1>{{str}}</h1>
+			<get-all :str-mo="'雍正'" :my-obj="{name:'忽必烈',age:20}"></get-all>
+			<hr />
+		</div>
+	</body>
+</html>
+<template id="tem">
+	<div>
+		<p>{{strMo}}</p>
+		<template v-for="(item,key) in myObj">
+			<p>{{key}}:{{item}}</p>
+		</template>
+		<p>{{msg}}</p>
+		<button @click="chuan()">点击获取子元素的值</button>
+	</div>
+</template>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var temp = {
+		template:'#tem',
+		data:function(){
+			return {
+				msg:'传位于四阿哥---子'
+			}
+		},
+		props:{
+			// 属性名尽量不要驼峰,若写成驼峰需要大写转-小写
+			strMo:{
+				type:String,
+				default:'康熙'
+			},
+			myObj:{
+				type:Object,
+				default:function(){
+					return {
+						name:'康熙'
+					}
+				},
+				required:true
+			}
+		},
+		methods:{
+			// 子组件调用父组件的方法
+			chuan(){
+				// $parent 获取父组件,也就是通过 this.$parent 访问父组件的所有内容
+				this.$parent.shou(this.msg);
+			}
+		}
+	}
+	/*
+	 * 实现了将父元素的值改为子元素的值
+	 * 传给八阿哥 改为了 传给四阿哥
+	 */
+	var vm1 = new Vue({
+		el:"#app",
+		data:{
+			str:'传位于八阿哥---父'
+		},
+		methods:{
+			//设置父元素的接收方法
+			shou(info){
+				// 改变 str 的值
+				this.str = info;
+			}
+		},
+		components:{
+			getAll:temp
+		}
+	});
+</script>

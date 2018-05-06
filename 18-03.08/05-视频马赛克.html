@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>视频马赛克</title>
+		<style type="text/css">
+			#canvas {
+				border: 2px solid red;
+				display: block;
+				margin: 0 auto;
+			}
+			
+			video {
+				display: none;
+			}
+			
+			.btns {
+				text-align: center;
+				margin-top: 20px;
+			}
+			
+			button {
+				height: 30px;
+				padding: 0 10px;
+				line-height: 30px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="600" height="400">
+			你的浏览器不支持canvas!
+		</canvas>
+		<video id="vplay" width="600" height="400">
+			<source src="./video/1.mp4" type="video/mp4"></source>
+		</video>
+		<div class="btns">
+			<button id="play">播放</button>
+			<button id="wuma">高清无码</button>
+			<button id="fma">方形马赛克</button>
+			<button id="yma">圆形马赛克</button>
+			<button id="stop">暂停</button>
+		</div>
+		<script type="text/javascript">
+			var canvas = getId("canvas");
+			var cxt = canvas.getContext("2d");
+			
+			var video = getId("vplay");
+			
+			// 获取 按钮
+			var play = getId("play");
+			var wuma = getId("wuma");
+			var fma = getId("fma");
+			var yma = getId("yma");
+			var stop = getId("stop");
+			
+			var isMosaic = false;
+			var shape = "";
+			
+			// 点击播放按钮
+			play.onclick = function(){
+				vplay.play();
+				draw();
+			}
+			
+			// 点击暂停按钮
+			stop.onclick = function(){
+				vplay.pause();
+			}
+			
+			// 点击高清无码
+			wuma.onclick = function(){
+				isMosaic = false;
+			}
+			
+			// 方形马赛克
+			fma.onclick = function(){
+				isMosaic = true;
+				shape = 'square';
+			}
+			
+			// 圆形马赛克
+			yma.onclick = function(){
+				isMosaic = true;
+				shape = 'circle';
+			}
+			
+			// 绘制方法
+			function draw(){
+				cxt.clearRect(0,0,600,400);
+				cxt.drawImage(vplay,0,0,600,400);
+				
+				// 判断是否有马赛克
+				if(isMosaic){
+					// 马赛克的原理就是把播放的图片分成一块一块的小图,并给这些小图,并给这些小图设置统一的颜色
+					var imageData = cxt.getImageData(0,0,600,400);
+					
+					// 清除原来的图片
+					cxt.clearRect(0,0,600,400);
+					// 设置马赛克小格子的宽和高
+					var height = 5;
+					var width = 5;
+					
+					// 获取宽高为5px 的行和列 h:80 w:120
+					var row = Math.floor(canvas.height / height);
+					var col = Math.floor(canvas.width / width);
+					
+					// 遍历每个小格
+					for (var i = 0 ; i< row;i++) {
+						for (var j = 0; j < col; j++) {
+							// 找最中间的点
+							var x = j * width + Math.floor(width/2);
+							var y = i * height + Math.floor(height/2);
+							
+							// 找该点的位置在像素数组中的下标
+							var pos = (y-1) * canvas.width * 4 + x * 4;
+							var colors = imageData.data;
+							
+							// 获取这个点的 rgb
+							var r = colors[pos];
+							var g = colors[pos + 1];
+							var b = colors[pos + 2];
+							
+							// 设置填充颜色
+							cxt.fillStyle = "rgb("+ r +","+ g +","+ b +")";
+							
+							// 判断马赛克的类型
+							if(shape == 'square'){
+								// 方形马赛克
+								cxt.beginPath();
+								cxt.fillRect(x - Math.floor(width/2),y - Math.floor(height/2),width,height);
+								cxt.closePath();
+							} else {
+								// 圆形马赛克
+								cxt.beginPath();
+								cxt.arc(x,y,Math.floor(width/2),0,2*Math.PI,false);
+								cxt.fill();
+								cxt.closePath();
+							}
+						}
+					}
+				}
+					
+				// 设置循环
+				window.requestAnimationFrame(draw);
+			}
+			
+			// 获取id
+			function getId(id) {
+				return document.getElementById(id);
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>控制语句</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<!--
+    Vue 内置的控制指令
+    v-if: 可以单独使用,值为true,false
+    v-else: 需要配合 v-if 使用
+    v-else-if 需要配合 v-if 使用
+
+    以上三个控制是否添加 dom 结构,如果为 true, 他所修饰的元素被写入到 dom 结构上,否则在dom上不显示
+
+    v-show: 控制 css 级别的元素显示或者隐藏.实际上是 display: none 和 block 的转换
+
+    v-for: 循环创建 dom 结构
+    v-pre: 他所修饰的内容格式不变
+    v-once: 只渲染一次
+
+    v-for="形参 in 数组/对象"
+    还可以在 v-for 的后面设置一个 key:value 虚拟的 dom, 他可以提高渲染的速率
+    v-for="(item,index) in arr":key="value"
+-->
+<div id="app">
+    <h1 v-if="bol">我是显示的</h1>
+    <h1 v-else="bol">我是不显示的</h1>
+    <h1 v-if="!bol">我是不显示的</h1>
+    <button v-on:click="changeBol()">点击显示/隐藏</button>
+    <h1 v-if="name=='悟空'">大师兄</h1>
+    <h1 v-else-if="name=='八戒'">二师兄</h1>
+    <h1 v-else>沙师弟</h1>
+
+    <h1>
+        <ul>
+            <li v-for="(item,index) in dat" :key='item.name'>
+                序号:{{index + 1}}--姓名:{{item.name}}--年龄:{{item.age}}
+            </li>
+        </ul>
+    </h1>
+    <h1 v-pre>'滴自己的汗,吃自己的饭'</h1>
+    <h1 v-once>{{str}}</h1>
+    <button @click="changeStr()">改变数据</button>
+    <!-- 一般使用template控制for 循环 -->
+    <template v-for="item in dat">
+        姓名:{{item.name}}--年龄:{{item.age}}
+    </template>
+    <h1 v-show="bol">关公</h1>
+    <h1 v-show="!bol">秦琼</h1>
+
+</div>
+</body>
+</html>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var vm1 = new Vue({
+        el: '#app',
+        data: {
+            bol: true,
+            name: '悟空',
+            dat: [
+                {name: '悟空', age: 223},
+                {name: '八戒', age: 232},
+                {name: '沙僧', age: 213}
+            ],
+            str: '二营长你他娘的意大利炮呢'
+        },
+        methods: {
+            changeBol() {
+                this.bol = !this.bol;
+            },
+            changeStr() {
+                this.str = '吃俺老孙一棒';
+            }
+        },
+        // 钩子函数
+        created: function () {
+        }
+    });
+</script>

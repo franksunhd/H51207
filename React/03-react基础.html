@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加外部样式</title>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/browser.min.js"></script>
+    <style type="text/css">
+        .aa {
+            background: #00f;
+            color: #f0f;
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .bb {
+            color: #ff0;
+        }
+    </style>
+</head>
+<body>
+<div id="test"></div>
+</body>
+</html>
+<script type="text/babel">
+    var arr = [
+        <p>唐僧</p>,
+        <p>悟空</p>,
+        <p>八戒</p>,
+        <p>沙僧</p>
+    ];
+
+    ReactDOM.render(<div>{arr}</div>,document.getElementById("test"));
+
+    // 外部添加样式,实质上是声明了一个包含样式的对象,然后对象的属性名是样式名,对象的属性值是样式的值,
+    // 写在 dom 元素之后,按照 css 的样式解析,其中数值没有单位,单位默认是 px, 如果非要加单位,则用字符串的形式
+
+    var styles = {
+        color:'#0f0',
+        fontSize: '30px', // 加单位可以为 '30px'
+    }
+
+    ReactDOM.render(<div style={styles}>{arr}</div>,document.getElementById("test"));
+    // 如果从外部引入 样式对象 style={ 样式对象 } 如果直接写样式 则使用 style = {{行间样式}}
+    ReactDOM.render(<div style={{color:'#f00',fontSize:'30px'}}>{arr}</div>,document.getElementById("test"));
+
+    // 为了和原生的做区别,避免 class 冲突,使用 className 的方式引用外部class名
+    ReactDOM.render(<p className="aa bb">爱月不梳头</p>,document.getElementById("test"));
+</script>

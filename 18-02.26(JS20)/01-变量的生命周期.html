@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>变量的生命周期</title>
+</head>
+<body>
+	<script type="text/javascript">
+        // 引用类型
+		var a = [1,2,3];
+		b = a;
+
+        // 没有对数组的引用,这块区域被系统回收
+		a = null;
+		b = null;
+
+        // 值类型
+		var b = 100;
+
+		function fn(ev) {
+            // 局部,函数调用结束,被系统回收
+			var f1 = 100;
+		}
+        // fn();
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>刮刮乐</title>
+	<style media="screen">
+	 	* {
+	 		margin: 0;
+			padding: 0;
+	 	}
+		.wrap {
+			width: 320px;
+			height: 568px;
+			margin: 0 auto;
+			background: url("./img/bg.png") no-repeat;
+			background-size: 100% 100%;
+			display: block;
+			position: relative;
+		}
+		.wrap p ,
+		#canvas{
+			position: absolute;
+			top: 190px;
+			left: 28px;
+		}
+
+		.wrap p {
+			font-size: 30px;
+			text-align: center;
+			line-height: 134px;
+			height: 134px;
+			width: 263px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<p></p>
+		<canvas id="canvas" width="263" height="134">
+			您的浏览器不支持 canvas! 太low了,赶快升级吧!
+		</canvas>
+	</div>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var canvas = $("#canvas")
+		var cxt = canvas.get(0).getContext("2d");
+
+		// 绘制灰色图层
+		cxt.beginPath();
+		cxt.fillStyle = "#ccc";
+		cxt.fillRect(0,0,263,134);
+		cxt.closePath();
+
+		// 刮刮操作
+		canvas.mousedown(down);
+
+		// 创建鼠标按下方法
+		function down() {
+			canvas.mousemove(move);
+			//
+			function move(ev) {
+				// 获取鼠标在 canvas中的坐标点
+				var dx = ev.pageX - $(this).offset().left;
+				var dy = ev.pageY - $(this).offset().top;
+				// console.log(dx,dy);
+
+				// 设置合并属性
+				cxt.globalCompositeOperation = "destination-out";
+
+				// 绘制新图
+				cxt.beginPath();
+				cxt.arc(dx,dy,20,0, 2 * Math.PI,false);
+				cxt.fill();
+				cxt.closePath();
+
+				// 当清空面积达到 80%;清空所有
+				// getImageData(起始 x, 起始 y, 获取图形的宽度,获取图像的高度)
+				var imgData = cxt.getImageData(0,0,canvas.width(),canvas.height());
+				// console.log(imgData);
+
+				var colorBox = imgData.data;
+				// console.log(colorBox.length);
+				var count = 0;
+				for (var i = 0; i < colorBox.length; i+=4) {
+					if (colorBox[i+3] == 0) {
+						count++;
+					}
+				}
+
+				console.log(count);
+				// 判断是否是 50% ;
+				if (count >= colorBox.length/ 4 * 0.5) {
+					cxt.clearRect(0,0,canvas.width(),canvas.height());
+				}
+			}
+
+			// 设置 up方法
+			canvas.mouseup(up);
+			function up() {
+				$(this).off("mousemove");
+			}
+		}
+
+		$(".wrap p").text("你上当了");
+	</script>
+</body>
+</html>

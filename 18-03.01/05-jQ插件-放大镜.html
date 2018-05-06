@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜</title>
+	<link rel="stylesheet" href="./201505261532/css/default.css">
+	<link rel="stylesheet" href="./201505261532/css/normalize.css">
+	<link rel="stylesheet" href="./201505261532/css/style.css">
+</head>
+<body>
+	<div class="etalage_wrap">
+		<ul id="etalage">
+			<li>
+				<img class="etalage_thumb_image" src="./201505261532/img/1-thumb.jpg" title="first img" />
+				<img class="etalage_big_image" src="./201505261532/img/1.jpg"/>
+			</li>
+			<li>
+				<img class="etalage_thumb_image" src="./201505261532/img/2-thumb.jpg"/>
+				<img class="etalage_big_image" src="./201505261532/img/2.jpg"/>
+			</li>
+			<li>
+				<img class="etalage_thumb_image" src="./201505261532/img/3-thumb.jpg"/>
+				<img class="etalage_big_image" src="./201505261532/img/3.jpg"/>
+			</li>
+			<li>
+				<img class="etalage_thumb_image" src="./201505261532/img/4-thumb.jpg"/>
+				<img class="etalage_big_image" src="./201505261532/img/4.jpg"/>
+			</li>
+			<li>
+				<img class="etalage_thumb_image" src="./201505261532/img/5-thumb.jpg"/>
+				<img class="etalage_big_image" src="./201505261532/img/5.jpg"/>
+			</li>
+		</ul>
+	</div>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script src="./201505261532/js/jqzoom.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#etalage").zoom({
+			zoom_area_width: 300,  // 宽度
+			autoplay_interval :3000,  // 轮播时间
+			small_thumbs : 5,  // 图片张数
+			autoplay : true  // 自动播放
+		});
+	</script>
+</body>
+</html>

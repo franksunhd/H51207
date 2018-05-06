@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数组和对象检测</title>
+	</head>
+	<body>
+		<!--
+			检测数组和对象数据的变动
+			1. 数组更新检测
+				数组的更新方法,数组的内容变化,视图内容就会变化
+				push pop shift unshift splice sort
+				
+				Vue.set(实例中的数组或者对象,下标/key,要更新的值)
+			
+				在 vue 中 使用 filter,map,slice 方法返回的都是数组,不会引起视图的更新,需要给老数组重新赋值
+				注意: this.arr[index] = val 也不会引起视图的改变
+			2. 对象的更新检测
+				对象通过键名,更新 value, 是可以引起视图的更新,需要注意的是:
+				对已有对象再次新加或者删除,不会引起视图的变化
+				如果要同时更新多个值
+				Object.assign()
+		-->
+		<div id="app">
+			<template v-for="item in arr">
+				<p>{{item}}</p>
+			</template>
+			<button @click="change()">点击改变数据</button>
+			<hr />
+			<template v-for="item in girls">
+				<p>{{item.name}} == {{item.age}}</p>
+			</template>
+			<hr />
+			<template v-for="(item,key) in boys">
+				<p>{{key}}:{{item}}</p>
+			</template>
+			<button @click="del()">删除hobby</button>
+		</div>
+	</body>
+</html>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var vm1 = new Vue({
+		el:"#app",
+		data:{
+			arr:[1,2,3,4,5,6,7,8,8,9,10],
+			girls:[
+				{name:"安其拉",age:23},
+				{name:"王昭君",age:34},
+				{name:"杨玉环",age:35},
+				{name:"小乔",age:18}
+			],
+			boys:{
+				name:"亚瑟",
+				age:23,
+				job:'战士'
+			}
+		},
+		methods:{
+			change(){
+				this.arr[1] = 10;
+				console.log(this.arr);
+				this.girls[1].name = '甄姬';
+				this.boys.name = '姜子牙';
+				this.boys.love = '兵法';
+				// 数组改变值
+				Vue.set(this.arr,1,100);
+				// 对象改变值
+				Vue.set(this.boys,'age','19')
+				// 对象添加多个值
+				this.boys = Object.assign({},this.boys,{sex:'男',hobby:'钓鱼'})
+				console.log('已经执行了');
+			},
+			del(){
+				// 删除数据
+				Vue.delete(this.boys,'hobby');
+			}
+		},
+		mounted:function(){
+			this.change();
+		}
+	});
+	
+	vm1.$set(vm1.arr,2,'一段神话');
+	// 外部删除 sex
+	vm1.$delete(vm1.boys,"sex");
+</script>

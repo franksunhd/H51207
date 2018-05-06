@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>空地反弹</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持 canvas! 太low了,赶快升级吧!
+	</canvas>
+
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+
+		var myCan = $("#canvas");
+		var cxt = myCan.get(0).getContext("2d");
+
+		// 设置 Ball 构造函数
+		function Ball() {
+			this.r = ranNum(5,20);
+			this.x = ranNum(this.r,myCan.width() - this.r);
+			this.y = ranNum(this.r,myCan.height() - this.r);
+			this.color = "rgb("+ ranNum(0,255) +","+ ranNum(0,255) +","+ ranNum(0,255) +")";
+			this.speedX = ranNum(2,10) * (ranNum(0,1) ? 1 : -1);
+			this.speedY = ranNum(2,10) * (ranNum(0,1) ? 1 : -1);
+		}
+
+		// 添加方法
+		Ball.prototype = {
+			// 绘制
+			draw:function() {
+				cxt.beginPath();
+				cxt.arc(this.x , this.y , this.r , 0 , Math.PI * 2 ,false);
+				cxt.fillStyle = this.color;
+				cxt.fill();
+				cxt.closePath();
+			},
+
+			// 移动
+			move:function() {
+				this.x += this.speedX;
+				this.y += this.speedY;
+
+				// 碰左
+				if (this.x <= this.r) {
+					this.x = this.r;
+					this.speedX *= -1;
+					// this.speedY *= -1;
+				}
+
+				// 碰右
+				if (this.x >= myCan.width() - this.r) {
+					this.x = myCan.width() - this.r;
+					this.speedX *= -1;
+					// this.speedY *= -1;
+				}
+
+				// 碰上
+				if (this.y <= this.r) {
+					this.y = this.r;
+					// this.speedX *= -1;
+					this.speedY *= -1;
+				}
+
+				// 碰下
+				if (this.y >= myCan.height() - this.r) {
+					this.y = myCan.height() - this.r;
+					// this.speedX *= -1;
+					this.speedY *= -1;
+				}
+			}
+		}
+
+		// 创建小球
+		var balls = [];
+		myCan.get(0).onclick = function() {
+			var ball = new Ball();
+			balls.push(ball);
+		}
+		for (var i = 0; i < 20; i++) {
+			var ball = new Ball();
+			balls.push(ball);
+		}
+
+		// 小球运动
+		var timeId = setInterval(function() {
+			cxt.clearRect(0,0,myCan.width(),myCan.height());
+			for (var i = 0; i < balls.length; i++) {
+				balls[i].draw();
+				balls[i].move();
+			}
+		},15);
+
+		// 随机数
+		function ranNum(a, b){
+			var max = Math.max(a, b);
+			var min = Math.min(a, b);
+			return Math.floor(Math.random() * (max - min + 1) + min);
+		}
+	</script>
+</body>
+</html>

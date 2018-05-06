@@ -1,0 +1,9 @@
+.reg {
+    border: 2px solid #f00;
+    padding: 20px;
+}
+
+.login {
+    padding:20px;
+    border: 2px solid #0f0;
+}

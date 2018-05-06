@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+    // 箭头函数
+    var test = function (i) {
+        return i + 1;
+    }
+
+    console.log(test(3));  // 4
+
+    var test1 = (i) => i + 1;
+    console.log(test1(4));  // 5
+
+    var test2 = (i,j) => {
+        console.log(i+j);
+    }
+    test2(1,2);  // 3
+
+    // 获取函数的参数集合
+    function sum1() {
+        var sum = 0;
+        for(var i = 0; i < arguments.length; i++) {
+            sum += arguments[i];
+        }
+        return sum;
+    }
+    console.log(sum1(1,2,3,4,5));  // 15
+    
+    // es6 中获取参数集合的方法
+    function sum2(...value) {
+        console.log("----------");
+        console.log(value);
+        console.log("----------");
+        var sum = 0;
+        for(let i of value) {
+            sum += i;
+        }
+        return sum;
+    }
+    console.log(sum2(1,2,3,4,5));
+
+    // export 用于导出模块
+    // import 用于载入模块,载入的模块必须由 export 导出,静态载入
+    // require 动态的载入模块
+</script>

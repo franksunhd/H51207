@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包问题--计数器困境</title>
+</head>
+<body>
+	<!--
+		什么是闭包?
+		闭包是可以访问到上一层函数作用域中变量的函数,即便上一层函数已经关闭.
+		闭包就是一个函数引用另一个函数的变量.
+ 	-->
+	<a href="http://www.runoob.com/js/js-function-closures.html" target="_blank">闭包概念</a>
+	<button id="btn" type="button" name="button" onclick="my()">点击加1</button>
+	<p id="text"></p>
+	<script type="text/javascript">
+		// var cotain = 0;
+		// function add() {
+		// 	return cotain += 1;
+		// }
+
+		// function add() {
+		// 	var a = 0;
+		// 	function plus() {
+		// 		a += 1;
+		// 	}
+		// 	plus();
+		// 	return a;
+		// }
+
+
+		// function add1() {
+		// 	var a = 0;
+        //     // 嵌套函数--闭包函数
+		// 	return function plus() {
+		// 		return ++a;
+		// 	};
+		// };
+        //
+		// var add = add1();
+
+		var add = (function() {
+			var a = 0;
+			return function() {
+				return ++a;
+			}
+		})();
+
+		function my(){
+			text.innerHTML = add();
+		};
+	</script>
+</body>
+</html>

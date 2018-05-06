@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style media="screen">
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持canvas,太low了,赶快升级吧!
+	</canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		// 设置2d画板
+		var cxt = canvas.getContext("2d");
+
+		// 坐标轴形变:先移动,然后旋转,最后再缩放,超出画布内容不显示
+
+		// cxt.translate(目标 x, 目标 y) 坐标轴平移
+		// cxt.scale(x 缩放倍数, y 缩放倍数) 缩放
+		// cxt.rotate(旋转弧度)
+
+		// 把坐标轴的原点平移到坐标轴的最中间
+
+		cxt.beginPath();
+		cxt.translate(300,300);
+		// 坐标轴旋转 67 度
+		cxt.rotate(Math.PI/180*67);
+		cxt.scale(3,2);
+
+		cxt.shadowOffsetX = 30;
+		cxt.shadowOffsetY = 30;
+		cxt.shadowColor = "#0f0";
+		cxt.shadowBlur = 10;
+
+		cxt.arc(0,0,50,0,2*Math.PI,false);
+		cxt.fill();
+
+		cxt.closePath();
+	</script>
+</body>
+</html>

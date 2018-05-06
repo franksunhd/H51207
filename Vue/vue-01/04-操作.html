@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>综合联系</title>
+	</head>
+	<body>
+		<div id="app">
+			<table border="1" cellpadding="0" cellspacing="0" width="500">
+				<thead>
+					<tr>
+						<th>姓名</th>
+						<th>年龄</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(item,index) in arr">
+						<td>{{item.name}}</td>
+						<td>{{item.age}}</td>
+						<td><button @click="delData(index)">删除</button></td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<label>姓名:</label><input type="text" v-model="userName" /> <br />
+				<label>年龄:</label><input type="text" v-model="userAge"/>
+			</div>
+			<button @click="addData()">添加</button>
+		</div>
+	</body>
+</html>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var vm1 = new Vue({
+		el:"#app",
+		data:{
+			userName:'',
+			userAge:'',
+			arr:[
+				{name:"诸葛亮",age:23},
+				{name:"王莽",age:24},
+				{name:"李自成",age:25},
+				{name:"张献忠",age:26}
+			]
+		},
+		methods:{
+			delData(event){
+				this.arr.splice(event,1);
+			},
+			addData(){
+				var obj = {};
+				obj.name = this.userName;
+				obj.age = this.userAge;
+				// 添加数据
+				this.arr.push(obj);
+				// 清空输入框
+				this.userName = '';
+				this.userAge='';
+			}
+		},
+		created:function(){}
+	});
+</script>

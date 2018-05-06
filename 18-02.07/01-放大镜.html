@@ -8,18 +8,18 @@
 				padding: 0;
 				margin: 0;
 			}
-			
+
 			body,html{
 				width: 100%;
 				height: 100%;
 			}
-			
+
 			#box {
 				width: 100%;
 				margin: 100px auto;
 				position: relative;
 			}
-			
+
 			#min {
 				width: 350px;
 				height: 350px;
@@ -28,7 +28,7 @@
 				top: 50px;
 				left: 200px;
 			}
-			
+
 			#slider {
 				/*
 				 * 大小问题: 滑块 : 图片 = 1 : 2
@@ -42,12 +42,12 @@
 				cursor: move;
 				display: none;
 			}
-			
+
 			#min img {
 				width: 100%;
 				height: 100%;
 			}
-			
+
 			#max {
 				position: absolute;
 				left: 700px;
@@ -59,7 +59,7 @@
 				overflow: hidden;
 				display: none;
 			}
-			
+
 			#move {
 				position: absolute;
 				top: 0px;
@@ -80,29 +80,29 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<script type="text/javascript">
 			var box = document.getElementById("box");
 			var min = document.getElementById("min");
 			var max = document.getElementById("max");
 			var slider = document.getElementById("slider");
 			var move = document.getElementById("move");
-			
+
 			// 鼠标第一次移到 min 上触发 mouseover 事件
 			min.addEventListener("mouseover",function(ev){
 				ev = ev || window.event;
 				// 显示蒙版效果,放大区域
 				slider.style.display = "block";
 				max.style.display = "block";
-				
+
 				// 移动,刚刚移进去执行两次 this, 因为首先是 slider 上执行一次,
 				// 事件冒泡在 min 上在执行一次,但是,在进去之后,this 只是指代 slider
-				// 
+				//
 				this.onmousemove = function(ev){
 					// console.log(this); // 这里的 this指代的是 min
 					ev = ev || window.event;
 					ev.preventDefault();
-					console.log(ev.offsetX);
+					// console.log(ev.offsetX);
 					// 直接用 offset 会因为事件的冒泡,从 slider 上触发,导致坐标不准确
 					var x = ev.pageX - getOffsetLeft(this) - slider.clientWidth / 2;
 					var y = ev.pageY - getOffsetTop(this) - slider.clientHeight / 2;
@@ -117,30 +117,30 @@
 					y = y <= 0 ? 0 : y;
 					slider.style.left = x + "px";
 					slider.style.top = y + "px";
-					
+
 					// 比例: x : 最大移动区域 = 蓝色边框移动 / 400
 					var scaleX = x / maxX;
 					var scaleY = y / maxY;
 					var maxImgX = move.clientWidth - max.clientWidth;
 					var maxImgY = move.clientHeight - max.clientHeight;
-					
+
 					// 大图的偏移量
 					var offX = maxImgX * scaleX;
 					var offY = maxImgY * scaleY;
-					
+
 					max.scrollLeft = offX;
 					max.scrollTop = offY;
 				}
 			},true);
-			
+
 			min.addEventListener("mouseout",function(){
 				slider.style.display = "none";
 				max.style.display = "none";
-				
+
 				// 事件移除
 				this.onmousemove = null;
 			});
-			
+
 			// 返回元素到页面顶部的距离
 			function getOffsetTop(ele) {
 				if(ele.nodeName == "BODY") {
@@ -155,7 +155,7 @@
 				}
 				return top
 			}
-			
+
 			function getOffsetLeft(ele) {
 				if(ele.nodeName == "BODY") {
 					return 0;

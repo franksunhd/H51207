@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Express-post</title>
+    <style type="text/css">
+        form {
+            padding: 20px;
+            border: 2px solid green;
+        }
+    </style>
+</head>
+<body>
+    <form action="/reg" enctype="multipart/form-data" method="post">
+        账户名: <input type="text" name="username" value="">
+        密码: <input type="text" name="pwd" value="">
+        头像: <input type="file" name="pic" value="">
+        <input type="submit" value="注册">
+    </form>
+</body>
+</html>

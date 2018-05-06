@@ -11,15 +11,16 @@
 				background-color: lightpink;
 				transition: 1s;
 			}
-			
+
 			#show {
 				position: fixed;
 				bottom: 0;
 				left: 0;
 				right: 0;
 				text-align: center;
+				font-size: 50px;
 			}
-			
+
 			@keyframes move{
 				from{
 					transform: translateX(0px);
@@ -28,7 +29,7 @@
 					transform: translateX(200px);
 				}
 			}
-			
+
 			.animated {
 				animation: move 1s linear 2 alternate;
 			}
@@ -45,7 +46,6 @@
 				ev.preventDefault();
 			});
 			touch.on('#box', 'hold tap doubletap', function(ev) {
-				// 动画完成后,清除 class
 				this.className = "animated";
 			});
 			// 监听
@@ -56,14 +56,14 @@
 				this.className = "";
 				this.style.border = "5px solid red";
 			});
-			
+
 			// 动画开始时回调
 			box.addEventListener("animationstart",function(ev){
-				
+
 			});
 			// 动画重复播放时触发
 			box.addEventListener("animationiteration",function(ev){
-				
+
 			});
 		</script>
 	</body>

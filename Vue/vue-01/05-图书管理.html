@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>图书管理</title>
+		<link rel="stylesheet" href="../css/style.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<dl>
+				<dt>
+				    <span>序号</span>
+				    <span>书名</span>
+				    <span>价格</span>
+				    <span>数量</span>
+				    <span>总价</span>
+				    <span>操作</span>
+				  </dt>
+				<dd v-for="(item,index) in dat">
+					<span>{{index+1}}</span>
+					<span>{{item.bookName}}</span>
+					<span>{{item.price}}元</span>
+					<span class="price">
+				      <button class="jian" @click="reduceData(index)">-</button>
+				      <em>{{item.num}}</em>
+				      <button class="jia" @click="addData(index)">+</button>
+				    </span>
+					<span>{{item.num * item.price}}元</span>
+					<div>
+						<em @click="editData(index)">编辑</em>
+						<em @click="delData()">删除</em>
+					</div>
+				</dd>
+			</dl>
+
+			<h2>
+			  <span>总价:</span>
+			  <span>{{sum}}</span>
+			  <span>元</span>
+			</h2>
+
+			<h2 v-if="flag == 0">新建</h2>
+			<h2 v-if="flag == 1">编辑</h2>
+
+			<ul>
+				<li>
+					<label>书名:</label>
+					<input type="text" v-model="bookName">
+				</li>
+				<li>
+					<label>价格:</label>
+					<input type="number" v-model="bookPrice">
+				</li>
+				<li>
+					<label>数量:</label>
+					<input type="number" v-model="bookNum">
+				</li>
+			</ul>
+			<button class="add" @click="reset()">重置</button>
+			<button class="add" @click="submitData()">提交</button>
+
+		</div>
+	</body>
+
+</html>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var vm1 = new Vue({
+		el: "#app",
+		data: {
+			sum: 0,
+			flag: 0, // 0代表新建 ,1代表编辑
+			bookName: '',
+			bookPrice: null,
+			bookNum: null,
+			myindex: null,
+			dat: [{
+					bookName: '三国演义',
+					price: 10,
+					num: 2
+				},
+				{
+					bookName: '红楼梦',
+					price: 20,
+					num: 2
+				},
+				{
+					bookName: '西游记',
+					price: 10,
+					num: 2
+				},
+				{
+					bookName: '水浒传',
+					price: 20,
+					num: 2
+				},
+				{
+					bookName: '三毛流浪记',
+					price: 10,
+					num: 2
+				},
+				{
+					bookName: '高级程序设计',
+					price: 20,
+					num: 2
+				}
+			]
+		},
+		methods: {
+			// 删除数据
+			delData() {
+				this.dat.splice(0, 1);
+				this.sum = 0;
+				this.priceAll();
+			},
+			// 编辑数据
+			editData(str) {
+				this.flag = 1;
+				this.bookName = this.dat[str].bookName;
+				this.bookPrice = this.dat[str].price;
+				this.bookNum = this.dat[str].num;
+				this.myindex = str;
+			},
+			// 点击 加 号
+			addData(index) {
+				this.dat[index].num++
+				this.sum = 0;
+				this.priceAll();
+			},
+			// 点击减号
+			reduceData(index) {
+				if(this.dat[index].num > 1) {
+					this.dat[index].num--;
+					this.sum = 0;
+					this.priceAll();
+				} else {
+					if(confirm("确定要删除吗?")) {
+						this.dat.splice(index, 1);
+						this.sum = 0;
+						this.priceAll();
+					}
+				}
+			},
+			// 计算总价
+			priceAll() {
+				for(var i = 0; i < this.dat.length; i++) {
+					this.sum += this.dat[i].price * this.dat[i].num;
+				}
+				return this.sum;
+			},
+			// 重置数据
+			reset() {
+				this.flag = 0;
+				this.bookName = '';
+				this.bookPrice = null;
+				this.bookNum = null;
+				this.myindex = null;
+			},
+			// 点击提交按钮
+			submitData() {
+				if (this.bookName === '') {
+			      alert('请填写完整的图书名');
+			    }
+			    if (this.bookPrice <= 0 || !this.bookPrice) {
+			      alert('请填写正确的价格');
+			    }
+			    if (this.bookNum <= 0 || !this.bookNum) {
+			      alert('请填写正确的图书数量');
+			    }
+				if(this.flag == 0) {  // 新建
+					if (this.bookName !== '' && this.bookPrice !=='' && this.bookNum !== '') {
+						var obj = {bookName:this.bookName,price:this.bookPrice,num:this.bookNum};
+						this.dat.push(obj);
+						this.bookName = '';
+						this.bookPrice = null;
+						this.bookNum = null;
+						this.sum = 0;
+						this.priceAll();
+					}
+				} else {  // 编辑
+					if (this.bookName !== '' && this.bookPrice !=='' && this.bookNum !== '') {
+						this.dat[this.myindex].bookName = this.bookName;
+						this.dat[this.myindex].price = this.bookPrice;
+						this.dat[this.myindex].num = this.bookNum;
+						this.bookName = '';
+						this.bookPrice = null;
+						this.bookNum = null;
+						this.sum = 0;
+						this.priceAll();
+					}
+				}
+			}
+		},
+		created: function() {
+			this.priceAll();
+		}
+	});
+</script>

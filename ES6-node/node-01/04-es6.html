@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+    // es6 具有类的概念
+    class Animal {
+        // es6 里面的函数的定义可以不写 function
+        // 构造函数,在类里面声明,作用是接收或者设置基本的属性
+        constructor(){
+            this.type = '动物';
+        }
+
+        // 设置方法
+        say(str) {
+            console.log(this.type + "说:" + str);
+        }
+    }
+
+    let cat = new Animal();
+    cat.say('喵喵喵');
+
+    // 继承 extends
+    class animal extends Animal{
+        constructor() {
+            // 子类的构造方法里面必须执行一个 super 方法
+            super();
+            this.type = '猫';
+        }
+    }
+    // 实例化
+    let c = new animal();
+    c.say('喵喵');
+
+    // es6里面函数可以给参数设置默认值
+    function test(a,b){
+        console.log(a+b);
+    }
+
+    test(1,2);
+
+    // 设置默认
+    function test1(a,b = 20){
+        console.log(a+b);
+    }
+    test1(1);
+</script>

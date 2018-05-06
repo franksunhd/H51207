@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonp</title>
+</head>
+<body>
+    姓名: <input type="text" name="username" value="" id="user"> <br>
+    年龄: <input type="text" name="age" value="" id="age">
+    <button id="btn">点击</button>
+    <div id="msg"></div>
+</body>
+</html>
+<script type="text/javascript">
+    var user = document.getElementById('user');
+    var age = document.getElementById('age');
+    var btn = document.getElementById('btn');
+    var msg = document.getElementById('msg');
+
+    btn.onclick = function () {
+        var sc = document.createElement("script");
+        sc.src = "http://127.0.0.1:8080/02-jsonp.js?username=" + user.value + "&age=" + age.value + "&cb=aa";
+        document.body.appendChild(sc);
+        document.body.removeChild(sc);
+    }
+
+    // 定义回调函数
+    function aa(data) {
+        msg.innerText = data;
+    }
+</script>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas基础</title>
+	<style media="screen">
+		canvas {
+			border:2px solid #f00;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持canvas,太low了,赶快升级吧!
+	</canvas>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		// 设置2d画板
+		var cxt = canvas.getContext("2d");
+
+		// 绘制描边填充矩形
+		cxt.beginPath();
+		cxt.strokeStyle = "#00f";
+		cxt.lineWidth = 5;
+		cxt.fillStyle = "#3e3";
+		cxt.rect(10,10,200,200);
+		cxt.stroke();
+		cxt.fill();
+		cxt.closePath();
+
+
+		// 清空画布,只是擦除画布内容,对cxt的设置没有影响,也不会重置对画布的操作
+		// 参数一般都是 JS 变量
+		// 参数1:开始 x 坐标
+		// 参数2:开始 y 坐标
+		// 参数3:擦除宽度
+		// 参数4:擦除高度
+		cxt.clearRect(100,100,200,200);
+		// cxt.clearRect(0,0,600,600);
+
+		cxt.beginPath();
+		cxt.strokeRect(100,100,200,200);
+		cxt.closePath();
+
+		cxt.clearRect(0,0,canvas.width,canvas.height);
+
+		// 画弧形
+			// 1. 在 canvas中,角度都是弧度
+			// 2. 0角度为3点钟方向,顺时针为正,逆时针为负
+			// 3. cxt.arc(圆心 x, 圆心 y, 半径长度,起始角度,结束角度,是否逆时针);
+
+		cxt.beginPath();
+		cxt.arc(200,200,100,0,2 * Math.PI ,false);
+		cxt.fillStyle = "#000";
+		cxt.strokeStyle = "#000";
+		cxt.fill();
+		cxt.stroke();
+		cxt.closePath();
+
+		cxt.clearRect(0,0,canvas.width,canvas.height);
+
+		// 扇形
+		cxt.beginPath();
+		cxt.arc(300,300,200,0,Math.PI/2,false);
+		cxt.moveTo(300,502);
+		cxt.lineTo(300,302);
+		cxt.lineTo(500,302);
+		cxt.stroke();
+		cxt.fillStyle = "#f00";
+		cxt.fill();
+		cxt.closePath();
+
+		cxt.clearRect(0,0,canvas.width,canvas.height);
+
+		// arcTo(第一个点 x,第一个点 y,第二个点 x,第二个点 y,半径长度) 画弧形,两个点确定一个弧
+		// 使用该方法需要在使用之前加一个起点
+
+		cxt.beginPath();
+		cxt.moveTo(20,20);
+		cxt.arcTo(300,100,100,300,50);
+		cxt.lineTo(100,300);
+		cxt.stroke();
+		cxt.closePath();
+	</script>
+</body>
+</html>

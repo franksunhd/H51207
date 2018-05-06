@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>尺寸</title>
+	<style media="screen">
+		#box p {
+			padding: 20px;
+			border: 10px solid red;
+			margin: 15px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<p>p1</p>
+		<p>p2</p>
+		<p>p3</p>
+	</div>
+
+	<hr>
+	<div id="box1">
+		<a href="#">子元素</a>
+	</div>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#box p").height(100).width(100).css("background-color","pink");
+
+		// 获取 height 没有单位
+		var value = $("#box p").eq(1).height();
+		//
+		$("#box p").eq(1).text("height:" + value + "px");
+
+		// 内尺寸,不包含边框
+		var value1 = $("#box p").eq(0).innerHeight();
+		console.log(value1);
+		$("#box p").eq(0).text("innerHeight(contain+padding):" + value1 + "px");
+
+		// 外尺寸 默认不包含 margin,参数1给 true 包含 margin
+		var outerW = $("#box p").outerWidth();
+		console.log("外尺寸:" + outerW);  // 160  // border + padding
+
+		var outerW1 = $("#box p").outerWidth(true);
+		console.log("外尺寸:" + outerW1);  // 190  // border + padding + margin		
+	</script>
+</body>
+</html>

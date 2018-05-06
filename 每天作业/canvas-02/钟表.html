@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>钟表</title>
+	<style media="screen">
+		body {
+			background-color: #eee;
+		}
+
+		#canvas {
+			border: 2px solid red;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600">
+		您的浏览器不支持 canvas,太low了,赶快升级浏览器吧!
+	</canvas>
+
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		var cxt = canvas.getContext("2d");
+
+		var positions = [
+			["#333",0,0,200,0,Math.PI * 2,false], // 外圈
+			["#fff",0,0,180,0,Math.PI * 2,false], // 内圈
+			["#333",0,0,10,0,Math.PI * 2,false] //  中心点
+		];
+
+		var deg = 0;
+		function draw() {
+			deg++;
+			cxt.clearRect(0,0,canvas.width,canvas.height);
+			cxt.save();
+			cxt.translate(300,300);
+
+			for (var i = 0; i < 3; i++) {
+				cxt.beginPath();
+				cxt.fillStyle = positions[i][0];
+				cxt.arc(positions[i][1],positions[i][2],positions[i][3],positions[i][4],positions[i][5],positions[i][6]);
+				cxt.fill();
+				cxt.closePath();
+			}
+
+			// 大刻度
+			for (var i = 0; i < 4; i++) {
+				cxt.save();
+				cxt.beginPath();
+				cxt.rotate(Math.PI/180 * (i*90));
+				cxt.fillRect(-180,-5,20,10);
+				cxt.closePath();
+				cxt.restore();
+			}
+			// 小刻度
+			for (var i = 0; i < 60; i++) {
+				cxt.save();
+				cxt.beginPath();
+				cxt.rotate(Math.PI/180 * (i*6));
+				cxt.fillRect(-180,-2,10,4);
+				cxt.closePath();
+				cxt.restore();
+			}
+
+			// 时针
+			cxt.beginPath();
+			cxt.rotate((Math.PI/180) * (deg * 1/3600/60));
+			cxt.fillRect(-20,-4,130,8);
+			cxt.closePath();
+
+			// 分针
+			cxt.beginPath();
+			cxt.fillStyle = "#333";
+			cxt.rotate((Math.PI/180) * (deg * 1/10));
+			cxt.fillRect(-4,-125,6,150);
+			cxt.closePath();
+
+			// 秒针
+			cxt.beginPath();
+			cxt.fillStyle = "red";
+			cxt.rotate((Math.PI/180) * (deg * 6));
+			cxt.fillRect(-130,-4,160,6);
+			cxt.closePath();
+
+			cxt.restore();
+		}
+		draw();
+
+		setInterval(draw,1000);
+	</script>
+</body>
+</html>

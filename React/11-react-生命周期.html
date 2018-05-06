@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/react.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/react-dom.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./js/browser.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<!--
+    组件的生命周期:
+    1.初始化
+        1.getDefaultProps:设置默认属性
+        2.getInitialState:设置初始的状态
+        3.componentWillMount:组件即将被装载
+        4.render 渲染
+        5.componentDidMount:组件已经被装载，只会在第一个组件的时候触发
+    2.运行中
+        1.componentWillReceiveProps:在组件将要接收到属性的时候，接收属性前
+        2.shouldComponentUpdate:在接收到新的props或者state，将要渲染之前调用
+        3.componentWillUpdate:render触发之前，更新
+        4.render 渲染
+        5.componentDidUpdate:在渲染完成之后触发
+    3.销毁
+        1.componentWillUnmount:在组件从dom中移除的时候立刻被调用
+-->
+<div id="test"></div>
+</body>
+</html>
+
+<script type="text/babel">
+    var LifeDom = React.createClass({
+        componentDidMount: function () {
+          console.log('5');
+        },
+        componentWillMount:function () {
+            console.log('3');
+        },
+        render: function () {
+            return <h1>南村群童欺我老无力</h1>
+        }
+
+    });
+
+    ReactDOM.render(<LifeDom></LifeDom>,document.getElementById("test"));
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery选择器</title>
+</head>
+<body>
+	<div id="box">
+		<p>p1</p>
+		<p>p2</p>
+	</div>
+	<p id="box1">box1</p>
+	<p id="box2">box2</p>
+	<script src="./js/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#box").css("border","5px solid red");
+
+			// 原生
+			$("#box p")[0].style.border = "3px solid blue";
+			// jq,默认循环设置所有
+			$("#box p").css("border","3px solid pink");
+
+			// get() 获取原生对象
+			// jq转换为原生
+			$("#box p").get(1).style.fontSize = "30px";
+			// 不给参数,返回数组,获取选中的元素数组
+			console.log($("#box p").get());
+			$("#box p").get().reverse()[0].style.color = "pink";
+
+			// 原生转换为jq
+			var ele = document.getElementById('box1');
+			$(ele).css("font-size","30px");
+
+			// last-child
+			$("#box p:last-child").css("border-color","blue");
+
+			// eq()
+			$("#box p").eq(1).css("text-decoration","line-through");
+
+			$("#box1,#box2").css("color","red");
+
+			$("*").css("padding","5px").css("margin","5px");
+
+			// $():参数2,context 上下文
+			// 找 #box 下的 p
+			$("p","#box").css("backgroundColor","lightblue");
+
+			console.log($("p",box));  // r.fn.init(2)
+			console.log($("p","#box"));  // r.fn.init(2)
+		});
+	</script>
+</body>
+</html>

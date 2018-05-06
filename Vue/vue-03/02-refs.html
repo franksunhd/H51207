@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>refs</title>
+	</head>
+	<body>
+		<!--
+			this.$refs 获取所有的 携带 ref 属性的元素集合
+			this.$refs.你的元素的ref值,就可以获取到 ref 所在的元素
+		-->
+		<div id="app">
+			<son ref="mm"></son>
+			<hr />
+			<button @click="chuan()">点击获取父元素的值</button>
+		</div>
+	</body>
+</html>
+<template id="son">
+	<div>
+		<p>{{msg}}</p>
+	</div>
+</template>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var son = {
+		template:"#son",
+		data:function(){
+			return {
+				msg:'能全世界能全我---子'
+			}
+		},
+		methods:{
+			// 子接收
+			show(info){
+				this.msg = info;
+			}
+		}
+	}
+	
+	/*
+	 * 这个是实现了将子元素显示的值改为父元素的值,
+	 * 也就是 父值传给 子值
+	 * 能全世界能全我 改为 半哭苍生半哭公
+	 */
+	var vm1 = new Vue({
+		el:"#app",
+		data:{
+			str:'半哭苍生半哭公---父'
+		},
+		methods:{
+			// 父传子方法
+			chuan(){
+				this.$refs.mm.show(this.str);
+			}
+		},
+		components:{
+			son
+		}
+	});
+</script>

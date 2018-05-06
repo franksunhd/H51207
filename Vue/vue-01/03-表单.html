@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表单</title>
+	</head>
+	<body>
+		<!--
+			v-model: 绑定 input 的 value 值可以实现双向绑定
+		-->
+		<div id="app">
+			<input type="text" v-model="val" />
+			<p>{{val}}</p>
+			<!-- 单选 -->
+			<label for="">男</label>
+			<input type="radio" value="男" name="sex" v-model="sex"/>
+			<label for="">女</label>
+			<input type="radio" value="女" name="sex" v-model="sex"/>
+			<p>{{sex}}</p>
+			<!-- 复选 -->
+			<h4>爱好:</h4>
+			<template v-for="item in arr">
+				<input type="checkbox" name="" v-model="checkArr" :value="item"/><label>{{item}}</label>	
+			</template>
+			<p>你选择了{{checkArr}}</p>
+			
+			<!-- 下拉框 -->
+			<select v-model="selectVal">
+				<option v-for="mo in arr">{{mo}}</option>
+			</select>
+			<p>您选择了{{selectVal}}</p>
+			
+			<textarea rows="" cols="" v-model="text"></textarea>
+			<p>{{text}}</p>
+		</div> 
+	</body>
+</html>
+<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var vm1 = new Vue({
+		el:"#app",
+		data:{
+			val:'书生意气',
+			sex:'男',
+			arr:['苹果','橘子','梨','葡萄'],
+			checkArr:[],
+			selectVal:'苹果',
+			text:'请输入你的文本...'
+		},
+		methods:{
+			
+		},
+		created:function(){}
+	});
+</script>

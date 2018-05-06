@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>canvas滤镜</title>
+		<style type="text/css">
+			#canvas {
+				border:  2px solid red;
+				display: block;
+				margin: 0 auto;
+			}
+			
+			#btn {
+				text-align: center;
+			}
+			
+			button {
+				cursor: pointer;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="600" height="900">
+			您的浏览器不支持 canvas!
+		</canvas>
+		<div id="btn">
+			<button>原图</button>
+			<button>取反</button>
+			<button>灰度</button>
+			<button>黑白</button>
+		</div>
+		<script src="js/jquery-2.0.3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var canvas = $("#canvas");
+			var cxt = canvas.get(0).getContext("2d");
+			
+			//判断是否加载完毕
+			var dol = false;
+			
+			//绘制
+			$("<img/>").prop("src","img/bg4.jpg").load(function(){
+				cxt.drawImage(this,0,0);
+				dol = true;
+			});
+			
+			// 获取所有按钮
+			var btns = $("button");
+			
+			// 点击原图
+			btns.eq(0).click(function(){
+				if (dol) {
+					cxt.clearRect(0,0,canvas.width(),canvas.height());
+					
+					// 绘制
+					var img = $("<img/>").prop("src","img/bg4.jpg");
+					cxt.drawImage(img.get(0),0,0);
+				}
+			});
+			
+			// 取反:把图上所有点的 rgb 值转化为和255的差(255-当前值);
+			btns.eq(1).click(function(){
+				if(dol){
+					var imageData = cxt.getImageData(0,0,canvas.width(),canvas.height());
+					var colors = imageData.data;
+					
+					for(var i = 0; i < colors.length;i+=4){
+						colors[i] = 255 - colors[i];
+						colors[i+1] = 255 - colors[i+1];
+						colors[i+2] = 255 - colors[i+2];
+					}
+					
+					// 更新数据 使用 cxt.putImageData(数据对象,开始第一个像素的 x, 开始第一个像素的y)
+					cxt.putImageData(imageData,0,0);
+				}
+			});
+			
+			// 灰度: 其实就是求 rgb 的平均值
+			btns.eq(2).click(function(){
+				if(dol){
+					var imageData = cxt.getImageData(0,0,canvas.width(),canvas.height());
+					var colors = imageData.data;
+					
+					for(var i = 0; i < colors.length;i+=4){
+						var mul = (colors[i] + colors[i+1] + colors[i+2]) / 3;
+						colors[i] = mul;
+						colors[i+1] = mul;
+						colors[i+2] = mul;
+					}
+					cxt.putImageData(imageData,0,0);
+				}
+			});
+			
+			// 黑白: rgb的 平均值大于128改为255,小于的改为0
+			btns.eq(3).click(function(){
+				if(dol){
+					var imageData = cxt.getImageData(0,0,canvas.width(),canvas.height());
+					var colors = imageData.data;
+					
+					for(var i = 0; i < colors.length;i+=4){
+						var mul = (colors[i] + colors[i+1] + colors[i+2]) / 3;
+						mul = mul > 128 ? 255 : 0;
+						colors[i] = mul;
+						colors[i+1] = mul; 
+						colors[i+2] = mul; 
+					}
+					cxt.putImageData(imageData,0,0);
+				}
+			});
+		</script>
+	</body>
+</html>

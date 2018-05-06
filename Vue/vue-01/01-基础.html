@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基础语法</title>
+    <style type="text/css">
+    		.aa {
+    			color: #f00;
+    		}
+    		
+    		.bb {
+    			width: 200px;
+    			height: 200px;
+    			background: #f00;
+    		}
+    </style>
+</head>
+<body>
+<!--
+    vue 简介:
+    它是一个 MVVM 框架
+    两种方式使用
+    1. 直接引入 js, 类似 jquery 的引用
+    2. 创建 vue 脚手架,使用命令行工具操作 vue 类似刚刚认识的 angular5 ,Vue2.0以后该方式为主流方式
+
+    初始化一个 vue model
+    1. 首先要有一个 vue 的视图容器,一般是在 body 里面设置一个 div
+    2. js 中使用 el:'#app' 指的是视图的模型,它是指定要把运行的逻辑或者数据挂载到哪一个容器中,也就是el 指定了哪一个容器才能使用当前对象中的属性和方法
+    3. data: 代表的是 vue 实例化的基本数据,以及存放的变量
+	4. methods: 存储所有使用到的方法
+
+    vue基础知识点:
+    1. 数据绑定
+        值绑定: {{}}  插值表达式 里面可以放数值,变量, js 语句,但是不要写多行 js
+        指令绑定: v-html 和 v-text 都可以绑定数据
+    2. 属性的绑定
+        在 vue 中,没有对属性进行 html 属性和 dom 属性的区分
+        在 vue 中不能使用插值表达式绑定属性,想要绑定属性使用 v-bind 指令绑定
+        语法为:
+        v-bind: 属性名='值/表达式'
+        
+        动态绑定 css
+        1.动态改变 class
+        2.通过 style 动态改变内联样式
+        
+        注意在指令中,一定是 js 方式,因为指令创建了一个 js 作用域,在作用域中使用 js 语句
+        eg: v-bind:class="'aa'"
+        
+        v-bind 还有简写的方式
+        v-bind:class 也可以写成  :class
+	3. 事件绑定
+		语法为: v-on:事件名="要执行的方法"
+		可以简写为  @事件名 ="要执行的方法"
+		
+		修饰符: 具有特殊含义的指令
+		.self 指的是只能获取他自己,不包括子元素,如果写在事件上,则表示只点击他自己,没有点击子元素
+		.stop 指的是他可以阻止冒泡事件
+		.once 只执行一次事件
+		
+		键盘事件:
+		13代表 enter 键
+		按下 enter 键触发事件 @keydown.13='要执行的事件'
+		@keydown.ctrl  敲击 ctrl 键
+		@keydown.alt
+		
+		
+		同时按下 ctrl alt enter
+		@keydown.ctrl.alt.13
+-->
+<div id="app1">
+    <h1>{{message}}</h1>
+    <h1 v-bind:class="'aa'" v-bind:title="str">{{2>1?'真':'假'}}</h1>
+    
+    <!-- v-html 和 v-text 的区别就像 innerHTML 和 innerText -->
+    <h1 v-html='html'></h1>
+    <h1 v-text="html"></h1>
+    
+    <h1 v-bind:style="'color:green;font-size:30px;'">砍头不要紧</h1>
+    
+    <!-- v-bind:class  的简写 :class -->
+    <h1 :class="ClassName0">天地英雄气</h1>
+    <!--绑定图片-->
+    <div><img v-bind:src="src" v-bind:width="300"/></div>
+    
+    <!-- 绑定事件 -->
+    <button v-on:click="clickFun()">点我查看小秘密</button>
+    
+    <!-- 获取当前事件操作的元素 -->
+    <div v-bind:class="ClassName1" v-on:mouseenter="mouseEnter($event)"></div>
+	<div @click.self="showHTML($event)"  v-bind:class="ClassName1">
+		<p @click.stop="showHTML($event)">天生我才必有用</p>
+	</div>
+	<button v-on:click.once="onceFun()">点击我</button>
+	<input type="text" @keydown.13="enterKeyUp()" value=""/>
+	<input type="text" @keydown.alt="altKeyUp()" value=""/>
+	<button @click="changeTxt()">点击</button>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+    // 实例化一个 vue 对象
+    var vm1 = new Vue({
+        el: '#app1',
+        data: {
+            message: '请开始你的表演',
+            html: '<a href="http://www.baidu.com">百度</a>',
+            str:"{{2>1?'真':'假'}}",
+            ClassName0:"aa",
+            ClassName1:"bb",
+            src:"../img/m.png",
+        },
+        methods:{
+        		clickFun:function(event){
+        			alert("你好" + this.message);
+        		},
+        		mouseEnter:function(event) {
+        			event.target.style.backgroundColor = '#f0f';	
+        		},
+        		showHTML:function(event){
+        			alert(event.target.innerHTML);
+        		},
+        		onceFun: function() {
+        			alert("百无一用是书生");
+        		},
+        		enterKeyUp: function() {
+        			alert('你按下了 enter 键');
+        		},
+        		ctrlKeyUp: function() {
+        			alert('你按下了 ctrl 键');
+        		},
+        		altKeyUp: function() {
+        			alert('你按下了 alt 键');
+        		},
+        		changeTxt: function(event) {
+        			this.message = '见血封喉';
+        		}
+        },
+        // 钩子函数,它是在实例化加载成功之后执行的方法
+        created: function(){
+//      		var _this = this;
+//      		setTimeout(function(){
+//      			_this.message = '天将降大任于斯人也';
+//      		},2000);
+			
+			setTimeout(()=>{
+				this.message = '天将降大任于斯人也1';
+			},2000);
+        }
+    });
+	console.log(vm1);
+</script>
